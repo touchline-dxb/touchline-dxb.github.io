@@ -66,8 +66,8 @@ body {
 /*header section*/
 .hero_area {
   height: 100vh;
-  background: -webkit-gradient(linear, left top, right top, from(rgba(255, 255, 255, 0)), to(rgba(255, 255, 255, 0))), url(../images/hero-bg.jpg);
-  background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), url(../images/hero-bg.jpg);
+  background: -webkit-gradient(linear, left top, right top, from(rgba(255, 255, 255, 0)), to(rgba(255, 255, 255, 0))), url(../images/team.jpg);
+  background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), url(../images/team.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: right bottom;
@@ -725,9 +725,10 @@ background: linear-gradient(222deg, rgba(0,13,28,1) 0%, rgba(93,93,93,1) 93%);
 
 .contact_section input {
   border: none;
-  outline: none;
-  border-bottom: 0.8px solid #ac9784;
-  width: 90%;
+  outline: 2px solid #140c40;
+  /* border-bottom: 0.8px solid #ac9784; */
+  padding: .5rem;
+  width: 100%;
   margin: 10px 0;
 }
 
@@ -929,3 +930,86 @@ background: linear-gradient(222deg, rgba(0,13,28,1) 0%, rgba(93,93,93,1) 93%);
 
 /* end footer section*/
 /*# sourceMappingURL=style.css.map */
+
+
+.textarea-box {
+  width: 100%;
+}
+
+/* Reset default style */
+textarea {
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: none;
+  border-radius: 0;
+  outline: none;
+  appearance: none;
+}
+
+textarea {
+  width: inherit;
+  min-height: 200px;
+  outline: 2px solid #140c40;
+  background: #fffff6;
+  padding: 15px;
+  font-size: 20px;
+  font-weight: 400;
+  font-family: inherit;
+  resize: vertical;
+}
+
+
+.success-message, .error-message {
+  display: none;
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 16px;
+}
+.success-message {
+  background-color: #d4edda;
+  color: #155724;
+}
+.error-message {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+.submit {
+  background-color: #0c1a3f !important;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.submit:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+    /* Toast Container */
+    .toast {
+      visibility: hidden;
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #140c40;;
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 5px;
+      z-index: 1000;
+      font-size: 14px;
+      font-weight: bold;
+    }
+    .toast.show {
+      visibility: visible;
+      animation: fadeInOut 2s;
+    }
+    @keyframes fadeInOut {
+      0% { opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { opacity: 0; }
+    }
