@@ -1032,8 +1032,7 @@ button.wh-ap-btn {
 	transition: opacity 0.3s, background 0.3s, box-shadow 0.3s;
 }
 
-button.wh-ap-btn img {
-	content: "";
+.wh-ap-btn img {
 	background-position: center center;
 	background-repeat: no-repeat;
 	background-size: 60%;
@@ -1041,7 +1040,7 @@ button.wh-ap-btn img {
 	height: 100%;
 	display: block;
 	opacity: 1;
-  padding: .8rem;
+  	padding: .8rem;
 }
 
 button.wh-ap-btn:hover {
