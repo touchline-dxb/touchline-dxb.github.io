@@ -1032,9 +1032,8 @@ button.wh-ap-btn {
 	transition: opacity 0.3s, background 0.3s, box-shadow 0.3s;
 }
 
-button.wh-ap-btn::after {
+button.wh-ap-btn img {
 	content: "";
-	background-image: url("../images/whatsapp-white-icon.svg");
 	background-position: center center;
 	background-repeat: no-repeat;
 	background-size: 60%;
@@ -1042,6 +1041,7 @@ button.wh-ap-btn::after {
 	height: 100%;
 	display: block;
 	opacity: 1;
+  padding: .8rem;
 }
 
 button.wh-ap-btn:hover {
