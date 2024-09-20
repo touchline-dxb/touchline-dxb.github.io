@@ -1034,7 +1034,7 @@ button.wh-ap-btn {
 
 button.wh-ap-btn::after {
 	content: "";
-	background-image: url("../images/assets/whatsapp-white-icon.svg");
+	background-image: url("./images/whatsapp-white-icon.svg");
 	background-position: center center;
 	background-repeat: no-repeat;
 	background-size: 60%;
