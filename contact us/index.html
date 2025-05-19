@@ -1,0 +1,62 @@
+<style>
+    .schedule-table {
+        max-width: 600px;
+        margin: 2rem auto;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        background: white;
+    }
+
+    .table-header {
+        background: #06203D ;
+        color: white;
+        padding: 1.2rem;
+        font-weight: 600;
+    }
+
+    .table-row {
+        display: flex;
+        justify-content: space-between;
+        padding: 1rem;
+        border-bottom: 1px solid #e2e8f0;
+    }
+
+    .table-row:last-child {
+        border-bottom: none;
+    }
+
+    .day {
+        color: #1e293b;
+        font-weight: 500;
+    }
+
+    .time {
+        color: #06203D;
+        font-weight: 600;
+    }
+
+    @media (max-width: 480px) {
+        .table-row {
+            flex-direction: column;
+            gap: 0.5rem;
+            padding: 1.2rem;
+        }
+        
+        .time {
+            font-size: 0.9em;
+        }
+    }
+</style>
+
+<div class="schedule-table">
+    <div class="table-header">Weekly Schedule</div>
+    <div class="table-row">
+        <span class="day">Monday</span>
+        <span class="time">4:00 PM - 5:00 PM</span>
+    </div>
+    <div class="table-row">
+        <span class="day">Saturday</span>
+        <span class="time">4:00 PM - 6:00 PM</span>
+    </div>
+</div>
