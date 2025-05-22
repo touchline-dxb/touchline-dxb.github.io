@@ -17,7 +17,15 @@
 
   <link rel="stylesheet" href="../style.css">
 </head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LT4TXH5D8Z"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
+  gtag('config', 'G-LT4TXH5D8Z');
+</script>
 <body>
   <!-- <nav class="container navbar navbar-expand-lg custom-navbar">
     <div class="container-fluid d-flex flex-wrap align-items-center">
@@ -426,57 +434,92 @@
   </footer>
 
   <script>
-    function toggleGuardianFields() {
+      function toggleGuardianFields() {
       const type = document.getElementById('registrationType').value;
       const guardianSection = document.getElementById('guardianSection');
       const registrantEmailField = document.getElementById('registrantEmailField');
       const guardianInputs = guardianSection.querySelectorAll('input');
       const emailInput = registrantEmailField.querySelector('input');
 
+      // Clear previous validation states
+      guardianInputs.forEach(input => input.classList.remove('is-invalid'));
+      emailInput.classList.remove('is-invalid');
+
       if (type === 'corporate' || type === 'adult') {
-        guardianSection.style.display = 'none';
-        registrantEmailField.style.display = 'block';
-        guardianInputs.forEach(input => input.required = false);
-        emailInput.required = true;
+          guardianSection.style.display = 'none';
+          registrantEmailField.style.display = 'block';
+          guardianInputs.forEach(input => {
+              input.required = false;
+              input.value = ''; // Clear values when hidden
+          });
+          emailInput.required = true;
       } else {
-        guardianSection.style.display = 'block';
-        registrantEmailField.style.display = 'none';
-        guardianInputs.forEach(input => input.required = true);
-        emailInput.required = false;
+          guardianSection.style.display = 'block';
+          registrantEmailField.style.display = 'none';
+          guardianInputs.forEach(input => input.required = true);
+          emailInput.required = false;
+          emailInput.value = ''; // Clear email when hidden
       }
-    }
+  }
 
-    document.getElementById('registrationType').addEventListener('change', toggleGuardianFields);
-    window.addEventListener('DOMContentLoaded', toggleGuardianFields);
+  document.getElementById('registrationType').addEventListener('change', toggleGuardianFields);
+  window.addEventListener('DOMContentLoaded', toggleGuardianFields);
 
-    async function handleFormSubmit(event) {
+  async function handleFormSubmit(event) {
       event.preventDefault();
       const form = event.target;
-      const formData = new FormData(form);
-      const data = Object.fromEntries(formData.entries());
-      data.timestamp = new Date().toISOString();
-      try {
-        const response = await fetch('https://script.google.com/macros/s/AKfycbz_TIKyvpo_fJFNUXLT62giOu8BsthJNzUOqGDyE6xJsfR0F62RjCTdBbXpq48kmxgG5w/exec', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(data)
-        });
+      const submitButton = form.querySelector('button[type="submit"]');
+      const originalButtonText = submitButton.innerHTML;
 
-        const result = await response.json();
-        if (result.success) {
+      try {
+          // Show loading state
+          submitButton.innerHTML = `
+              <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+              Submitting...
+          `;
+          submitButton.disabled = true;
+
+          const formData = new FormData(form);
+          const data = Object.fromEntries(formData.entries());
+          
+          // Basic validation
+          if (!data.registrationType) throw new Error('Please select a registration type');
+          if (!data.sessionType) throw new Error('Please select a session type');
+          
+          const response = await fetch('https://script.google.com/macros/s/AKfycbyPz6ZZwdxSj5WiudgKsTsNjWicqbgwoqYkaX3iifNdP_LkQmsmes9HJ0w-R4euLRarRQ/exec', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                  ...data,
+                  timestamp: new Date().toISOString()
+              })
+          });
+
+          if (!response.ok) {
+              const error = await response.text();
+              throw new Error(`Server error: ${error}`);
+          }
+
+          const result = await response.json();
+          
+          if (!result.success) {
+              throw new Error(result.error || 'Registration failed');
+          }
+
+          // Success handling
           alert('Registration successful! Check your email.');
           form.reset();
           toggleGuardianFields();
-        } else {
-          throw new Error(result.error || 'Registration failed');
-        }
+          
       } catch (error) {
-        console.error('Error:', error);
-        alert(error.message);
+          console.error('Submission error:', error);
+          alert(`Error: ${error.message}. Please check your entries and try again.`);
+      } finally {
+          // Reset button state
+          submitButton.innerHTML = originalButtonText;
+          submitButton.disabled = false;
       }
-    }
+  }
   </script>
 
 </body>
