@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Touchline Navbar Final (Logo Left Mobile)</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
@@ -21,11 +21,12 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-LT4TXH5D8Z"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
+  function gtag() { dataLayer.push(arguments); }
   gtag('js', new Date());
 
   gtag('config', 'G-LT4TXH5D8Z');
 </script>
+
 <body>
   <!-- <nav class="container navbar navbar-expand-lg custom-navbar">
     <div class="container-fluid d-flex flex-wrap align-items-center">
@@ -282,78 +283,84 @@
       </div>
     </div> -->
       <!-- Registration Section (Updated) -->
+
+      <div id="successModal" class="modal fade" tabindex="-1">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-body text-center p-5">
+              <h3 class="text-success">🎉 Enquiry Received!</h3>
+              <p>Our team will contact you within 24 hours.</p>
+              <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modified Form Section -->
       <div class="col-lg-4 pb-5">
         <div class="form-section">
-          <div class="title">Register Now</div>
-          <form id="touchline-register-form" onsubmit="handleFormSubmit(event)">
+          <div class="title">Connect With Us</div>
+          <form id="enquiry-form" onsubmit="handleEnquirySubmit(event)">
 
-            <h6>Registration Type</h6>
+            <h6>Enquiry Type</h6>
             <div class="mb-3">
-              <select class="form-select" id="registrationType" required>
-                <option value="">Select Type</option>
-                <option value="corporate">Corporate</option>
-                <option value="adult">Adult</option>
-                <option value="youth">Youth</option>
+              <select class="form-select" id="enquiryType" name="enquiryType" required>
+                <option value="">Select Enquiry Type</option>
+                <option value="corporate">Corporate Training / Tie-up</option>
+                <option value="adult">Adults Football Program</option>
+                <option value="youth">Kids & Youth Program</option>
+                <option value="general">General / Other Enquiries</option>
               </select>
+
             </div>
 
-            <!-- Email Field for Corporate/Adult -->
-            <div class="mb-3" id="registrantEmailField" style="display: none;">
+            <!-- Contact Fields -->
+            <div class="mb-3">
               <input type="email" class="form-control" name="email" placeholder="Your Email" required>
             </div>
+            <div class="mb-3">
+              <input type="tel" class="form-control" name="phone" placeholder="Contact Number" required>
+            </div>
 
-            <h6>Player Information</h6>
+            <!-- Participant Info -->
+            <h6>Participant Details</h6>
             <div class="mb-2">
               <input type="text" class="form-control" name="firstName" placeholder="First Name" required>
             </div>
             <div class="mb-2">
               <input type="text" class="form-control" name="lastName" placeholder="Last Name" required>
             </div>
-            <div class="mb-2">
-              <input type="date" class="form-control" name="dob" required>
+
+
+            <!-- Guardian Section -->
+            <div id="guardianSection" style="display: none;">
+              <div class="mb-3">
+                <label for="dob" class="form-label">Date of Birth</label>
+                <input type="date" class="form-control" id="dob" name="dob">
+              </div>
+
+              <h6>Parent/Guardian Info</h6>
+              <div class="mb-2">
+                <input type="text" class="form-control" name="guardianName" placeholder="Guardian Full Name">
+              </div>
+              <div class="mb-2">
+                <input type="tel" class="form-control" name="guardianPhone" placeholder="Guardian Contact Number">
+              </div>
             </div>
+
             <div class="mb-3">
-              <select class="form-select" name="gender" required>
-                <option value="">Select Gender</option>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-              </select>
+              <textarea class="form-control" name="message" placeholder="Any special requirements or questions?"
+                rows="3"></textarea>
             </div>
 
-            <!-- Guardian Section for Youth -->
-            <div id="guardianSection">
-              <h6>Guardian Information</h6>
-              <div class="mb-2">
-                <input type="text" class="form-control" name="guardianFirstName" placeholder="First Name" required>
-              </div>
-              <div class="mb-2">
-                <input type="text" class="form-control" name="guardianLastName" placeholder="Last Name" required>
-              </div>
-              <div class="mb-2">
-                <input type="tel" class="form-control" name="guardianPhone" placeholder="050 123 4567" required>
-              </div>
-              <div class="mb-2">
-                <input type="email" class="form-control" name="guardianEmail" placeholder="Guardian Email" required>
-              </div>
-            </div>
+            <button type="submit" class="btn w-100" style="background-color: #BEB071; color: #06203D; border: none; font-weight: bold;">
+  <span class="submit-text">Submit Your Enquiry</span>
+  <span class="spinner-border spinner-border-sm" style="display: none; color: #06203D;"></span>
+</button>
 
-            <h6>Type of Session</h6>
-            <div class="mb-3">
-              <select class="form-select" name="sessionType" required>
-                <option value="">Choose</option>
-                <option value="try-out">Try Out</option>
-                <option value="register-now">Register Now</option>
-              </select>
-            </div>
-
-            <button type="submit" class="btn btn-primary w-100" id="submitBtn">
-              <span class="submit-text">Submit</span>
-              <span class="spinner-border spinner-border-sm" style="display: none;" aria-hidden="true"></span>
-            </button>
           </form>
         </div>
       </div>
-    </div>
   </section>
   <section class="help-section ">
     <div class="help-container">
@@ -425,101 +432,77 @@
 
     </div>
     <div style="display: flex; gap: 15px; justify-content: center;">
-      <a href="#" style="color: #fff; font-size: 1.5rem; transition: 0.3s;"><i class="fab fa-facebook-f"></i></a>
-      <a href="#" style="color: #fff; font-size: 1.8rem; transition: 0.3s;"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.facebook.com/people/Touch-Line-Sport-Academy/61566454443679/" target="_blank" style="color: #fff; font-size: 1.8rem; margin-right: 10px; transition: 0.3s;">
+  <i class="fab fa-facebook-f"></i>
+</a>
+<a href="https://www.instagram.com/touchline_academy/" target="_blank" style="color: #fff; font-size: 1.8rem; margin-right: 10px; transition: 0.3s;">
+  <i class="fab fa-instagram"></i>
+</a>      <a href="https://www.linkedin.com/company/touchline-sport-academy" style="color: #fff; font-size: 1.8rem; transition: 0.3s;"><i class="fab fa-linkedin-in"></i></a>
+      <a href="https://www.tiktok.com/@touchlineacademy" style="color: #fff; font-size: 1.8rem; transition: 0.3s;">
+  <i class="fab fa-tiktok"></i>
+</a>
+
     </div>
     <div style="text-align: center; margin-top: 30px; background-color: #beb071; padding: 15px 10px;">
       <p style="font-size: 1rem; color: #06203d; margin: 0;">© 2025 Touchline Sports Academy. All Rights Reserved.</p>
     </div>
   </footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"></script>
 
   <script>
-      function toggleGuardianFields() {
-      const type = document.getElementById('registrationType').value;
-      const guardianSection = document.getElementById('guardianSection');
-      const registrantEmailField = document.getElementById('registrantEmailField');
-      const guardianInputs = guardianSection.querySelectorAll('input');
-      const emailInput = registrantEmailField.querySelector('input');
+    document.getElementById('enquiryType').addEventListener('change', toggleGuardianFields);
 
-      // Clear previous validation states
-      guardianInputs.forEach(input => input.classList.remove('is-invalid'));
-      emailInput.classList.remove('is-invalid');
+    // Toggle Guardian Fields for Youth
+    function toggleGuardianFields() {
+  const type = document.getElementById('enquiryType').value;
+  const guardianSection = document.getElementById('guardianSection');
 
-      if (type === 'corporate' || type === 'adult') {
-          guardianSection.style.display = 'none';
-          registrantEmailField.style.display = 'block';
-          guardianInputs.forEach(input => {
-              input.required = false;
-              input.value = ''; // Clear values when hidden
-          });
-          emailInput.required = true;
-      } else {
-          guardianSection.style.display = 'block';
-          registrantEmailField.style.display = 'none';
-          guardianInputs.forEach(input => input.required = true);
-          emailInput.required = false;
-          emailInput.value = ''; // Clear email when hidden
-      }
-  }
+  // Show guardian section for both 'youth' and 'adult'
+  const showGuardian = type === 'youth' || type === 'adult';
+  guardianSection.style.display = showGuardian ? 'block' : 'none';
 
-  document.getElementById('registrationType').addEventListener('change', toggleGuardianFields);
-  window.addEventListener('DOMContentLoaded', toggleGuardianFields);
+  // Make inputs required only for 'youth'
+  document.querySelectorAll('#guardianSection input').forEach(input => {
+    input.required = (type === 'youth');
+  });
+}
 
-  async function handleFormSubmit(event) {
+
+    // Handle Form Submission
+    async function handleEnquirySubmit(event) {
       event.preventDefault();
-      const form = event.target;
-      const submitButton = form.querySelector('button[type="submit"]');
-      const originalButtonText = submitButton.innerHTML;
+
+      const form = document.getElementById('enquiry-form');
+      const formData = new FormData(form);
+      const submitBtn = form.querySelector('button[type="submit"]');
+      const spinner = submitBtn.querySelector('.spinner-border');
+      const submitText = submitBtn.querySelector('.submit-text');
+
+      submitText.style.display = 'none';
+      spinner.style.display = 'inline-block';
 
       try {
-          // Show loading state
-          submitButton.innerHTML = `
-              <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-              Submitting...
-          `;
-          submitButton.disabled = true;
+        const response = await fetch('https://script.google.com/macros/s/AKfycbyOhTCEpAJHXfnYIiTa_T-Apl7iU7z2jbsBUK655eWhMJlNemhk-tpBYOFpStCcfyGRaw/exec', {
+          method: 'POST',
+          body: formData
+        });
 
-          const formData = new FormData(form);
-          const data = Object.fromEntries(formData.entries());
-          
-          // Basic validation
-          if (!data.registrationType) throw new Error('Please select a registration type');
-          if (!data.sessionType) throw new Error('Please select a session type');
-          
-          const response = await fetch('https://script.google.com/macros/s/AKfycbyPz6ZZwdxSj5WiudgKsTsNjWicqbgwoqYkaX3iifNdP_LkQmsmes9HJ0w-R4euLRarRQ/exec', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({
-                  ...data,
-                  timestamp: new Date().toISOString()
-              })
-          });
-
-          if (!response.ok) {
-              const error = await response.text();
-              throw new Error(`Server error: ${error}`);
-          }
-
-          const result = await response.json();
-          
-          if (!result.success) {
-              throw new Error(result.error || 'Registration failed');
-          }
-
-          // Success handling
-          alert('Registration successful! Check your email.');
+        if (response.ok) {
           form.reset();
-          toggleGuardianFields();
-          
+          toggleGuardianFields(); // Hide guardian section again
+          const modal = new window.bootstrap.Modal(document.getElementById('successModal'));
+          modal.show();
+        } else {
+          alert("Submission failed. Please try again later.");
+        }
       } catch (error) {
-          console.error('Submission error:', error);
-          alert(`Error: ${error.message}. Please check your entries and try again.`);
+        console.error('Error:', error);
+        alert("An error occurred. Please check your internet and try again.");
       } finally {
-          // Reset button state
-          submitButton.innerHTML = originalButtonText;
-          submitButton.disabled = false;
+        submitText.style.display = 'inline';
+        spinner.style.display = 'none';
       }
-  }
+    }
   </script>
 
 </body>
