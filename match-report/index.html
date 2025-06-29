@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Touchline Sports Academy - Match Report Form</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #06203d;
+            --secondary: #beb071;
+            --accent: #ffffff;
+            --text: #333;
+            --border: #ddd;
+            --light-bg: #f8f9fa;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--light-bg) 0%, #e9ecef 100%);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary) 0%, #0a2a4a 100%);
+            color: var(--accent);
+            padding: 30px 0;
+            text-align: center;
+            margin-bottom: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(6, 32, 61, 0.3);
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .form-container {
+            background: var(--accent);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .form-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            background: var(--light-bg);
+        }
+
+        .form-section h3 {
+            color: var(--primary);
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--secondary);
+        }
+
+        .form-row {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .form-group {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .form-group.full-width {
+            flex: 100%;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 3px rgba(190, 176, 113, 0.2);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            margin: 0;
+        }
+
+        .player-highlight {
+            background: var(--accent);
+            padding: 15px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .player-row {
+            display: grid;
+            grid-template-columns: 2fr 3fr 1fr;
+            gap: 10px;
+            align-items: end;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary) 0%, #0a2a4a 100%);
+            color: var(--accent);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(6, 32, 61, 0.4);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, var(--secondary) 0%, #c9b976 100%);
+            color: var(--primary);
+        }
+
+        .btn-secondary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(190, 176, 113, 0.4);
+        }
+
+        .btn-small {
+            padding: 8px 15px;
+            font-size: 0.9rem;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .score-input {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.2rem;
+        }
+
+        .score-input input {
+            width: 80px;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .dummy-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .form-container {
+                padding: 20px;
+            }
+
+            .form-row {
+                flex-direction: column;
+            }
+
+            .form-group {
+                min-width: 100%;
+            }
+
+            .player-row {
+                grid-template-columns: 1fr;
+                gap: 5px;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                padding: 20px 15px;
+            }
+
+            .header h1 {
+                font-size: 1.8rem;
+            }
+
+            .checkbox-group {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="dummy-toggle">
+        <button class="btn btn-small btn-secondary" onclick="toggleDummyData()">
+            Toggle Dummy Data
+        </button>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <h1>Touchline Sports Academy</h1>
+            <p>Match Report Form</p>
+        </div>
+
+        <div class="form-container">
+            <form id="matchReportForm">
+                <!-- Match Info Section -->
+                <div class="form-section">
+                    <h3>Match Information</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="matchType">Match Type</label>
+                            <select id="matchType" name="matchType" required>
+                                <option value="">Select Match Type</option>
+                                <option value="Friendly">Friendly</option>
+                                <option value="Tournament">Tournament</option>
+                                <option value="League">League</option>
+                                <option value="Internal">Internal</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="matchDate">Match Date</label>
+                            <input type="date" id="matchDate" name="matchDate" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="venue">Venue / Field Location</label>
+                            <input type="text" id="venue" name="venue" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="opponent">Opponent Club / Academy</label>
+                            <input type="text" id="opponent" name="opponent" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Batch Played</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="u6" name="batch" value="U6">
+                                <label for="u6">U6</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="u10" name="batch" value="U10">
+                                <label for="u10">U10</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="u12" name="batch" value="U12">
+                                <label for="u12">U12</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="u14" name="batch" value="U14">
+                                <label for="u14">U14</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="mixed" name="batch" value="Mixed">
+                                <label for="mixed">Mixed</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="other" name="batch" value="Other">
+                                <label for="other">Other</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Match Details Section -->
+                <div class="form-section">
+                    <h3>Match Details</h3>
+                    <div class="form-group">
+                        <label>Final Score</label>
+                        <div class="score-input">
+                            <span>Touchline</span>
+                            <input type="number" id="touchlineScore" name="touchlineScore" min="0" required>
+                            <span>-</span>
+                            <input type="number" id="opponentScore" name="opponentScore" min="0" required>
+                            <span>Opponent</span>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="matchDuration">Match Duration</label>
+                            <input type="text" id="matchDuration" name="matchDuration" placeholder="e.g., 2 x 20 mins" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="formation">Formation Used</label>
+                            <input type="text" id="formation" name="formation" placeholder="e.g., 4-3-3" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="substitutions">Substitutions Made</label>
+                        <select id="substitutions" name="substitutions" required>
+                            <option value="">Select</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="substitutionNotes">Substitution Notes</label>
+                        <textarea id="substitutionNotes" name="substitutionNotes" placeholder="Brief notes about substitutions made..."></textarea>
+                    </div>
+                </div>
+
+                <!-- Pre-Match Analysis Section -->
+                <div class="form-section">
+                    <h3>Pre-Match Analysis</h3>
+                    <div class="form-group">
+                        <label for="gamePlan">Coach's Game Plan</label>
+                        <textarea id="gamePlan" name="gamePlan" placeholder="Describe the game plan and strategy..." required></textarea>
+                    </div>
+                </div>
+
+                <!-- Match Summary Section -->
+                <div class="form-section">
+                    <h3>Match Summary</h3>
+                    <div class="form-group">
+                        <label for="matchSummary">Brief Summary (2-3 lines)</label>
+                        <textarea id="matchSummary" name="matchSummary" placeholder="Provide a brief summary of the match..." required></textarea>
+                    </div>
+                </div>
+
+                <!-- Positives Section -->
+                <div class="form-section">
+                    <h3>Positives</h3>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="pos1" name="positives" value="Strong teamwork">
+                            <label for="pos1">Strong teamwork</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="pos2" name="positives" value="Good ball control">
+                            <label for="pos2">Good ball control</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="pos3" name="positives" value="Quick passing">
+                            <label for="pos3">Quick passing</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="pos4" name="positives" value="Defensive awareness">
+                            <label for="pos4">Defensive awareness</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="pos5" name="positives" value="Confident attack">
+                            <label for="pos5">Confident attack</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="pos6" name="positives" value="Goalkeeping performance">
+                            <label for="pos6">Goalkeeping performance</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="pos7" name="positives" value="High energy">
+                            <label for="pos7">High energy</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="customPositives">Custom Positives</label>
+                        <textarea id="customPositives" name="customPositives" placeholder="Add any additional positive observations..."></textarea>
+                    </div>
+                </div>
+
+                <!-- Areas to Improve Section -->
+                <div class="form-section">
+                    <h3>Areas to Improve</h3>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="imp1" name="improvements" value="Fitness / stamina">
+                            <label for="imp1">Fitness / stamina</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="imp2" name="improvements" value="Communication">
+                            <label for="imp2">Communication</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="imp3" name="improvements" value="Defensive discipline">
+                            <label for="imp3">Defensive discipline</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="imp4" name="improvements" value="Shot accuracy">
+                            <label for="imp4">Shot accuracy</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="imp5" name="improvements" value="Positioning">
+                            <label for="imp5">Positioning</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="imp6" name="improvements" value="Pressing">
+                            <label for="imp6">Pressing</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="customImprovements">Custom Improvements</label>
+                        <textarea id="customImprovements" name="customImprovements" placeholder="Add any additional areas for improvement..."></textarea>
+                    </div>
+                </div>
+
+                <!-- Player Highlights Section -->
+                <div class="form-section">
+                    <h3>Player Highlights</h3>
+                    <div id="playerHighlights">
+                        <div class="player-highlight">
+                            <div class="player-row">
+                                <div class="form-group">
+                                    <label>Player Name</label>
+                                    <input type="text" name="playerName[]" placeholder="Player name">
+                                </div>
+                                <div class="form-group">
+                                    <label>Highlight</label>
+                                    <input type="text" name="playerHighlight[]" placeholder="Player highlight">
+                                </div>
+                                <div class="form-group">
+                                    <label>Goals</label>
+                                    <input type="number" name="playerGoals[]" min="0" placeholder="0">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-secondary btn-small" onclick="addPlayerHighlight()">Add Player</button>
+                </div>
+
+                <!-- Remarks Section -->
+                <div class="form-section">
+                    <h3>Remarks</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="injuries">Injuries</label>
+                            <textarea id="injuries" name="injuries" placeholder="List any injuries or write 'None'"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="behavior">Behavior / Discipline Notes</label>
+                            <textarea id="behavior" name="behavior" placeholder="Any behavioral observations..."></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="equipment">Equipment Issues</label>
+                        <textarea id="equipment" name="equipment" placeholder="Any equipment issues or write 'None'"></textarea>
+                    </div>
+                </div>
+
+                <!-- Suggestions Section -->
+                <div class="form-section">
+                    <h3>Suggestions for Next Match</h3>
+                    <div class="form-group">
+                        <label for="suggestions">Training or Game Suggestions</label>
+                        <textarea id="suggestions" name="suggestions" placeholder="Suggestions for improvement or preparation for next match..."></textarea>
+                    </div>
+                </div>
+
+                <!-- Submission Info Section -->
+                <div class="form-section">
+                    <h3>Submission Information</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="submittedBy">Report Submitted By</label>
+                            <input type="text" id="submittedBy" name="submittedBy" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="submissionDate">Date of Submission</label>
+                            <input type="date" id="submissionDate" name="submissionDate" required>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <div class="action-buttons">
+                <button type="button" class="btn btn-primary" onclick="generatePDF()">Generate PDF Report</button>
+                <button type="button" class="btn btn-secondary" onclick="clearForm()">Clear Form</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Set today's date as default when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('submissionDate').value = new Date().toISOString().split('T')[0];
+        });
+
+        // Dummy data for testing
+        const dummyData = {
+            matchType: 'Tournament',
+            matchDate: '2024-06-15',
+            venue: 'Touchline Sports Complex - Field A',
+            opponent: 'Rising Stars Academy',
+            touchlineScore: 3,
+            opponentScore: 1,
+            matchDuration: '2 x 25 mins',
+            formation: '4-3-3',
+            substitutions: 'Yes',
+            substitutionNotes: 'Ahmed replaced Zaid at 35 mins due to fatigue. Omar came in for Khalid at 40 mins.',
+            gamePlan: 'Focus on high pressing and quick transitions. Utilize wing play to create crossing opportunities. Maintain defensive shape and communication.',
+            matchSummary: 'Excellent team performance with strong attacking display. Players showed great determination and teamwork throughout the match.',
+            customPositives: 'Exceptional leadership from the captain. Great improvement in set-piece execution.',
+            customImprovements: 'Need to work on maintaining concentration during the final 10 minutes of each half.',
+            injuries: 'Minor knock to Zaid\'s ankle - monitored during second half',
+            behavior: 'Excellent sportsmanship displayed by all players. Great respect shown to opponents and referee.',
+            equipment: 'All equipment in good condition. No issues reported.',
+            suggestions: 'Continue working on passing accuracy in training. Focus on shooting drills for better finishing.',
+            submittedBy: 'Coach Ahmed Al-Rashid'
+        };
+
+        function toggleDummyData() {
+            const form = document.getElementById('matchReportForm');
+            const isFormEmpty = !form.matchType.value;
+
+            if (isFormEmpty) {
+                fillDummyData();
+            } else {
+                clearForm();
+            }
+        }
+
+        function fillDummyData() {
+            // Fill basic form fields
+            Object.keys(dummyData).forEach(key => {
+                const element = document.getElementById(key);
+                if (element) {
+                    element.value = dummyData[key];
+                }
+            });
+
+            // Check some checkboxes
+            document.getElementById('u12').checked = true;
+            document.getElementById('pos1').checked = true;
+            document.getElementById('pos3').checked = true;
+            document.getElementById('pos5').checked = true;
+            document.getElementById('imp2').checked = true;
+            document.getElementById('imp4').checked = true;
+
+            // Fill player highlights
+            const playerNames = ['Ahmed Al-Mansouri', 'Omar Khalil', 'Zaid Hassan'];
+            const playerHighlights = ['Scored 2 goals with excellent finishing', 'Outstanding defensive performance', 'Created multiple scoring opportunities'];
+            const playerGoals = [2, 0, 1];
+
+            playerNames.forEach((name, index) => {
+                if (index === 0) {
+                    // Fill first player slot
+                    document.querySelector('input[name="playerName[]"]').value = name;
+                    document.querySelector('input[name="playerHighlight[]"]').value = playerHighlights[index];
+                    document.querySelector('input[name="playerGoals[]"]').value = playerGoals[index];
+                } else {
+                    // Add additional players
+                    addPlayerHighlight();
+                    const nameInputs = document.querySelectorAll('input[name="playerName[]"]');
+                    const highlightInputs = document.querySelectorAll('input[name="playerHighlight[]"]');
+                    const goalInputs = document.querySelectorAll('input[name="playerGoals[]"]');
+                    
+                    nameInputs[index].value = name;
+                    highlightInputs[index].value = playerHighlights[index];
+                    goalInputs[index].value = playerGoals[index];
+                }
+            });
+        }
+
+        function addPlayerHighlight() {
+            const container = document.getElementById('playerHighlights');
+            const playerCount = container.querySelectorAll('.player-highlight').length;
+            
+            if (playerCount < 5) {
+                const playerDiv = document.createElement('div');
+                playerDiv.className = 'player-highlight';
+                playerDiv.innerHTML = `
+                    <div class="player-row">
+                        <div class="form-group">
+                            <label>Player Name</label>
+                            <input type="text" name="playerName[]" placeholder="Player name">
+                        </div>
+                        <div class="form-group">
+                            <label>Highlight</label>
+                            <input type="text" name="playerHighlight[]" placeholder="Player highlight">
+                        </div>
+                        <div class="form-group">
+                            <label>Goals</label>
+                            <input type="number" name="playerGoals[]" min="0" placeholder="0">
+                        </div>
+                    </div>
+                `;
+                container.appendChild(playerDiv);
+            }
+        }
+
+        function clearForm() {
+            document.getElementById('matchReportForm').reset();
+            document.getElementById('submissionDate').value = new Date().toISOString().split('T')[0];
+            
+            // Clear extra player highlights
+            const container = document.getElementById('playerHighlights');
+            const playerHighlights = container.querySelectorAll('.player-highlight');
+            for (let i = 1; i < playerHighlights.length; i++) {
+                playerHighlights[i].remove();
+            }
+        }
+
+        function generatePDF() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            
+            // Colors
+            const primaryColor = [6, 32, 61];
+            const secondaryColor = [190, 176, 113];
+            
+            // Header
+            doc.setFillColor(...primaryColor);
+            doc.rect(0, 0, 210, 40, 'F');
+            
+            doc.setTextColor(255, 255, 255);
+            doc.setFontSize(20);
+            doc.setFont('helvetica', 'bold');
+            doc.text('TOUCHLINE SPORTS ACADEMY', 105, 15, { align: 'center' });
+            
+            doc.setFontSize(14);
+            doc.setFont('helvetica', 'normal');
+            doc.text('Match Report', 105, 25, { align: 'center' });
+            
+            doc.setFontSize(10);
+            doc.text('Generated on: ' + new Date().toLocaleDateString(), 105, 35, { align: 'center' });
+            
+            // Reset text color for body
+            doc.setTextColor(0, 0, 0);
+            let y = 50;
+            
+            // Match Information
+            doc.setFontSize(14);
+            doc.setFont('helvetica', 'bold');
+            doc.setTextColor(...primaryColor);
+            doc.text('MATCH INFORMATION', 20, y);
+            y += 10;
+            
+            doc.setFontSize(10);
+            doc.setFont('helvetica', 'normal');
+            doc.setTextColor(0, 0, 0);
+            
+            const matchType = document.getElementById('matchType').value;
+            const matchDate = document.getElementById('matchDate').value;
+            const venue = document.getElementById('venue').value;
+            const opponent = document.getElementById('opponent').value;
+            
+            doc.text(`Match Type: ${matchType}`, 20, y);
+            doc.text(`Date: ${matchDate}`, 120, y);
+            y += 6;
+            doc.text(`Venue: ${venue}`, 20, y);
+            y += 6;
+            doc.text(`Opponent: ${opponent}`, 20, y);
+            y += 10;
+            
+            // Batch information
+            const batches = Array.from(document.querySelectorAll('input[name="batch"]:checked')).map(cb => cb.value);
+            if (batches.length > 0) {
+                doc.text(`Batch: ${batches.join(', ')}`, 20, y);
+                y += 10;
+            }
+            
+            // Final Score
+            doc.setFontSize(14);
+            doc.setFont('helvetica', 'bold');
+            doc.setTextColor(...primaryColor);
+            doc.text('FINAL SCORE', 20, y);
+            y += 10;
+            
+            const touchlineScore = document.getElementById('touchlineScore').value;
+            const opponentScore = document.getElementById('opponentScore').value;
+            
+            doc.setFontSize(16);
+            doc.setFont('helvetica', 'bold');
+            doc.setTextColor(...secondaryColor);
+            doc.text(`Touchline ${touchlineScore} - ${opponentScore} ${opponent}`, 20, y);
+            y += 15;
+            
+            // Match Details
+            doc.setFontSize(12);
+            doc.setFont('helvetica', 'bold');
+            doc.setTextColor(...primaryColor);
+            doc.text('MATCH DETAILS', 20, y);
+            y += 8;
+            
+            doc.setFontSize(10);
+            doc.setFont('helvetica', 'normal');
+            doc.setTextColor(0, 0, 0);
+            
+            const duration = document.getElementById('matchDuration').value;
+            const formation = document.getElementById('formation').value;
+            const substitutions = document.getElementById('substitutions').value;
+            
+            doc.text(`Duration: ${duration}`, 20, y);
+            doc.text(`Formation: ${formation}`, 120, y);
+            y += 6;
+            doc.text(`Substitutions: ${substitutions}`, 20, y);
+            y += 10;
+            
+            // Game Plan
+            const gamePlan = document.getElementById('gamePlan').value;
+            if (gamePlan) {
+                doc.setFontSize(12);
+                doc.setFont('helvetica', 'bold');
+                doc.setTextColor(...primaryColor);
+                doc.text('GAME PLAN', 20, y);
+                y += 8;
+                
+                doc.setFontSize(10);
+                doc.setFont('helvetica', 'normal');
+                doc.setTextColor(0, 0, 0);
+                const gamePlanLines = doc.splitTextToSize(gamePlan, 170);
+                doc.text(gamePlanLines, 20, y);
+                y += gamePlanLines.length * 5 + 5;
+            }
+            
+            // Match Summary
+            const matchSummary = document.getElementById('matchSummary').value;
+            if (matchSummary) {
+                doc.setFontSize(12);
+                doc.setFont('helvetica', 'bold');
+                doc.setTextColor(...primaryColor);
+                doc.text('MATCH SUMMARY', 20, y);
+                y += 8;
+                
+                doc.setFontSize(10);
+                doc.setFont('helvetica', 'normal');
+                doc.setTextColor(0, 0, 0);
+                const summaryLines = doc.splitTextToSize(matchSummary, 170);
+                doc.text(summaryLines, 20, y);
+                y += summaryLines.length * 5 + 5;
+            }
+            
+            // Check if we need a new page
+            if (y > 250) {
+                doc.addPage();
+                y = 20;
+            }
+            
+            // Positives
+            const positives = Array.from(document.querySelectorAll('input[name="positives"]:checked')).map(cb => cb.value);
+            const customPositives = document.getElementById('customPositives').value;
+            
+            if (positives.length > 0 || customPositives) {
+                doc.setFontSize(12);
+                doc.setFont('helvetica', 'bold');
+                doc.setTextColor(...primaryColor);
+                doc.text('POSITIVES', 20, y);
+                y += 8;
+                
+                doc.setFontSize(10);
+                doc.setFont('helvetica', 'normal');
+                doc.setTextColor(0, 0, 0);
+                
+                positives.forEach(positive => {
+                    doc.text(`• ${positive}`, 25, y);
+                    y += 5;
+                });
+                
+                if (customPositives) {
+                    const customLines = doc.splitTextToSize(`• ${customPositives}`, 165);
+                    doc.text(customLines, 25, y);
+                    y += customLines.length * 5;
+                }
+                y += 5;
+            }
+            
+            // Areas to Improve
+            const improvements = Array.from(document.querySelectorAll('input[name="improvements"]:checked')).map(cb => cb.value);
+            const customImprovements = document.getElementById('customImprovements').value;
+            
+            if (improvements.length > 0 || customImprovements) {
+                doc.setFontSize(12);
+                doc.setFont('helvetica', 'bold');
+                doc.setTextColor(...primaryColor);
+                doc.text('AREAS TO IMPROVE', 20, y);
+                y += 8;
+                
+                doc.setFontSize(10);
+                doc.setFont('helvetica', 'normal');
+                doc.setTextColor(0, 0, 0);
+                
+                improvements.forEach(improvement => {
+                    doc.text(`• ${improvement}`, 25, y);
+                    y += 5;
+                });
+                
+                if (customImprovements) {
+                    const customLines = doc.splitTextToSize(`• ${customImprovements}`, 165);
+                    doc.text(customLines, 25, y);
+                    y += customLines.length * 5;
+                }
+                y += 5;
+            }
+            
+            // Player Highlights
+            const playerNames = Array.from(document.querySelectorAll('input[name="playerName[]"]')).map(input => input.value).filter(name => name.trim());
+            const playerHighlights = Array.from(document.querySelectorAll('input[name="playerHighlight[]"]')).map(input => input.value);
+            const playerGoals = Array.from(document.querySelectorAll('input[name="playerGoals[]"]')).map(input => input.value);
+            
+            if (playerNames.length > 0) {
+                // Check if we need a new page
+                if (y > 220) {
+                    doc.addPage();
+                    y = 20;
+                }
+                
+                doc.setFontSize(12);
+                doc.setFont('helvetica', 'bold');
+                doc.setTextColor(...primaryColor);
+                doc.text('PLAYER HIGHLIGHTS', 20, y);
+                y += 10;
+                
+                // Table header
+                doc.setFillColor(...secondaryColor);
+                doc.rect(20, y - 2, 170, 8, 'F');
+                doc.setTextColor(255, 255, 255);
+                doc.setFontSize(10);
+                doc.setFont('helvetica', 'bold');
+                doc.text('Player Name', 25, y + 3);
+                doc.text('Highlight', 80, y + 3);
+                doc.text('Goals', 170, y + 3);
+                y += 8;
+                
+                // Table content
+                doc.setTextColor(0, 0, 0);
+                doc.setFont('helvetica', 'normal');
+                
+                playerNames.forEach((name, index) => {
+                    if (name.trim()) {
+                        const highlight = playerHighlights[index] || '';
+                        const goals = playerGoals[index] || '0';
+                        
+                        // Alternate row colors
+                        if (index % 2 === 0) {
+                            doc.setFillColor(248, 249, 250);
+                            doc.rect(20, y - 2, 170, 6, 'F');
+                        }
+                        
+                        doc.text(name, 25, y + 2);
+                        const highlightText = doc.splitTextToSize(highlight, 85);
+                        doc.text(highlightText, 80, y + 2);
+                        doc.text(goals, 170, y + 2);
+                        y += Math.max(6, highlightText.length * 4);
+                    }
+                });
+                y += 5;
+            }
+            
+            // Remarks
+            const injuries = document.getElementById('injuries').value;
+            const behavior = document.getElementById('behavior').value;
+            const equipment = document.getElementById('equipment').value;
+            
+            if (injuries || behavior || equipment) {
+                // Check if we need a new page
+                if (y > 230) {
+                    doc.addPage();
+                    y = 20;
+                }
+                
+                doc.setFontSize(12);
+                doc.setFont('helvetica', 'bold');
+                doc.setTextColor(...primaryColor);
+                doc.text('REMARKS', 20, y);
+                y += 8;
+                
+                doc.setFontSize(10);
+                doc.setFont('helvetica', 'normal');
+                doc.setTextColor(0, 0, 0);
+                
+                if (injuries) {
+                    doc.setFont('helvetica', 'bold');
+                    doc.text('Injuries:', 20, y);
+                    doc.setFont('helvetica', 'normal');
+                    const injuryLines = doc.splitTextToSize(injuries, 150);
+                    doc.text(injuryLines, 45, y);
+                    y += injuryLines.length * 5 + 3;
+                }
+                
+                if (behavior) {
+                    doc.setFont('helvetica', 'bold');
+                    doc.text('Behavior:', 20, y);
+                    doc.setFont('helvetica', 'normal');
+                    const behaviorLines = doc.splitTextToSize(behavior, 150);
+                    doc.text(behaviorLines, 45, y);
+                    y += behaviorLines.length * 5 + 3;
+                }
+                
+                if (equipment) {
+                    doc.setFont('helvetica', 'bold');
+                    doc.text('Equipment:', 20, y);
+                    doc.setFont('helvetica', 'normal');
+                    const equipmentLines = doc.splitTextToSize(equipment, 150);
+                    doc.text(equipmentLines, 45, y);
+                    y += equipmentLines.length * 5 + 3;
+                }
+                y += 5;
+            }
+            
+            // Suggestions
+            const suggestions = document.getElementById('suggestions').value;
+            if (suggestions) {
+                // Check if we need a new page
+                if (y > 240) {
+                    doc.addPage();
+                    y = 20;
+                }
+                
+                doc.setFontSize(12);
+                doc.setFont('helvetica', 'bold');
+                doc.setTextColor(...primaryColor);
+                doc.text('SUGGESTIONS FOR NEXT MATCH', 20, y);
+                y += 8;
+                
+                doc.setFontSize(10);
+                doc.setFont('helvetica', 'normal');
+                doc.setTextColor(0, 0, 0);
+                const suggestionLines = doc.splitTextToSize(suggestions, 170);
+                doc.text(suggestionLines, 20, y);
+                y += suggestionLines.length * 5 + 10;
+            }
+            
+            // Submission Info
+            const submittedBy = document.getElementById('submittedBy').value;
+            const submissionDate = document.getElementById('submissionDate').value;
+            
+            // Check if we need a new page
+            if (y > 260) {
+                doc.addPage();
+                y = 20;
+            }
+            
+            doc.setFontSize(12);
+            doc.setFont('helvetica', 'bold');
+            doc.setTextColor(...primaryColor);
+            doc.text('SUBMISSION INFORMATION', 20, y);
+            y += 8;
+            
+            doc.setFontSize(10);
+            doc.setFont('helvetica', 'normal');
+            doc.setTextColor(0, 0, 0);
+            doc.text(`Report Submitted By: ${submittedBy}`, 20, y);
+            y += 6;
+            doc.text(`Date of Submission: ${submissionDate}`, 20, y);
+            
+            // Footer
+            const pageCount = doc.internal.getNumberOfPages();
+            for (let i = 1; i <= pageCount; i++) {
+                doc.setPage(i);
+                doc.setFontSize(8);
+                doc.setTextColor(128, 128, 128);
+                doc.text(`Page ${i} of ${pageCount}`, 105, 290, { align: 'center' });
+                doc.text('Touchline Sports Academy - Confidential Match Report', 105, 285, { align: 'center' });
+            }
+            
+            // Generate filename with date and opponent
+            const fileName = `TouchlineAcademy_MatchReport_${matchDate}_vs_${opponent.replace(/[^a-zA-Z0-9]/g, '_')}.pdf`;
+            
+            // Save the PDF
+            doc.save(fileName);
+        }
+    </script>
+</body>
+</html>
