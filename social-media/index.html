@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Touchline Sport Academy | Social Media Links</title>
+  <meta name="description" content="Stay connected with Touchline Sport Academy in Dubai. Follow us on Instagram, Facebook, TikTok, LinkedIn, and visit our website for updates on football training and events.">
+  <meta name="keywords" content="Touchline Sport Academy, Dubai football academy, kids football Dubai, youth soccer training, football coaching UAE, sports academy Dubai">
+  <meta name="author" content="Touchline Sport Academy">
+  <meta property="og:title" content="Touchline Sport Academy | Connect With Us">
+  <meta property="og:description" content="Follow Touchline Sport Academy on Instagram, Facebook, TikTok, LinkedIn & more. Get the latest updates on football training in Dubai.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.touchlinesport.com/social-links">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #06213E 0%, #0a2d4d 50%, #06213E 100%);
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            max-width: 400px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            padding: 30px 25px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #D6C882, #06213E, #D6C882);
+            animation: shimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #06213E, #0a2d4d);
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 25px rgba(6, 33, 62, 0.3);
+            position: relative;
+        }
+
+        .logo::before {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            background: linear-gradient(45deg, #D6C882, #06213E, #D6C882);
+            border-radius: 50%;
+            z-index: -1;
+            animation: rotate 4s linear infinite;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .logo i {
+            font-size: 35px;
+            color: #D6C882;
+        }
+
+        .academy-name {
+            font-size: 24px;
+            font-weight: bold;
+            color: #06213E;
+            margin-bottom: 8px;
+        }
+
+        .tagline {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .social-links {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            padding: 18px 20px;
+            background: white;
+            border-radius: 15px;
+            text-decoration: none;
+            color: #06213E;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(214, 200, 130, 0.2), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .social-link:hover::before {
+            left: 100%;
+        }
+
+        .social-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(6, 33, 62, 0.2);
+            border-color: #D6C882;
+        }
+
+        .social-link.instagram:hover {
+            background: linear-gradient(135deg, #E4405F, #833AB4, #C13584);
+            color: white;
+        }
+
+        .social-link.facebook:hover {
+            background: #1877F2;
+            color: white;
+        }
+
+        .social-link.tiktok:hover {
+            background: linear-gradient(135deg, #FF0050, #000000);
+            color: white;
+        }
+
+        .social-link.twitter:hover {
+            background: #000000;
+            color: white;
+        }
+
+        .social-link.linkedin:hover {
+            background: #0A66C2;
+            color: white;
+        }
+
+        .social-link.website:hover {
+            background: linear-gradient(135deg, #D6C882, #06213E);
+            color: white;
+        }
+
+        .social-icon {
+            font-size: 24px;
+            margin-right: 18px;
+            width: 35px;
+            display: flex;
+            justify-content: center;
+            transition: transform 0.3s ease;
+        }
+
+        .social-link:hover .social-icon {
+            transform: scale(1.2);
+        }
+
+        .social-text {
+            flex: 1;
+        }
+
+        .social-name {
+            font-weight: 600;
+            font-size: 16px;
+            margin-bottom: 2px;
+        }
+
+        .social-handle {
+            font-size: 12px;
+            opacity: 0.7;
+        }
+
+        .arrow {
+            font-size: 16px;
+            opacity: 0.5;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover .arrow {
+            opacity: 1;
+            transform: translateX(5px);
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        .footer-text {
+            font-size: 12px;
+            color: #999;
+        }
+
+        .pulse-effect {
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                margin: 10px;
+                padding: 25px 20px;
+            }
+            
+            .academy-name {
+                font-size: 20px;
+            }
+            
+            .social-link {
+                padding: 16px 18px;
+            }
+            
+            .social-name {
+                font-size: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo pulse-effect">
+                <img src="../LOGO.png" width="50" alt="">
+            </div>
+            <div class="academy-name">Touchline Sport Academy</div>
+            <div class="tagline">Connect with us on social media</div>
+        </div>
+        
+        <div class="social-links">
+            <a href="https://instagram.com/touchline_academy" class="social-link instagram" target="_blank" rel="noopener noreferrer">
+                <div class="social-icon">
+                    <i class="fab fa-instagram"></i>
+                </div>
+                <div class="social-text">
+                    <div class="social-name">Instagram</div>
+                    <div class="social-handle">@touchline_academy</div>
+                </div>
+                <div class="arrow">
+                    <i class="fas fa-arrow-right"></i>
+                </div>
+            </a>
+            
+            <a href="https://www.facebook.com/people/Touch-Line-Sport-Academy/61566454443679/" class="social-link facebook" target="_blank" rel="noopener noreferrer">
+                <div class="social-icon">
+                    <i class="fab fa-facebook-f"></i>
+                </div>
+                <div class="social-text">
+                    <div class="social-name">Facebook</div>
+                    <div class="social-handle">Touchline Sport Academy</div>
+                </div>
+                <div class="arrow">
+                    <i class="fas fa-arrow-right"></i>
+                </div>
+            </a>
+            
+            <a href="https://www.tiktok.com/@touchlineacademy" class="social-link tiktok" target="_blank" rel="noopener noreferrer">
+                <div class="social-icon">
+                    <i class="fab fa-tiktok"></i>
+                </div>
+                <div class="social-text">
+                    <div class="social-name">TikTok</div>
+                    <div class="social-handle">@touchlineacademy</div>
+                </div>
+                <div class="arrow">
+                    <i class="fas fa-arrow-right"></i>
+                </div>
+            </a>
+<!--             
+            <a href="https://x.com/your_twitter_handle" class="social-link twitter" target="_blank" rel="noopener noreferrer">
+                <div class="social-icon">
+                    <i class="fab fa-x-twitter"></i>
+                </div>
+                <div class="social-text">
+                    <div class="social-name">X (Twitter)</div>
+                    <div class="social-handle">@your_twitter_handle</div>
+                </div>
+                <div class="arrow">
+                    <i class="fas fa-arrow-right"></i>
+                </div>
+            </a> -->
+            
+            <a href="https://www.linkedin.com/company/touchline-sport-academy" class="social-link linkedin" target="_blank" rel="noopener noreferrer">
+                <div class="social-icon">
+                    <i class="fab fa-linkedin-in"></i>
+                </div>
+                <div class="social-text">
+                    <div class="social-name">LinkedIn</div>
+                    <div class="social-handle">@touchline-sport-academy</div>
+                </div>
+                <div class="arrow">
+                    <i class="fas fa-arrow-right"></i>
+                </div>
+            </a>
+            
+            <a href="https://www.touchlinesport.com" class="social-link website" target="_blank" rel="noopener noreferrer">
+                <div class="social-icon">
+                    <i class="fas fa-globe"></i>
+                </div>
+                <div class="social-text">
+                    <div class="social-name">Website</div>
+                    <div class="social-handle">www.touchlinesport.ae</div>
+                </div>
+                <div class="arrow">
+                    <i class="fas fa-arrow-right"></i>
+                </div>
+            </a>
+        </div>
+        
+        <div class="footer">
+            <div class="footer-text">Stay connected for updates & news</div>
+        </div>
+    </div>
+
+    <script>
+        // Add smooth interactions
+        document.querySelectorAll('.social-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Add click effect
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 150);
+                
+                // Here you would normally redirect to the actual social media link
+                console.log('Clicked:', this.querySelector('.social-name').textContent);
+            });
+            
+            link.addEventListener('touchstart', function() {
+                this.style.transform = 'translateY(-2px)';
+            });
+            
+            link.addEventListener('touchend', function() {
+                this.style.transform = '';
+            });
+        });
+        
+        // Add entrance animation
+        setTimeout(() => {
+            document.querySelector('.container').style.opacity = '0';
+            document.querySelector('.container').style.transform = 'translateY(30px)';
+            document.querySelector('.container').style.transition = 'all 0.6s ease';
+            
+            setTimeout(() => {
+                document.querySelector('.container').style.opacity = '1';
+                document.querySelector('.container').style.transform = 'translateY(0)';
+            }, 100);
+        }, 0);
+    </script>
+</body>
+</html>
