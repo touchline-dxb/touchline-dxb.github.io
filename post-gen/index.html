@@ -1,692 +1,671 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Touchline Sports Academy - Poster Generator</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            color: #fff;
-            min-height: 100vh;
-            padding: 20px;
-        }
-
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            color: #ffffff;
-        }
-
-        .subtitle {
-            color: #a0a0a0;
-            font-size: 1.1rem;
-        }
-
-        .main-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-        }
-
-        .controls-panel,
-        .preview-panel {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            padding: 30px;
-            backdrop-filter: blur(10px);
-        }
-
-        .form-group {
-            margin-bottom: 25px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            font-size: 0.95rem;
-        }
-
-        input[type="text"],
-        select {
-            width: 100%;
-            padding: 12px 15px;
-            background: rgba(0, 0, 0, 0.3);
-            border: 2px solid rgba(255, 255, 255, 0.1);
-            border-radius: 8px;
-            color: #fff;
-            font-size: 1rem;
-            transition: all 0.3s;
-        }
-
-        input[type="text"]:focus,
-        select:focus {
-            outline: none;
-            border-color: #00ff87;
-            background: rgba(0, 0, 0, 0.5);
-        }
-
-        .upload-box {
-            width: 100%;
-            padding: 30px;
-            background: rgba(0, 0, 0, 0.3);
-            border: 2px dashed rgba(255, 255, 255, 0.2);
-            border-radius: 8px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .upload-box:hover {
-            background: rgba(0, 0, 0, 0.5);
-            border-color: #00ff87;
-        }
-
-        .upload-box.has-file {
-            border-color: #00ff87;
-            background: rgba(0, 255, 135, 0.1);
-        }
-
-        input[type="file"] {
-            display: none;
-        }
-
-        .button-group {
-            display: flex;
-            gap: 15px;
-            margin-top: 30px;
-        }
-
-        button {
-            flex: 1;
-            padding: 15px 20px;
-            border: none;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-
-        .btn-randomize {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: #fff;
-        }
-
-        .btn-randomize:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
-        }
-
-        .btn-download {
-            background: linear-gradient(135deg, #00ff87 0%, #60efff 100%);
-            color: #1a1a2e;
-        }
-
-        .btn-download:hover:not(:disabled) {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(0, 255, 135, 0.4);
-        }
-
-        .btn-download:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-
-        .preview-panel h2 {
-            margin-bottom: 20px;
-            font-size: 1.5rem;
-        }
-
-        .canvas-container {
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 10px;
-            overflow: hidden;
-            aspect-ratio: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        canvas {
-            max-width: 100%;
-            max-height: 100%;
-            display: block;
-        }
-
-        .placeholder {
-            text-align: center;
-            color: #666;
-            padding: 40px;
-        }
-
-        .placeholder svg {
-            width: 80px;
-            height: 80px;
-            margin-bottom: 20px;
-            opacity: 0.3;
-        }
-
-        @media (max-width: 1024px) {
-            .main-grid {
-                grid-template-columns: 1fr;
-            }
-
-            h1 {
-                font-size: 2rem;
-            }
-        }
-    </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Touchline — Player of the Day Poster Generator</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg1: #052244;
+    --bg2: #0b3b72;
+    --accent: #1b66c4;
+    --muted: #9fb7dd;
+    --card: #0e2336;
+    --white: #ffffff;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%; margin:0; font-family:Poppins,system-ui, -apple-system, "Segoe UI", Roboto, Arial; background: linear-gradient(180deg,#041a36 0%, #081a2b 100%);}
+  .app{max-width:1200px; margin:18px auto; display:flex; gap:18px; padding:14px; align-items:flex-start;}
+  .panel{width:360px; min-width:280px; background:rgba(255,255,255,0.03); border-radius:12px; padding:16px; color:var(--white); box-shadow:0 8px 30px rgba(0,0,0,0.6); display:flex; flex-direction:column; gap:10px;}
+  .panel h2{font-family:Montserrat, sans-serif; font-size:18px; margin:0 0 4px}
+  label{font-size:13px; color:var(--muted); display:block; margin-top:8px}
+  input[type="text"], select, .file-drop, button, input[type="range"]{width:100%}
+  .file-drop{background:rgba(255,255,255,0.02); padding:10px; border-radius:8px; text-align:center; position:relative; cursor:pointer; color:var(--muted)}
+  .file-drop input{position:absolute; inset:0; width:100%; height:100%; opacity:0; cursor:pointer}
+  .row{display:flex; gap:8px}
+  .half{flex:1}
+  .btn{background:var(--accent); color:white; border:0; padding:10px; border-radius:8px; cursor:pointer; font-weight:700}
+  .ghost{background:transparent; border:1px solid rgba(255,255,255,0.06)}
+  .muted{color:var(--muted); font-size:13px}
+  .small{font-size:12px;color:var(--muted)}
+  .control-group{background:rgba(255,255,255,0.015); padding:10px; border-radius:8px; margin-top:8px}
+  .stage{flex:1; display:flex; flex-direction:column; align-items:center; gap:12px}
+  .canvas-card{background:linear-gradient(180deg,var(--card), #05213a); padding:14px; border-radius:12px; box-shadow:0 14px 40px rgba(2,8,20,0.6); width:100%; max-width:820px}
+  .preview-outer{width:100%; aspect-ratio:1/1; background:transparent; border-radius:10px; overflow:hidden; position:relative; display:block}
+  canvas#poster{width:100%; height:100%; display:block; background:transparent}
+  .bottom-controls{display:flex; gap:8px; justify-content:space-between; align-items:center; margin-top:6px}
+  .right-controls{display:flex; gap:8px; align-items:center}
+  @media (max-width:980px){ .app{flex-direction:column; padding:10px} .panel{width:100%; order:2} .canvas-card{order:1; width:100%} }
+  .badge{display:inline-block; background:var(--accent); color:white; padding:6px 10px; border-radius:6px; font-weight:700}
+  .muted-note{font-size:12px;color:var(--muted); margin-top:6px}
+  .file-preview{display:flex;gap:8px;align-items:center}
+  .file-preview img{width:48px;height:48px;border-radius:6px;object-fit:cover;border:2px solid rgba(255,255,255,0.04)}
+  select{padding:10px; border-radius:8px; background:rgba(255,255,255,0.02); border:0; color:var(--white)}
+</style>
 </head>
-
 <body>
-    <div class="container">
-       <header style="text-align:center; padding:20px 0; background:rgba(0, 0, 0, 0.3); border-radius:10px; box-shadow:0 4px 10px rgba(0,0,0,0.1);">
-    <h1 style="font-size:2rem; font-weight:700; display:flex; align-items:center; justify-content:center; gap:10px; margin:0;">
-        <img src="./logo.png" width="50" alt="Touchline Logo" style="border-radius:10px;">
-        Touchline Sports Academy
-    </h1>
-    <p class="subtitle" style="font-size:1.1rem; margin-top:5px; font-weight:400; opacity:0.9;">
-        Professional Poster Generator
-    </p>
-</header>
+<div class="app" role="application" aria-label="Touchline poster generator">
 
+  <aside class="panel" aria-label="Controls">
+    <h2>Poster Generator — Touchline</h2>
+    <div class="muted">Template: <span class="badge">Player of the Day</span></div>
 
-        <div class="main-grid">
-            <div class="controls-panel">
-                <div class="form-group">
-                    <label for="studentName">Student Name *</label>
-                    <input type="text" id="studentName" placeholder="Enter student name">
-                </div>
-
-                <div class="form-group">
-                    <label for="batch">Batch</label>
-                    <select id="batch">
-                        <option>UNDER 6</option>
-                        <option>UNDER 9</option>
-                        <option>UNDER 12</option>
-                        <option>UNDER 15</option>
-                        <option>UNDER 18</option>
-                        <option>CUSTOM</option>
-                    </select>
-                </div>
-
-                <div class="form-group" id="customBatchGroup" style="display: none;">
-                    <label for="customBatch">Custom Batch Name</label>
-                    <input type="text" id="customBatch" placeholder="Enter custom batch name">
-                </div>
-
-                <div class="form-group">
-                    <label for="titleSelect">Title</label>
-                    <select id="titleSelect">
-                        <option>Player of the Day</option>
-                        <option>Player of the Month</option>
-                        <option>Custom</option>
-                    </select>
-                </div>
-
-                <div class="form-group" id="customTitleGroup" style="display: none;">
-                    <label for="customTitle">Custom Title</label>
-                    <input type="text" id="customTitle" placeholder="Enter custom title">
-                </div>
-
-                <div class="form-group">
-                    <label>Player Photo *</label>
-                    <div class="upload-box" id="playerUploadBox"
-                        onclick="document.getElementById('playerPhoto').click()">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            style="width: 40px; height: 40px; margin: 0 auto 10px;">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
-                        </svg>
-                        <div id="playerFileName">Upload Player Photo</div>
-                    </div>
-                    <input type="file" id="playerPhoto" accept="image/*">
-                </div>
-
-                <div class="form-group">
-                    <label>Team/Game Photo (Optional)</label>
-                    <div class="upload-box" id="teamUploadBox" onclick="document.getElementById('teamPhoto').click()">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            style="width: 40px; height: 40px; margin: 0 auto 10px;">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
-                        </svg>
-                        <div id="teamFileName">Upload Team Photo</div>
-                    </div>
-                    <input type="file" id="teamPhoto" accept="image/*">
-                </div>
-
-                <div class="button-group">
-                    <button class="btn-randomize" onclick="randomizeDesign()">
-                        <span>✨</span> Randomize Design
-                    </button>
-                    <button class="btn-download" id="downloadBtn" onclick="downloadPoster()">
-                        <span>⬇</span> Download
-                    </button>
-                </div>
-            </div>
-
-            <div class="preview-panel">
-                <h2>Preview</h2>
-                <div class="canvas-container">
-                    <canvas id="posterCanvas"></canvas>
-                    <div class="placeholder" id="placeholder">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                        </svg>
-                        <p>Upload player photo to preview poster</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <label>Background</label>
+    <select id="bgSelect" aria-label="Background selector">
+      <option value="touchline">Touchline Blue (default)</option>
+      <option value="red">Red Energy</option>
+      <option value="gold">Gold Champion</option>
+      <option value="green">Green Victory</option>
+      <option value="upload">Upload Custom Background…</option>
+    </select>
+    <div class="file-drop" id="bgDrop" style="display:none">Drop background image here
+      <input id="bgFile" type="file" accept="image/*">
     </div>
 
-    <script>
-        var playerImg = null;
-        var teamImg = null;
-        var designSeed = Date.now();
+    <label>Team photo (main)</label>
+    <div class="file-drop" id="teamDrop">Click or drag & drop team photo
+      <input id="teamFile" type="file" accept="image/*">
+    </div>
 
-        var canvas = document.getElementById('posterCanvas');
-        var ctx = canvas.getContext('2d');
+    <label>Player portrait</label>
+    <div class="file-drop" id="playerDrop">Click or drag & drop player portrait
+      <input id="playerFile" type="file" accept="image/*">
+    </div>
 
-        document.getElementById('studentName').addEventListener('input', drawPoster);
-        document.getElementById('batch').addEventListener('change', function () {
-            var customBatchGroup = document.getElementById('customBatchGroup');
-            customBatchGroup.style.display = this.value === 'CUSTOM' ? 'block' : 'none';
-            drawPoster();
-        });
-        document.getElementById('customBatch').addEventListener('input', drawPoster);
-        document.getElementById('titleSelect').addEventListener('change', function () {
-            var customGroup = document.getElementById('customTitleGroup');
-            customGroup.style.display = this.value === 'Custom' ? 'block' : 'none';
-            drawPoster();
-        });
-        document.getElementById('customTitle').addEventListener('input', drawPoster);
+    <label>Logo (optional)</label>
+    <div class="file-drop" id="logoDrop">Upload logo
+      <input id="logoFile" type="file" accept="image/*">
+    </div>
 
-        document.getElementById('playerPhoto').addEventListener('change', function (e) {
-            handleImageUpload(e, 'player');
-        });
+    <div class="control-group">
+      <label>Player name</label>
+      <input id="playerName" type="text" value="EZAAAN" />
 
-        document.getElementById('teamPhoto').addEventListener('change', function (e) {
-            handleImageUpload(e, 'team');
-        });
+      <label>Age group (badge)</label>
+      <input id="ageLabel" type="text" value="UNDER 11" />
 
-        function handleImageUpload(e, type) {
-            var file = e.target.files[0];
-            if (!file) return;
+      <div class="row">
+        <div class="half">
+          <label>Date</label>
+          <input id="dateField" type="text" value="07 - NOVEMBER - 2025" />
+        </div>
+        <div class="half">
+          <label>Academy</label>
+          <input id="academy" type="text" value="TOUCHLINE FOOTBALL ACADEMY" />
+        </div>
+      </div>
+    </div>
 
-            var reader = new FileReader();
-            reader.onload = function (event) {
-                var img = new Image();
-                img.onload = function () {
-                    if (type === 'player') {
-                        playerImg = img;
-                        document.getElementById('playerUploadBox').classList.add('has-file');
-                        document.getElementById('playerFileName').textContent = file.name;
-                        document.getElementById('placeholder').style.display = 'none';
-                    } else if (type === 'team') {
-                        teamImg = img;
-                        document.getElementById('teamUploadBox').classList.add('has-file');
-                        document.getElementById('teamFileName').textContent = file.name;
-                    }
-                    drawPoster();
-                };
-                img.src = event.target.result;
-            };
-            reader.readAsDataURL(file);
+    <div class="control-group">
+      <div class="inline-label">Team photo: zoom</div>
+      <input id="teamZoom" type="range" min="0.2" max="4" step="0.01" value="1">
+      <div style="height:8px"></div>
+      <div class="inline-label">Player portrait: zoom</div>
+      <input id="playerZoom" type="range" min="0.2" max="6" step="0.01" value="1">
+      <div style="height:8px"></div>
+
+      <div class="row">
+        <div class="half"><button id="teamReset" class="btn ghost">Reset Team</button></div>
+        <div class="half"><button id="playerReset" class="btn ghost">Reset Player</button></div>
+      </div>
+
+      <div style="height:8px"></div>
+      <label class="small">Effects</label>
+      <div class="row">
+        <button id="toggleHalftone" class="btn ghost">Halftone</button>
+        <button id="toggleCircuit" class="btn ghost">Accents</button>
+      </div>
+    </div>
+
+    <div style="margin-top:10px; display:flex; gap:8px">
+      <button id="update" class="btn">Update Preview</button>
+      <button id="export" class="btn ghost">Export PNG</button>
+    </div>
+
+    <div class="muted-note">Tip: Drag images inside the poster preview to reposition. Use zoom sliders to scale. Choose a background from the dropdown or upload your own.</div>
+  </aside>
+
+  <main class="stage" aria-label="Poster preview">
+    <div class="canvas-card">
+      <div class="preview-outer" id="previewWrap" title="Drag to move images, pinch to zoom">
+        <canvas id="poster" width="760" height="760" aria-label="Poster canvas"></canvas>
+      </div>
+
+      <div class="bottom-controls">
+        <div class="small">Preview (interactive)</div>
+        <div class="right-controls">
+          <button id="fitTeam" class="btn ghost">Fit Team</button>
+          <button id="fitPlayer" class="btn ghost">Fit Player</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+</div>
+
+<script>
+/* ------------------------
+   Final Poster Generator
+   - Auto-fit player name, background selector + upload
+   - Put templates/WINNER (2).png in /templates/ or change DEFAULT_BG_URL
+   ------------------------ */
+
+const DEFAULT_BG_URL = 'templates/WINNER (2).png'; // put your uploaded Touchline blue image here
+const CANVAS_PX = 760, EXPORT_PX = 2400;
+
+const canvas = document.getElementById('poster');
+canvas.width = CANVAS_PX; canvas.height = CANVAS_PX;
+const ctx = canvas.getContext('2d', { alpha:false });
+
+/* DOM */
+const bgSelect = document.getElementById('bgSelect'), bgDrop = document.getElementById('bgDrop'), bgFile = document.getElementById('bgFile');
+const teamFile = document.getElementById('teamFile'), teamDrop = document.getElementById('teamDrop');
+const playerFile = document.getElementById('playerFile'), playerDrop = document.getElementById('playerDrop');
+const logoFile = document.getElementById('logoFile'), logoDrop = document.getElementById('logoDrop');
+const playerNameEl = document.getElementById('playerName'), ageLabel = document.getElementById('ageLabel');
+const dateField = document.getElementById('dateField'), academy = document.getElementById('academy');
+const teamZoom = document.getElementById('teamZoom'), playerZoom = document.getElementById('playerZoom');
+const teamReset = document.getElementById('teamReset'), playerReset = document.getElementById('playerReset');
+const updateBtn = document.getElementById('update'), exportBtn = document.getElementById('export');
+const fitTeam = document.getElementById('fitTeam'), fitPlayer = document.getElementById('fitPlayer');
+const toggleHalftone = document.getElementById('toggleHalftone'), toggleCircuit = document.getElementById('toggleCircuit');
+
+const state = {
+  backgroundType: 'touchline',
+  backgroundImg: null, // custom uploaded bg if chosen
+  templateImg: null, // will try to load DEFAULT_BG_URL for 'touchline'
+  team: { img:null, x: CANVAS_PX*0.5, y: CANVAS_PX*0.32, scale:1, min:0.2, max:6, dragging:false, last:{x:0,y:0} },
+  player: { img:null, x: CANVAS_PX*0.79, y: CANVAS_PX*0.63, scale:1, min:0.2, max:6, dragging:false, last:{x:0,y:0} },
+  logo: { img:null },
+  pointers: {},
+  effects: { halftone:true, circuit:true }
+};
+
+/* Frames - coordinates tuned to match sample */
+const FRAMES = {
+  team: { x:44, y:140, w:520, h:320, r:22 },
+  player: { x:560, y:500, w:200, h:240, r:14, angle:10 }
+};
+
+/* load default template background (Touchline Blue) */
+(function loadDefaultBg(){
+  const img = new Image();
+  img.crossOrigin = 'anonymous';
+  img.onload = ()=> { state.templateImg = img; draw(); };
+  img.onerror = ()=> { state.templateImg = null; draw(); };
+  img.src = DEFAULT_BG_URL;
+})();
+
+/* file -> image helper */
+function fileToImage(file, cb){
+  const r = new FileReader();
+  r.onload = e => { const img = new Image(); img.onload = ()=> cb(img); img.src = e.target.result; };
+  r.readAsDataURL(file);
+}
+
+/* wire inputs and drop areas */
+function setupDropArea(el, key){
+  ['dragenter','dragover','dragleave','drop'].forEach(ev => el.addEventListener(ev, e => e.preventDefault()));
+  el.addEventListener('drop', e=>{
+    const f = e.dataTransfer.files && e.dataTransfer.files[0];
+    if(!f) return;
+    fileToImage(f, img=>{
+      if(key==='team') { state.team.img = img; fitLayer('team'); }
+      if(key==='player') { state.player.img = img; fitLayer('player'); }
+      if(key==='logo') { state.logo.img = img; }
+      if(key==='bg') { state.backgroundImg = img; state.backgroundType = 'custom'; bgSelect.value = 'upload'; bgDrop.style.display='none'; }
+      draw();
+    });
+  });
+}
+setupDropArea(teamDrop,'team'); setupDropArea(playerDrop,'player'); setupDropArea(logoDrop,'logo'); setupDropArea(bgDrop,'bg');
+
+/* file inputs */
+teamFile.addEventListener('change', e=>{ const f=e.target.files[0]; if(!f) return; fileToImage(f,img=>{ state.team.img=img; fitLayer('team'); draw(); });});
+playerFile.addEventListener('change', e=>{ const f=e.target.files[0]; if(!f) return; fileToImage(f,img=>{ state.player.img=img; fitLayer('player'); draw(); });});
+logoFile.addEventListener('change', e=>{ const f=e.target.files[0]; if(!f) return; fileToImage(f,img=>{ state.logo.img=img; draw(); });});
+bgFile.addEventListener('change', e=>{ const f=e.target.files[0]; if(!f) return; fileToImage(f,img=>{ state.backgroundImg = img; state.backgroundType = 'custom'; bgDrop.style.display='none'; bgSelect.value='upload'; draw(); });});
+
+/* background selector */
+bgSelect.addEventListener('change', ()=>{
+  const v = bgSelect.value;
+  if(v==='upload'){ bgDrop.style.display = 'block'; state.backgroundType = 'custom'; }
+  else { bgDrop.style.display = 'none'; state.backgroundType = v; }
+  draw();
+});
+
+/* fit layer (cover) */
+function fitLayer(which){
+  const layer = which==='team'? state.team : state.player;
+  const frame = which==='team'? FRAMES.team : FRAMES.player;
+  if(!layer.img) return;
+  const sx = frame.w / layer.img.width;
+  const sy = frame.h / layer.img.height;
+  const s = Math.max(sx, sy);
+  layer.scale = s;
+  layer.x = frame.x + frame.w/2;
+  layer.y = frame.y + frame.h/2;
+  if(which==='team') teamZoom.value = layer.scale;
+  else playerZoom.value = layer.scale;
+}
+
+/* resets */
+teamReset.addEventListener('click', ()=>{ state.team.scale=1; state.team.x=CANVAS_PX*0.5; state.team.y=CANVAS_PX*0.32; teamZoom.value=state.team.scale; draw(); });
+playerReset.addEventListener('click', ()=>{ state.player.scale=1; state.player.x=CANVAS_PX*0.79; state.player.y=CANVAS_PX*0.63; playerZoom.value=state.player.scale; draw(); });
+fitTeam.addEventListener('click', ()=>{ fitLayer('team'); draw(); });
+fitPlayer.addEventListener('click', ()=>{ fitLayer('player'); draw(); });
+
+teamZoom.addEventListener('input', ()=>{ state.team.scale = parseFloat(teamZoom.value); draw(); });
+playerZoom.addEventListener('input', ()=>{ state.player.scale = parseFloat(playerZoom.value); draw(); });
+
+toggleHalftone.addEventListener('click', ()=>{ state.effects.halftone = !state.effects.halftone; toggleHalftone.classList.toggle('btn'); draw(); });
+toggleCircuit.addEventListener('click', ()=>{ state.effects.circuit = !state.effects.circuit; toggleCircuit.classList.toggle('btn'); draw(); });
+
+updateBtn.addEventListener('click', draw);
+
+/* pointer interactions */
+let active = null;
+function getPointerPos(evt){
+  const r = canvas.getBoundingClientRect();
+  return { x: (evt.clientX - r.left) * (canvas.width / r.width), y: (evt.clientY - r.top) * (canvas.height / r.height) };
+}
+canvas.addEventListener('pointerdown', ev=>{
+  ev.preventDefault();
+  canvas.setPointerCapture && canvas.setPointerCapture(ev.pointerId);
+  state.pointers[ev.pointerId] = {x:ev.clientX, y:ev.clientY};
+  const p = getPointerPos(ev);
+  const pf = FRAMES.player, tf = FRAMES.team;
+  if(pointInParallelogram(p.x,p.y,pf)){ active = state.player; active.dragging=true; active.last={x:p.x,y:p.y}; return; }
+  if(pointInRect(p.x,p.y,tf)){ active = state.team; active.dragging=true; active.last={x:p.x,y:p.y}; return; }
+  active = null;
+});
+canvas.addEventListener('pointermove', ev=>{
+  state.pointers[ev.pointerId] = {x:ev.clientX, y:ev.clientY};
+  const keys = Object.keys(state.pointers);
+  if(keys.length===2){
+    const a = state.pointers[keys[0]], b = state.pointers[keys[1]];
+    const dist = Math.hypot(a.x-b.x, a.y-b.y);
+    if(state._lastPinchDist){
+      const delta = dist - state._lastPinchDist;
+      const factor = 1 + delta/250;
+      const mid = {x:(a.x+b.x)/2, y:(a.y+b.y)/2};
+      const r = canvas.getBoundingClientRect();
+      const midC = {x:(mid.x - r.left)*(canvas.width/r.width), y:(mid.y - r.top)*(canvas.height/r.height)};
+      if(pointInParallelogram(midC.x, midC.y, FRAMES.player)){
+        const old = state.player.scale;
+        state.player.scale = Math.max(state.player.min, Math.min(state.player.max, state.player.scale * factor));
+        const mx = midC.x, my = midC.y;
+        const sx = (mx - state.player.x) * (state.player.scale/old - 1);
+        const sy = (my - state.player.y) * (state.player.scale/old - 1);
+        state.player.x -= sx; state.player.y -= sy; playerZoom.value = state.player.scale;
+      } else {
+        const old = state.team.scale;
+        state.team.scale = Math.max(state.team.min, Math.min(state.team.max, state.team.scale * factor));
+        const mx = midC.x, my = midC.y;
+        const sx = (mx - state.team.x) * (state.team.scale/old - 1);
+        const sy = (my - state.team.y) * (state.team.scale/old - 1);
+        state.team.x -= sx; state.team.y -= sy; teamZoom.value = state.team.scale;
+      }
+      draw();
+    }
+    state._lastPinchDist = dist;
+    return;
+  }
+
+  if(!active || !active.dragging) return;
+  const p = getPointerPos(ev);
+  const dx = p.x - active.last.x, dy = p.y - active.last.y;
+  active.x += dx; active.y += dy; active.last = {x:p.x,y:p.y};
+  draw();
+});
+canvas.addEventListener('pointerup', ev=>{
+  delete state.pointers[ev.pointerId];
+  if(Object.keys(state.pointers).length<2) state._lastPinchDist = null;
+  if(active) active.dragging=false; active = null;
+  canvas.releasePointerCapture && canvas.releasePointerCapture(ev.pointerId);
+});
+canvas.addEventListener('wheel', ev=>{
+  ev.preventDefault();
+  const p = getPointerPos(ev);
+  if(pointInParallelogram(p.x,p.y,FRAMES.player)){
+    const delta = -ev.deltaY * 0.0015;
+    const old = state.player.scale;
+    state.player.scale = Math.max(state.player.min, Math.min(state.player.max, state.player.scale * (1+delta)));
+    const mx = p.x, my = p.y;
+    const sx = (mx - state.player.x) * (state.player.scale/old - 1);
+    const sy = (my - state.player.y) * (state.player.scale/old - 1);
+    state.player.x -= sx; state.player.y -= sy; playerZoom.value = state.player.scale;
+    draw();
+  } else if(pointInRect(p.x,p.y,FRAMES.team)){
+    const delta = -ev.deltaY * 0.0015;
+    const old = state.team.scale;
+    state.team.scale = Math.max(state.team.min, Math.min(state.team.max, state.team.scale * (1+delta)));
+    const mx = p.x, my = p.y;
+    const sx = (mx - state.team.x) * (state.team.scale/old - 1);
+    const sy = (my - state.team.y) * (state.team.scale/old - 1);
+    state.team.x -= sx; state.team.y -= sy; teamZoom.value = state.team.scale;
+    draw();
+  }
+}, { passive:false });
+
+function pointInRect(px,py,frame){ return px>=frame.x && px<=frame.x+frame.w && py>=frame.y && py<=frame.y+frame.h; }
+function pointInParallelogram(px,py,frame){
+  const x=frame.x,y=frame.y,w=frame.w,h=frame.h,angle=frame.angle||0;
+  const skew = Math.tan((angle||0)*Math.PI/180)*h;
+  const pA={x:x+skew,y:y}, pB={x:x+skew+w,y:y}, pC={x:x+w,y:y+h}, pD={x:x,y:y+h};
+  return pointInPoly(px,py,[pA,pB,pC,pD]);
+}
+function pointInPoly(x,y,poly){ let inside=false; for(let i=0,j=poly.length-1;i<poly.length;j=i++){ const xi=poly[i].x, yi=poly[i].y, xj=poly[j].x, yj=poly[j].y; const intersect = ((yi>y)!=(yj>y)) && (x < (xj-xi)*(y-yi)/(yj-yi)+xi); if(intersect) inside=!inside; } return inside; }
+
+/* draw helpers */
+function roundRect(ctx,x,y,w,h,r){ ctx.beginPath(); ctx.moveTo(x+r,y); ctx.arcTo(x+w,y,x+w,y+h,r); ctx.arcTo(x+w,y+h,x,y+h,r); ctx.arcTo(x,y+h,x,y,r); ctx.arcTo(x,y,x+w,y,r); ctx.closePath(); }
+
+function drawBackground(){
+  // choose background by state.backgroundType
+  if(state.backgroundType==='touchline'){
+    if(state.templateImg) ctx.drawImage(state.templateImg,0,0,CANVAS_PX,CANVAS_PX);
+    else {
+      const g=ctx.createLinearGradient(0,0,CANVAS_PX,CANVAS_PX); g.addColorStop(0,'#0a3a73'); g.addColorStop(1,'#04294b'); ctx.fillStyle=g; ctx.fillRect(0,0,CANVAS_PX,CANVAS_PX);
+    }
+  } else if(state.backgroundType==='custom' && state.backgroundImg){
+    ctx.drawImage(state.backgroundImg,0,0,CANVAS_PX,CANVAS_PX);
+  } else if(state.backgroundType==='red'){
+    const g=ctx.createLinearGradient(0,0,CANVAS_PX,CANVAS_PX); g.addColorStop(0,'#7a0b0b'); g.addColorStop(1,'#2b0f0f'); ctx.fillStyle=g; ctx.fillRect(0,0,CANVAS_PX,CANVAS_PX);
+  } else if(state.backgroundType==='gold'){
+    const g=ctx.createLinearGradient(0,0,CANVAS_PX,CANVAS_PX); g.addColorStop(0,'#e6b800'); g.addColorStop(1,'#6f4f00'); ctx.fillStyle=g; ctx.fillRect(0,0,CANVAS_PX,CANVAS_PX);
+  } else if(state.backgroundType==='green'){
+    const g=ctx.createLinearGradient(0,0,CANVAS_PX,CANVAS_PX); g.addColorStop(0,'#1b7a3a'); g.addColorStop(1,'#073a20'); ctx.fillStyle=g; ctx.fillRect(0,0,CANVAS_PX,CANVAS_PX);
+  } else {
+    // fallback
+    ctx.fillStyle='#04294b'; ctx.fillRect(0,0,CANVAS_PX,CANVAS_PX);
+  }
+
+  // faint repeating wordmark if using touchline or gradients
+  if(state.backgroundType==='touchline' || state.backgroundType==='red' || state.backgroundType==='gold' || state.backgroundType==='green'){
+    ctx.save();
+    ctx.globalAlpha = 0.05;
+    ctx.fillStyle = '#ffffff';
+    ctx.font = 'bold 100px Poppins';
+    ctx.textAlign = 'center';
+    for(let y=-80;y<CANVAS_PX+180;y+=120){
+      for(let x=-40;x<CANVAS_PX+40;x+=330){
+        ctx.fillText('TOUCHLINE', x, y, 300);
+      }
+    }
+    ctx.restore();
+  }
+
+  // halftone if active
+  if(state.effects.halftone){
+    ctx.save();
+    const step = 12;
+    for(let y=20;y<CANVAS_PX;y+=step){
+      for(let x=20;x<CANVAS_PX;x+=step){
+        const d = Math.hypot(x-60,y-60);
+        const a = Math.max(0, 0.35 - d/700);
+        if(a>0.01){
+          ctx.fillStyle = `rgba(255,255,255,${a*0.06})`;
+          ctx.beginPath(); ctx.arc(x,y, (1 + a*6), 0, Math.PI*2); ctx.fill();
         }
+      }
+    }
+    ctx.restore();
+  }
 
-        function getDesignConfig(seed) {
-            function rand(min, max) {
-                var x = Math.sin(seed++) * 10000;
-                return Math.floor((x - Math.floor(x)) * (max - min + 1)) + min;
-            }
+  // circuit accent
+  if(state.effects.circuit){
+    ctx.save();
+    ctx.strokeStyle = 'rgba(255,255,255,0.04)';
+    ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.moveTo(60, CANVAS_PX-120); ctx.lineTo(220, CANVAS_PX-120); ctx.lineTo(260, CANVAS_PX-160); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(320, CANVAS_PX-100); ctx.lineTo(420, CANVAS_PX-100); ctx.stroke();
+    ctx.restore();
+  }
+}
 
-            var gradients = [
-                ['#1a1a2e', '#16213e', '#0f3460'],
-                ['#0f2027', '#203a43', '#2c5364'],
-                ['#141e30', '#243b55', '#1a2a3a'],
-                ['#000428', '#004e92', '#1a5490'],
-                ['#2c3e50', '#34495e', '#455a64'],
-                ['#1e3c72', '#2a5298', '#3d5a80']
-            ];
+/* draw team frame */
+function drawTeam(){
+  const tf = FRAMES.team;
+  // rounded rect background
+  ctx.save(); roundRect(ctx, tf.x, tf.y, tf.w, tf.h, tf.r); ctx.fillStyle='rgba(8,18,36,0.35)'; ctx.fill(); ctx.clip();
+  if(state.team.img){
+    const img = state.team.img;
+    const w = img.width * state.team.scale; const h = img.height * state.team.scale;
+    const dx = state.team.x - w/2; const dy = state.team.y - h/2;
+    ctx.drawImage(img, dx, dy, w, h);
+    // vignette
+    ctx.fillStyle = 'rgba(2,6,14,0.22)'; ctx.fillRect(tf.x, tf.y + tf.h - 100, tf.w, 100);
+  } else {
+    ctx.fillStyle='rgba(0,0,0,0.25)'; ctx.fillRect(tf.x, tf.y, tf.w, tf.h);
+  }
+  ctx.restore();
 
-            var accentColors = ['#00ff87', '#00d9ff', '#ff6b6b', '#ffd93d', '#a8dadc', '#f72585'];
+  // headline and age badge & date
+  ctx.save();
+  ctx.fillStyle = '#fff';
+  ctx.font = '800 40px Montserrat';
+  ctx.textAlign = 'left';
+  ctx.shadowColor = 'rgba(2,8,20,0.6)'; ctx.shadowBlur = 12;
+  ctx.fillText('PLAYER OF THE DAY', 36, 66);
 
-            var fonts = [
-                { title: 'Impact, sans-serif', name: 'Montserrat, sans-serif', batch: 'Arial Black, sans-serif' },
-                { title: 'Arial Black, sans-serif', name: 'Helvetica, sans-serif', batch: 'Verdana, sans-serif' },
-                { title: 'Impact, sans-serif', name: 'Roboto, sans-serif', batch: 'Arial, sans-serif' }
-            ];
+  // age parallelogram top-right
+  const ageText = (ageLabel.value||'').toUpperCase();
+  ctx.font = '700 16px Montserrat';
+  const ageW = Math.max(120, ctx.measureText(ageText).width + 36);
+  const ageX = CANVAS_PX - ageW - 36, ageY = 26, ageH = 40;
+  ctx.beginPath(); const s = Math.tan(-8*Math.PI/180)*ageH;
+  ctx.moveTo(ageX + s, ageY); ctx.lineTo(ageX + s + ageW, ageY); ctx.lineTo(ageX + ageW, ageY + ageH); ctx.lineTo(ageX, ageY + ageH); ctx.closePath();
+  ctx.fillStyle = '#1b66c4'; ctx.fill();
+  ctx.fillStyle = '#fff'; ctx.textAlign='center';
+  ctx.fillText(ageText, ageX + ageW/2, ageY + ageH/2 + 1);
 
-            var decorStyles = ['geometric', 'circles', 'stripes', 'minimal'];
+  // date below team frame center
+  ctx.fillStyle = '#cfe6ff'; ctx.font = '600 16px Poppins';
+  ctx.textAlign = 'center';
+  ctx.fillText((dateField.value||''), tf.x + 420, tf.y + tf.h + 40);
+  ctx.restore();
+}
 
-            return {
-                gradient: gradients[rand(0, gradients.length - 1)],
-                accent: accentColors[rand(0, accentColors.length - 1)],
-                fonts: fonts[rand(0, fonts.length - 1)],
-                decorStyle: decorStyles[rand(0, decorStyles.length - 1)],
-                glowIntensity: rand(15, 30),
-                patternOpacity: rand(10, 25) / 100
-            };
-        }
+/* draw player parallelogram & name badge with auto-fit font */
+function drawPlayer(){
+  const pf = FRAMES.player;
+  // shadow base
+  ctx.save(); ctx.shadowColor = 'rgba(3,12,28,0.7)'; ctx.shadowBlur = 26;
+  const s = Math.tan((pf.angle||0)*Math.PI/180)*pf.h;
+  ctx.beginPath(); ctx.moveTo(pf.x + s, pf.y); ctx.lineTo(pf.x + s + pf.w, pf.y); ctx.lineTo(pf.x + pf.w, pf.y + pf.h); ctx.lineTo(pf.x, pf.y + pf.h); ctx.closePath();
+  ctx.fillStyle = '#071226'; ctx.fill(); ctx.restore();
 
-        function drawPoster() {
-            if (!playerImg) {
-                document.getElementById('downloadBtn').disabled = true;
-                return;
-            }
+  // clip to parallelogram and draw player img
+  ctx.save();
+  const s2 = Math.tan((pf.angle||0)*Math.PI/180)*pf.h;
+  ctx.beginPath(); ctx.moveTo(pf.x + s2, pf.y); ctx.lineTo(pf.x + s2 + pf.w, pf.y); ctx.lineTo(pf.x + pf.w, pf.y + pf.h); ctx.lineTo(pf.x, pf.y + pf.h); ctx.closePath();
+  ctx.clip();
+  if(state.player.img){
+    const img = state.player.img;
+    const w = img.width * state.player.scale; const h = img.height * state.player.scale;
+    const dx = state.player.x - w/2; const dy = state.player.y - h/2;
+    ctx.drawImage(img, dx, dy, w, h);
+  } else {
+    ctx.fillStyle = '#071224'; ctx.fillRect(pf.x, pf.y, pf.w, pf.h);
+  }
+  ctx.restore();
 
-            var studentName = document.getElementById('studentName').value;
-            if (!studentName) {
-                document.getElementById('downloadBtn').disabled = true;
-                return;
-            }
+  // stroke
+  ctx.save(); ctx.lineWidth = 6; ctx.strokeStyle = 'rgba(27,102,196,0.95)';
+  ctx.beginPath(); ctx.moveTo(pf.x + s2, pf.y); ctx.lineTo(pf.x + s2 + pf.w, pf.y); ctx.lineTo(pf.x + pf.w, pf.y + pf.h); ctx.lineTo(pf.x, pf.y + pf.h); ctx.closePath(); ctx.stroke(); ctx.restore();
 
-            document.getElementById('downloadBtn').disabled = false;
+  // name badge: larger height + auto-fit font
+  const name = (playerNameEl.value||'PLAYER').toUpperCase();
+  ctx.save();
+  // compute name badge size
+  ctx.font = '800 20px Montserrat';
+  const baseNameW = Math.max(180, ctx.measureText(name).width + 60);
+  const nameH = 56; // increased height to avoid clipping
+  const nameX = pf.x + pf.w/2 - baseNameW/2;
+  const nameY = 700;
 
-            var batchSelect = document.getElementById('batch').value;
-            var customBatch = document.getElementById('customBatch').value;
-            var batch = batchSelect === 'CUSTOM' ? customBatch : batchSelect;
+  // draw parallelogram badge background
+  const ang = 6;
+  const s3 = Math.tan(ang*Math.PI/180)*nameH;
+  ctx.beginPath();
+  ctx.moveTo(nameX + s3, nameY);
+  ctx.lineTo(nameX + s3 + baseNameW, nameY);
+  ctx.lineTo(nameX + baseNameW, nameY + nameH);
+  ctx.lineTo(nameX, nameY + nameH);
+  ctx.closePath();
+  ctx.fillStyle = '#1b66c4'; ctx.fill();
 
-            var titleSelect = document.getElementById('titleSelect').value;
-            var customTitle = document.getElementById('customTitle').value;
-            var displayTitle = titleSelect === 'Custom' ? customTitle : titleSelect;
+  // auto-scale font to fit width
+  ctx.fillStyle = '#fff'; ctx.textAlign='center';
+  let fontSize = 28;
+  ctx.font = `800 ${fontSize}px Montserrat`;
+  while(ctx.measureText(name).width > baseNameW - 24 && fontSize > 12){
+    fontSize -= 1;
+    ctx.font = `800 ${fontSize}px Montserrat`;
+  }
+  const textY = nameY + nameH/2 + (fontSize*0.22);
+  ctx.fillText(name, nameX + baseNameW/2, textY);
+  ctx.restore();
 
-            var w = 1080;
-            var h = 1080;
-            canvas.width = w;
-            canvas.height = h;
+  // academy below name
+  ctx.save(); ctx.fillStyle = '#e7f3ff'; ctx.font = '600 13px Poppins'; ctx.textAlign='center';
+  ctx.fillText((academy.value||'').toUpperCase(), pf.x + -420, 20 + nameH + 22);
+  ctx.restore();
+}
 
-            var config = getDesignConfig(designSeed);
+/* footer & logo */
+function drawFooter(){
+  ctx.save();
+  if(state.logo.img){
+    const lw=120, lh=120;
+    ctx.drawImage(state.logo.img, 36, CANVAS_PX - lh - 36, lw, lh);
+  }else {
+    // default Touchline logo placeholder
+    const defaultLogo = new Image();
+  defaultLogo.src = './logo.png'; // make sure this file is in the same folder as your HTML
+  defaultLogo.onload = () => {
+    const lw = 120, lh = 120;
+    ctx.drawImage(defaultLogo, 36, CANVAS_PX - lh - 36, lw, lh);
+  }
+}
+  
+}
 
-            // Dynamic gradient background
-            var gradient = ctx.createLinearGradient(0, 0, w, h);
-            gradient.addColorStop(0, config.gradient[0]);
-            gradient.addColorStop(0.5, config.gradient[1]);
-            gradient.addColorStop(1, config.gradient[2]);
-            ctx.fillStyle = gradient;
-            ctx.fillRect(0, 0, w, h);
+/* central draw */
+function draw(){
+  ctx.clearRect(0,0,CANVAS_PX,CANVAS_PX);
+  drawBackground();
+  drawTeam();
+  drawPlayer();
+  drawFooter();
+}
+draw();
 
-            // Draw team photo as main background
-            if (teamImg) {
-                ctx.save();
-                ctx.globalAlpha = 0.5;
-                var scale = Math.max(w / teamImg.width, h / teamImg.height);
-                var tw = teamImg.width * scale;
-                var th = teamImg.height * scale;
-                ctx.drawImage(teamImg, (w - tw) / 2, (h - th) / 2, tw, th);
+/* export to high res */
+exportBtn.addEventListener('click', ()=>{
+  const size = EXPORT_PX;
+  const ecanvas = document.createElement('canvas'); ecanvas.width=size; ecanvas.height=size;
+  const ectx = ecanvas.getContext('2d', { alpha:false });
+  const sf = size / CANVAS_PX;
 
-                // Add vignette effect
-                var vignetteGrad = ctx.createRadialGradient(w / 2, h / 2, w / 4, w / 2, h / 2, w / 1.2);
-                vignetteGrad.addColorStop(0, 'rgba(0,0,0,0)');
-                vignetteGrad.addColorStop(1, 'rgba(0,0,0,0.7)');
-                ctx.fillStyle = vignetteGrad;
-                ctx.fillRect(0, 0, w, h);
-                ctx.restore();
-            }
+  // background simplified copy of drawBackground but scaled:
+  if(state.backgroundType==='touchline'){
+    if(state.templateImg) ectx.drawImage(state.templateImg,0,0,size,size);
+    else { const g=ectx.createLinearGradient(0,0,size,size); g.addColorStop(0,'#0a3a73'); g.addColorStop(1,'#04294b'); ectx.fillStyle=g; ectx.fillRect(0,0,size,size); }
+  } else if(state.backgroundType==='custom' && state.backgroundImg){ ectx.drawImage(state.backgroundImg,0,0,size,size); }
+  else if(state.backgroundType==='red'){ const g=ectx.createLinearGradient(0,0,size,size); g.addColorStop(0,'#7a0b0b'); g.addColorStop(1,'#2b0f0f'); ectx.fillStyle=g; ectx.fillRect(0,0,size,size); }
+  else if(state.backgroundType==='gold'){ const g=ectx.createLinearGradient(0,0,size,size); g.addColorStop(0,'#e6b800'); g.addColorStop(1,'#6f4f00'); ectx.fillStyle=g; ectx.fillRect(0,0,size,size); }
+  else if(state.backgroundType==='green'){ const g=ectx.createLinearGradient(0,0,size,size); g.addColorStop(0,'#1b7a3a'); g.addColorStop(1,'#073a20'); ectx.fillStyle=g; ectx.fillRect(0,0,size,size); }
+  // subtle pattern/hafltone for export if desired (skipped heavy processing for brevity)
 
-            // Decorative pattern overlay
-            ctx.globalAlpha = config.patternOpacity;
-            if (config.decorStyle === 'geometric') {
-                for (var i = 0; i < 15; i++) {
-                    ctx.fillStyle = config.accent;
-                    var size = Math.random() * 80 + 40;
-                    ctx.save();
-                    ctx.translate(Math.random() * w, Math.random() * h);
-                    ctx.rotate(Math.random() * Math.PI);
-                    ctx.fillRect(-size / 2, -size / 2, size, size);
-                    ctx.restore();
-                }
-            } else if (config.decorStyle === 'circles') {
-                for (var i = 0; i < 12; i++) {
-                    ctx.fillStyle = config.accent;
-                    ctx.beginPath();
-                    ctx.arc(Math.random() * w, Math.random() * h, Math.random() * 60 + 25, 0, Math.PI * 2);
-                    ctx.fill();
-                }
-            } else if (config.decorStyle === 'stripes') {
-                ctx.fillStyle = config.accent;
-                ctx.save();
-                ctx.translate(w / 2, h / 2);
-                ctx.rotate(0.3);
-                for (var i = -20; i < 20; i++) {
-                    ctx.fillRect(i * 60, -h, 30, h * 2);
-                }
-                ctx.restore();
-            }
-            ctx.globalAlpha = 1;
+  // draw team frame scaled
+  const tf = FRAMES.team;
+  ectx.save(); roundRect(ectx, tf.x*sf, tf.y*sf, tf.w*sf, tf.h*sf, tf.r*sf); ectx.clip();
+  if(state.team.img){
+    const img = state.team.img;
+    const w = img.width * state.team.scale * sf;
+    const h = img.height * state.team.scale * sf;
+    const dx = (state.team.x*sf) - w/2, dy = (state.team.y*sf) - h/2;
+    ectx.drawImage(img, dx, dy, w, h);
+    ectx.fillStyle='rgba(2,6,14,0.22)'; ectx.fillRect(tf.x*sf, (tf.y*sf + tf.h*sf - 100*sf), tf.w*sf, 100*sf);
+  }
+  ectx.restore();
 
-            // Draw curved decorative elements
-            ctx.save();
-            ctx.fillStyle = config.accent + '40';
-            ctx.beginPath();
-            ctx.arc(w + 100, -100, 400, 0, Math.PI * 2);
-            ctx.fill();
-            ctx.beginPath();
-            ctx.arc(-100, h + 100, 400, 0, Math.PI * 2);
-            ctx.fill();
-            ctx.restore();
+  // heading + age
+  ectx.fillStyle = '#fff'; ectx.font = '800 ' + (40*sf) + 'px Montserrat'; ectx.textAlign='left';
+  ectx.fillText('PLAYER OF THE DAY', 36*sf, 66*sf);
+  const ageText=(ageLabel.value||'').toUpperCase(); ectx.font = '700 ' + (16*sf) + 'px Montserrat';
+  const ageW = Math.max(120*sf, ectx.measureText(ageText).width + 36*sf);
+  const ageX = size - ageW - 36*sf, ageY=26*sf, ageH=40*sf;
+  ectx.beginPath(); const ss = Math.tan(-8*Math.PI/180)*ageH;
+  ectx.moveTo(ageX + ss, ageY); ectx.lineTo(ageX + ss + ageW, ageY); ectx.lineTo(ageX + ageW, ageY + ageH); ectx.lineTo(ageX, ageY + ageH); ectx.closePath();
+  ectx.fillStyle = '#1b66c4'; ectx.fill(); ectx.fillStyle = '#fff'; ectx.textAlign='center'; ectx.fillText(ageText, ageX + ageW/2, ageY + ageH/2 + (1*sf));
 
-            // Top banner with title
-            ctx.save();
-            var bannerGrad = ctx.createLinearGradient(0, 0, w, 0);
-            bannerGrad.addColorStop(0, config.accent + 'ff');
-            bannerGrad.addColorStop(1, config.accent + 'cc');
-            ctx.fillStyle = bannerGrad;
+  // player parallelogram section
+  const pf = FRAMES.player;
+  const sAng = Math.tan((pf.angle||0)*Math.PI/180) * pf.h * sf;
+  ectx.save();
+  ectx.beginPath();
+  ectx.moveTo(pf.x*sf + sAng, pf.y*sf); ectx.lineTo(pf.x*sf + sAng + pf.w*sf, pf.y*sf);
+  ectx.lineTo(pf.x*sf + pf.w*sf, (pf.y + pf.h)*sf); ectx.lineTo(pf.x*sf, (pf.y + pf.h)*sf); ectx.closePath();
+  ectx.clip();
+  if(state.player.img){
+    const img = state.player.img;
+    const w = img.width * state.player.scale * sf;
+    const h = img.height * state.player.scale * sf;
+    const dx = (state.player.x*sf) - w/2, dy = (state.player.y*sf) - h/2;
+    ectx.drawImage(img, dx, dy, w, h);
+  }
+  ectx.restore();
+  // stroke
+  ectx.save(); ectx.lineWidth = 24*sf; ectx.strokeStyle='rgba(27,102,196,0.95)'; ectx.beginPath();
+  ectx.moveTo(pf.x*sf + sAng, pf.y*sf); ectx.lineTo(pf.x*sf + sAng + pf.w*sf, pf.y*sf);
+  ectx.lineTo(pf.x*sf + pf.w*sf, (pf.y + pf.h)*sf); ectx.lineTo(pf.x*sf, (pf.y + pf.h)*sf); ectx.closePath(); ectx.stroke(); ectx.restore();
 
-            // Clean rectangular title bar
-            ctx.fillRect(0, 60, w, 130);
-            // Add thin top and bottom accent borders
-ctx.fillStyle = '#ffffff40';
-ctx.fillRect(0, 60, w, 4);       // Top border
-ctx.fillRect(0, 190, w, 4);      // Bottom border
+  // name badge scaled with auto font sizing
+  ectx.font = '800 ' + (28*sf) + 'px Montserrat';
+  const nameText = (playerNameEl.value||'').toUpperCase();
+  let baseNameW = Math.max(180*sf, ectx.measureText(nameText).width + 60*sf);
+  const nameH = 56*sf; const nameX = (pf.x + pf.w/2)*sf - baseNameW/2; const nameY = (pf.y + pf.h + 12)*sf;
+  const ang2 = 6; const sName = Math.tan(ang2*Math.PI/180) * nameH;
+  ectx.beginPath(); ectx.moveTo(nameX + sName, nameY); ectx.lineTo(nameX + sName + baseNameW, nameY); ectx.lineTo(nameX + baseNameW, nameY + nameH); ectx.lineTo(nameX, nameY + nameH); ectx.closePath(); ectx.fillStyle = '#1b66c4'; ectx.fill();
+  // auto font scale
+  let fsz = 28*sf; ectx.font = `800 ${fsz}px Montserrat`;
+  while(ectx.measureText(nameText).width > baseNameW - 24*sf && fsz>10*sf){ fsz -= 1*sf; ectx.font = `800 ${fsz}px Montserrat`; }
+  ectx.fillStyle = '#fff'; ectx.textAlign='center'; ectx.fillText(nameText, nameX + baseNameW/2, nameY + nameH/2 + (fsz*0.22));
 
+  // academy text
+  ectx.fillStyle = '#e7f3ff'; ectx.font = '600 ' + (14*sf) + 'px Poppins'; ectx.textAlign='center';
+  ectx.fillText((academy.value||'').toUpperCase(), size/2, nameY + nameH + 28*sf);
 
+  // footer logo and contact
+  ectx.save();
+  if(state.logo.img){
+    const lw = 120*sf, lh = 120*sf; ectx.drawImage(state.logo.img, 36*sf, size - lh - 36*sf, lw, lh);
+  } else {
+    ectx.fillStyle = '#071224'; roundRect(ectx,36*sf,size - 140*sf,120*sf,120*sf,12*sf); ectx.fill();
+    ectx.fillStyle = '#cfe6ff'; ectx.font = '800 ' + (20*sf) + 'px Montserrat'; ectx.textAlign='center'; ectx.fillText('TL', 36*sf + 60*sf, size - 80*sf);
+  }
+  ectx.fillStyle = '#cfe6ff'; ectx.font = '600 ' + (13*sf) + 'px Poppins'; ectx.textAlign='left'; ectx.fillText('+971 58 569 8277', 36*sf + 140*sf, size - 52*sf); ectx.fillText('www.touchlinesport.ae', 36*sf + 140*sf, size - 34*sf);
+  ectx.restore();
 
-           
+  // download
+  const url = ecanvas.toDataURL('image/png');
+  const a = document.createElement('a'); a.href = url;
+  const safeName = (playerNameEl.value||'player').replace(/\s+/g,'_').toLowerCase();
+  a.download = `${safeName}_poster.png`; a.click();
+});
 
-            // Title text
-            ctx.fillStyle = '#ffffff';
-ctx.font = 'bold 70px ' + config.fonts.title;
-ctx.textAlign = 'center';
-ctx.textBaseline = 'middle';
-ctx.shadowColor = 'rgba(0,0,0,0.4)';
-ctx.shadowBlur = 10;
-ctx.fillText(displayTitle.toUpperCase(), w / 2, 125);
-ctx.shadowBlur = 0;
-ctx.restore();
+/* init loads & draw finished earlier; allow sample default template loaded at page load */
 
-            // Player photo in corner with curved frame
-            var cornerSize = 420;
-            var cornerX = w - cornerSize / 2 - 80;
-            var cornerY = h - cornerSize / 2 - 80;
+/* If user changes inputs, update live */
+[playerNameEl, ageLabel, dateField, academy].forEach(el => el.addEventListener('input', draw));
 
-            // Glow effect
-            ctx.save();
-            ctx.shadowColor = config.accent;
-            ctx.shadowBlur = 40;
-            ctx.beginPath();
-            ctx.arc(cornerX, cornerY, cornerSize / 2, 0, Math.PI * 2);
-            ctx.fillStyle = config.accent + '30';
-            ctx.fill();
-            ctx.restore();
+/* Show/hide background upload area rules */
+bgSelect.addEventListener('change', ()=>{ if(bgSelect.value === 'upload') bgDrop.style.display = 'block'; else bgDrop.style.display='none'; });
 
-            // Draw decorative rings
-            for (var i = 0; i < 3; i++) {
-                ctx.strokeStyle = config.accent + (80 - i * 20).toString(16);
-                ctx.lineWidth = 3;
-                ctx.beginPath();
-                ctx.arc(cornerX, cornerY, cornerSize / 2 + 15 + i * 10, 0, Math.PI * 2);
-                ctx.stroke();
-            }
-
-            // Clip and draw player image
-            ctx.save();
-            ctx.beginPath();
-            ctx.arc(cornerX, cornerY, cornerSize / 2, 0, Math.PI * 2);
-            ctx.closePath();
-            ctx.clip();
-
-            var scale = Math.max(cornerSize / playerImg.width, cornerSize / playerImg.height);
-            var pw = playerImg.width * scale;
-            var ph = playerImg.height * scale;
-            ctx.drawImage(playerImg, cornerX - pw / 2, cornerY - ph / 2, pw, ph);
-            ctx.restore();
-
-            // Main border
-            ctx.strokeStyle = config.accent;
-            ctx.lineWidth = 8;
-            ctx.beginPath();
-            ctx.arc(cornerX, cornerY, cornerSize / 2 + 4, 0, Math.PI * 2);
-            ctx.stroke();
-
-            // "Best Player" badge on corner photo
-            ctx.save();
-            var badgeX = cornerX - cornerSize / 2 + 60;
-            var badgeY = cornerY - cornerSize / 2 + 60;
-
-            // Badge background
-            ctx.fillStyle = '#FFD700';
-            ctx.beginPath();
-            for (var i = 0; i < 8; i++) {
-                var angle = (i * Math.PI) / 4;
-                var radius = i % 2 === 0 ? 50 : 30;
-                var x = badgeX + Math.cos(angle) * radius;
-                var y = badgeY + Math.sin(angle) * radius;
-                if (i === 0) ctx.moveTo(x, y);
-                else ctx.lineTo(x, y);
-            }
-            ctx.closePath();
-            ctx.fill();
-
-            // Badge border
-            ctx.strokeStyle = '#FFA500';
-            ctx.lineWidth = 4;
-            ctx.stroke();
-
-            // Badge text
-            ctx.fillStyle = '#1a1a2e';
-            ctx.font = 'bold 20px Arial';
-            ctx.textAlign = 'center';
-            ctx.textBaseline = 'middle';
-            ctx.fillText('BEST', badgeX, badgeY - 8);
-            ctx.font = 'bold 16px Arial';
-            ctx.fillText('PLAYER', badgeX, badgeY + 10);
-            ctx.restore();
-
-           // Player name background (horizontal gradient)
-var nameY = h - 220;
-ctx.save();
-
-// Gradient from accent → transparent (left to right)
-var nameGrad = ctx.createLinearGradient(w/2 - 500, nameY, w/2 + 500, nameY);
-nameGrad.addColorStop(0, config.accent + 'ee');
-nameGrad.addColorStop(1, config.accent + '00');
-ctx.fillStyle = nameGrad;
-
-// Rounded rectangle (horizontal fade)
-ctx.beginPath();
-ctx.roundRect(20, nameY - 55, 1000, 110, 55);
-ctx.fill();
-
-// Player name text
-ctx.fillStyle = '#ffffff';
-ctx.font = 'bold 75px ' + config.fonts.name;
-ctx.textAlign = 'center';
-ctx.textBaseline = 'middle';
-ctx.shadowColor = 'rgba(0,0,0,0.25)';
-ctx.shadowBlur = 12;
-ctx.fillText(studentName.toUpperCase(), 90,nameY);
-ctx.restore();
-            // Batch background (same horizontal gradient style)
-var batchY = h -120;
-ctx.save();
-
-var batchGrad = ctx.createLinearGradient(w/2 - 180, batchY, w/2 + 180, batchY);
-batchGrad.addColorStop(0, config.accent + 'ee');
-batchGrad.addColorStop(1, config.accent + '00');
-ctx.fillStyle = batchGrad;
-
-// Rounded rectangle for batch bar
-ctx.beginPath();
-ctx.roundRect(20, batchY - 35, 420, 70, 35);
-ctx.fill();
-
-// Thin white border
-ctx.strokeStyle = '#ffffffaa';
-ctx.lineWidth = 3;
-ctx.stroke();
-
-// Batch text
-ctx.fillStyle = '#ffffff';
-ctx.font = 'bold 42px ' + config.fonts.batch;
-ctx.textAlign = 'center';
-ctx.textBaseline = 'middle';
-ctx.shadowColor = 'rgba(0,0,0,0.2)';
-ctx.shadowBlur = 8;
-ctx.fillText(batch, 140, batchY);
-ctx.restore();
-            // Fixed Touchline logo (top-left corner)
-            const logo = new Image();
-            logo.src = './logo.png'; // replace with your logo path
-            logo.onload = () => {
-                // Draw logo on left side of the badge
-                ctx.drawImage(logo, 40, 40, 100, 100); // x, y, width, height
-
-                // Draw text next to logo
-
-            };
-
-        }
-
-        function randomizeDesign() {
-            designSeed = Date.now();
-            drawPoster();
-        }
-
-        function downloadPoster() {
-            if (!playerImg || !document.getElementById('studentName').value) return;
-
-            canvas.toBlob(function (blob) {
-                var url = URL.createObjectURL(blob);
-                var a = document.createElement('a');
-                var studentName = document.getElementById('studentName').value || 'player';
-                var title = document.getElementById('titleSelect').value;
-                a.href = url;
-                a.download = studentName + '_' + title.replace(/ /g, '_') + '.png';
-                a.click();
-                URL.revokeObjectURL(url);
-            });
-        }
-
-        document.getElementById('downloadBtn').disabled = true;
-    </script>
+/* done */
+</script>
 </body>
-
 </html>
