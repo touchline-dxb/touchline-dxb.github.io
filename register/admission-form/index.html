@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Touchline Sports Academy - Admission Form</title>
+<style>
+      * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #f9fafb 0%, #e5e7eb 100%);
+            min-height: 100vh;
+        }
+
+        header {
+            background: #000;
+            color: #fff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-content {
+            max-width: 896px;
+            margin: 0 auto;
+            padding: 1.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo {
+            width: 64px;
+            height: 64px;
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            flex-shrink: 0;
+        }
+
+        .header-text h1 {
+            font-size: 1.875rem;
+            font-weight: bold;
+            margin-bottom: 0.25rem;
+        }
+
+        .header-text p {
+            color: #d1d5db;
+            font-size: 0.875rem;
+        }
+
+        .container {
+            max-width: 896px;
+            margin: 0 auto;
+            padding: 2rem 1rem 3rem;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 1rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-header svg {
+            color: #18B45B;
+            width: 24px;
+            height: 24px;
+        }
+
+        .section-header h2 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #1f2937;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        .form-grid-2 {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        .form-grid-3 {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        .col-span-2 {
+            grid-column: span 1;
+        }
+
+        label {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 0.5rem;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="date"],
+        input[type="number"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.75rem;
+            font-size: 1rem;
+            transition: all 0.2s;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="tel"]:focus,
+        input[type="date"]:focus,
+        input[type="number"]:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #18B45B;
+            box-shadow: 0 0 0 3px rgba(24, 180, 91, 0.1);
+        }
+
+        input[readonly] {
+            background: #f9fafb;
+        }
+
+        textarea {
+            resize: vertical;
+            font-family: inherit;
+        }
+
+        .file-upload-wrapper {
+            position: relative;
+            border: 2px dashed #d1d5db;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.2s;
+            cursor: pointer;
+            background: #f9fafb;
+        }
+
+        .file-upload-wrapper:hover {
+            border-color: #18B45B;
+            background: #f0fdf4;
+        }
+
+        .file-upload-wrapper input[type="file"] {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .file-upload-text {
+            color: #6b7280;
+            font-size: 0.875rem;
+        }
+
+        .file-upload-icon {
+            width: 48px;
+            height: 48px;
+            margin: 0 auto 0.5rem;
+            color: #18B45B;
+        }
+
+        .preview-image {
+            max-width: 200px;
+            max-height: 200px;
+            margin: 1rem auto;
+            border-radius: 0.5rem;
+            display: none;
+        }
+
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem;
+            border-radius: 0.75rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .radio-option:hover {
+            background: #f9fafb;
+        }
+
+        input[type="radio"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            accent-color: #18B45B;
+        }
+
+        .radio-option span {
+            color: #374151;
+            font-weight: 500;
+        }
+
+        .terms-box {
+            border: 1px solid #d1d5db;
+            border-radius: 0.75rem;
+            padding: 1rem;
+            height: 160px;
+            overflow-y: auto;
+            background: #f9fafb;
+            font-size: 0.875rem;
+            color: #374151;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .terms-box p {
+            margin-bottom: 0.5rem;
+        }
+
+        .terms-box ul {
+            padding-left: 1.25rem;
+            margin-top: 0.5rem;
+        }
+
+        .terms-box li {
+            margin-bottom: 0.25rem;
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            cursor: pointer;
+        }
+
+        .checkbox-label input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin-top: 2px;
+            cursor: pointer;
+            accent-color: #18B45B;
+        }
+
+        .checkbox-label span {
+            color: #374151;
+            font-weight: 500;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1rem;
+            border-radius: 0.75rem;
+            font-weight: bold;
+            font-size: 1.125rem;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .submit-btn.enabled {
+            background: #18B45B;
+            color: #fff;
+        }
+
+        .submit-btn.enabled:hover {
+            background: #159e4f;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .submit-btn.disabled {
+            background: #d1d5db;
+            color: #9ca3af;
+            cursor: not-allowed;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 1rem;
+            color: #18B45B;
+            font-weight: 600;
+        }
+
+        .loading.show {
+            display: block;
+        }
+
+        @media (min-width: 640px) {
+            .header-content {
+                padding: 1.5rem 1.5rem;
+            }
+
+            .header-text h1 {
+                font-size: 2rem;
+            }
+
+            .card {
+                padding: 2.5rem;
+            }
+
+            .form-grid-2 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .form-grid-3 {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .col-span-2 {
+                grid-column: span 2;
+            }
+
+            .container {
+                padding: 3rem 1.5rem;
+            }
+        }
+
+        @media (max-width: 639px) {
+            .logo {
+                width: 48px;
+                height: 48px;
+                font-size: 1.25rem;
+            }
+
+            .header-text h1 {
+                font-size: 1.25rem;
+            }
+
+            .header-text p {
+                font-size: 0.75rem;
+            }
+
+            .card {
+                padding: 1rem;
+            }
+
+            .section-header h2 {
+                font-size: 1.25rem;
+            }
+        }
+</style></head>
+
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo"><img src="https://touchlinesport.ae/LOGO.png" alt="Touchline Sports Academy Logo" width="60"></div>
+            <div class="header-text">
+                <h1>Touchline Sports Academy</h1>
+                <p>Admission Form</p>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Registration Meta -->
+        <div class="card">
+            <div class="section-header">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2" stroke-width="2" />
+                    <line x1="16" y1="2" x2="16" y2="6" stroke-width="2" />
+                    <line x1="8" y1="2" x2="8" y2="6" stroke-width="2" />
+                    <line x1="3" y1="10" x2="21" y2="10" stroke-width="2" />
+                </svg>
+                <h2>Registration Meta</h2>
+            </div>
+            <div class="form-grid-3">
+                <div>
+                    <label>Date of Registration</label>
+                    <input type="date" id="registrationDate" readonly>
+                </div>
+                <div>
+                    <label>Branch *</label>
+                    <select id="branch" required>
+                        <option value="">Select Branch</option>
+                        <option value="Al Warqa">Al Warqa</option>
+                        <option value="Al Nahda">Al Nahda</option>
+                    </select>
+                </div>
+                 <div>
+                    <label>Payment Status *</label>
+                    <select id="paymentStatus" required>
+                        <option value="">Select Payment Status</option>
+                        <option value="Partial">Registration Paid</option>
+                        <option value="Paid">Full Paid</option>
+                        <option value="Pending">Pending</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- Student Information -->
+        <div class="card">
+            <div class="section-header">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" stroke-width="2" />
+                    <circle cx="12" cy="7" r="4" stroke-width="2" />
+                </svg>
+                <h2>Student Information</h2>
+            </div>
+            <div class="form-grid-2">
+                <div class="col-span-2">
+                    <label>Student Photo *</label>
+                    <div class="file-upload-wrapper">
+                        <input type="file" id="studentPhoto" accept="image/*" required>
+                        <svg class="file-upload-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 4v16m8-8H4" stroke-width="2" stroke-linecap="round" />
+                        </svg>
+                        <div class="file-upload-text">Click to upload student photo</div>
+                    </div>
+                    <img id="photoPreview" class="preview-image" alt="Preview">
+                </div>
+                <div class="col-span-2">
+                    <label>Full Name *</label>
+                    <input type="text" id="fullName" required>
+                </div>
+                <div>
+                    <label>Gender *</label>
+                    <select id="gender" required>
+                        <option value="">Select Gender</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
+                </div>
+                <div>
+                    <label>Nationality *</label>
+                    <input type="text" id="nationality" required>
+                </div>
+                <div>
+                    <label>Date of Birth *</label>
+                    <input type="date" id="dateOfBirth" required>
+                </div>
+                <div>
+                    <label>Age</label>
+                    <input type="text" id="age" readonly>
+                </div>
+                <div>
+                    <label>Emirates ID Number *</label>
+                    <input type="text" id="emiratesId" placeholder="784-XXXX-XXXXXXX-X" required>
+                </div>
+                <div>
+                    <label>Emirates ID Upload *</label>
+                    <div class="file-upload-wrapper">
+                        <input type="file" id="emiratesIdFile" accept="image/*,application/pdf" required>
+                        <svg class="file-upload-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 4v16m8-8H4" stroke-width="2" stroke-linecap="round" />
+                        </svg>
+                        <div class="file-upload-text">Upload Emirates ID (Image/PDF)</div>
+                    </div>
+                </div>
+                <div>
+                    <label>Weight (kg) *</label>
+                    <input type="number" id="weight" required>
+                </div>
+                <div>
+                    <label>Player Position *</label>
+                    <select id="playerPosition" required>
+                        <option value="">Select Position</option>
+                        <option value="Goalkeeper">Goalkeeper</option>
+                        <option value="Defender">Defender</option>
+                        <option value="Midfielder">Midfielder</option>
+                        <option value="Forward">Forward</option>
+                    </select>
+                </div>
+                <div>
+                    <label>Player Level *</label>
+                    <select id="playerLevel" required>
+                        <option value="">Select Level</option>
+                        <option value="Beginner">Beginner</option>
+                        <option value="Intermediate">Intermediate</option>
+                        <option value="Advanced">Advanced</option>
+                        <option value="Elite">Elite</option>
+                    </select>
+                </div>
+                <div>
+                    <label>Jersey Number *</label>
+                    <input type="number" id="jerseyNumber" min="1" required>
+                </div>
+                <div>
+                    <label>Jersey Size *</label>
+                    <select id="jerseySize" required>
+                        <option value="">Select Size</option>
+                        <option value="26">26</option>
+                        <option value="28">28</option>
+                        <option value="30">30</option>
+                        <option value="32">32</option>
+                        <option value="34">34</option>
+                        <option value="36">36 (S)</option>
+                        <option value="38">38 (M)</option>
+                        <option value="40">40 (L)</option>
+                        <option value="42">42 (XL)</option>
+                        <option value="44">44 (XXL)</option>
+                        <option value="46">46 (XXXL)</option>
+                        <option value="48">48 (XXXXL)</option>
+                    </select>
+                </div>
+                <div class="col-span-2">
+                    <label>Player Remarks (Previous Academy / Achievements)</label>
+                    <textarea id="playerRemarks" rows="3"
+                        placeholder="Please mention previous academy experience, achievements, awards, or any other relevant information..."></textarea>
+                </div>
+                <div class="col-span-2">
+                    <label>Medical Conditions (Optional)</label>
+                    <textarea id="medicalConditions" rows="3"
+                        placeholder="Please list any medical conditions, allergies, or important health information..."></textarea>
+                </div>
+            </div>
+        </div>
+
+        <!-- Parent/Guardian Information -->
+        <div class="card">
+            <div class="section-header">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke-width="2" />
+                    <circle cx="9" cy="7" r="4" stroke-width="2" />
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87" stroke-width="2" />
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75" stroke-width="2" />
+                </svg>
+                <h2>Parent / Guardian Information</h2>
+            </div>
+            <div class="form-grid-2">
+                <div class="col-span-2">
+                    <label>Full Name *</label>
+                    <input type="text" id="parentName" required>
+                </div>
+                <div>
+                    <label>Relation *</label>
+                    <select id="relation" required>
+                        <option value="">Select Relation</option>
+                        <option value="Father">Father</option>
+                        <option value="Mother">Mother</option>
+                        <option value="Guardian">Guardian</option>
+                    </select>
+                </div>
+                <div>
+                    <label>Phone Number *</label>
+                    <input type="tel" id="phoneNumber" placeholder="+971 XX XXX XXXX" required>
+                </div>
+                <div>
+                    <label>WhatsApp Number *</label>
+                    <input type="tel" id="whatsappNumber" placeholder="+971 XX XXX XXXX" required>
+                </div>
+                <div class="col-span-2">
+                    <label>Email Address *</label>
+                    <input type="email" id="email" required>
+                </div>
+            </div>
+        </div>
+
+        <!-- How Did You Hear About Us -->
+        <div class="card">
+            <div class="section-header">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke-width="2" />
+                </svg>
+                <h2>How Did You Hear About Us?</h2>
+            </div>
+            <div class="radio-group">
+                <label class="radio-option">
+                    <input type="radio" name="hearAbout" value="Referral" required>
+                    <span>Referral</span>
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="hearAbout" value="Instagram">
+                    <span>Instagram</span>
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="hearAbout" value="Facebook">
+                    <span>Facebook</span>
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="hearAbout" value="Google Search">
+                    <span>Google Search</span>
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="hearAbout" value="Word of Mouth">
+                    <span>Word of Mouth</span>
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="hearAbout" value="Other">
+                    <span>Other</span>
+                </label>
+            </div>
+            <div id="referralField" class="hidden" style="margin-top: 1rem;">
+                <label>Referred By (Name or Phone) *</label>
+                <input type="text" id="referredBy" placeholder="Enter name or phone number">
+            </div>
+            <div id="otherField" class="hidden" style="margin-top: 1rem;">
+                <label>Please Specify *</label>
+                <textarea id="otherDetails" rows="3" placeholder="Please provide details..."></textarea>
+            </div>
+        </div>
+
+        <!-- Training Details -->
+        <div class="card">
+            <div class="section-header">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke-width="2" />
+                    <polyline points="14,2 14,8 20,8" stroke-width="2" />
+                    <line x1="16" y1="13" x2="8" y2="13" stroke-width="2" />
+                    <line x1="16" y1="17" x2="8" y2="17" stroke-width="2" />
+                </svg>
+                <h2>Training Details</h2>
+            </div>
+            <div class="form-grid-2">
+                <div>
+                    <label>Batch (Age Group) *</label>
+                    <select id="batch" required>
+                        <option value="">Select Batch</option>
+                        <option value="A-U13">A - U13 (Under 13)</option>
+                        <option value="B-U12">B - U12 (Under 12)</option>
+                        <option value="C-U11">C - U11 (Under 11)</option>
+                        <option value="D-U10">D - U10 (Under 10)</option>
+                        <option value="E-U8A">E - U8 A (Under 8)</option>
+                        <option value="F-U8B">F - U8 B (Under 8)</option>
+                        <option value="G-U6">G - U6 (Under 6)</option>
+                        <option value="H">H - Adults</option>
+                        <option value="I-U13W">I - U13W (Under 13 Warqa)</option>
+                        <option value="J-U8W">J - U8W (Under 8 Warqa)</option>
+                    </select>
+                </div>
+                <div>
+                    <label>Session Days *</label>
+                    <select id="sessionDays" required>
+                        <option value="">Select Days</option>
+                        <option value="Monday & Tuesday">Monday & Tuesday</option>
+                        <option value="Thursday & Friday">Thursday & Friday</option>
+                        <option value="Saturday & Sunday">Saturday & Sunday</option>
+                        <option value="Thursday & Friday & Saturday & Sunday">Thursday & Friday & Saturday & Sunday
+                        </option>
+                        <option value="Other Day">Other Day</option>
+                    </select>
+                </div>
+                <div>
+                    <label>Number of Sessions per Week *</label>
+                    <select id="sessionsPerWeek" required>
+                        <option value="">Select Sessions</option>
+                        <option value="1">1 Session</option>
+                        <option value="2">2 Sessions</option>
+                        <option value="4">4 Sessions</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- Terms & Conditions -->
+        <div class="card">
+            <div class="section-header">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" stroke-width="2" />
+                    <polyline points="22,4 12,14.01 9,11.01" stroke-width="2" />
+                </svg>
+                <h2>Terms & Conditions</h2>
+            </div>
+            <div class="terms-box">
+                <p style="font-weight: 600; margin-bottom: 0.5rem;">TOUCHLINE SPORTS ACADEMY - TERMS AND CONDITIONS</p>
+                <p style="margin-bottom: 0.5rem;">By registering with Touchline Sports Academy, you agree to the
+                    following terms:</p>
+                <ul>
+                    <li>Parents or guardians are responsible for arranging transportation for their children. The
+                        academy may assist upon request, but this is at the sole responsibility of the parents or
+                        guardians.</li>
+                    <li>Students may arrive up to 15 minutes before and stay up to 15 minutes after their scheduled
+                        session. Supervision is provided only during these times.</li>
+                    <li>Participation in sports carries inherent risks. The academy is not liable for injuries unless
+                        caused by its negligence.</li>
+                    <li>Parents or guardians must inform the academy of any medical conditions, allergies, or injuries.
+                        In case of an emergency, the academy may arrange medical treatment.</li>
+                    <li>Registration and term/season fees are non-refundable.</li>
+                    <li>Parents or guardians must apply in advance for a leave of absence. Approval is at the academy's
+                        discretion.</li>
+                    <li>Students are not permitted to participate in training sessions or matches at any other academy
+                        during the current season unless explicitly authorized in writing by Touchline Sports Academy
+                        (TSA).</li>
+                    <li>Students must follow instructions and behave respectfully. The academy may suspend or remove a
+                        student for repeated misconduct.</li>
+                    <li>Students must wear proper sports attire and use safety equipment during training and matches.
+                    </li>
+                    <li>The academy is not responsible for lost, stolen, or damaged personal belongings.</li>
+                    <li>The academy may take photos or videos for training or marketing purposes. Parents who do not
+                        wish their children to be recorded must inform the academy in writing.</li>
+                    <li>The academy is not liable for cancellations or disruptions due to events beyond its control,
+                        such as natural disasters, pandemics, or governmental restrictions.</li>
+                    <li>The academy may reschedule sessions disrupted by unforeseen events. Fees remain non-refundable.
+                    </li>
+                    <li>Parents and students must comply with any health and safety measures required by the academy or
+                        UAE authorities.</li>
+                    <li>The academy will protect personal data in compliance with UAE data protection laws and will not
+                        share it with third parties without consent.</li>
+                </ul>
+            </div>
+            <label class="checkbox-label">
+                <input type="checkbox" id="agreeTerms">
+                <span>I agree to the Terms & Conditions *</span>
+            </label>
+        </div>
+
+        <div class="loading" id="loadingMessage">Processing registration... Please wait.</div>
+
+        <!-- Submit Button -->
+        <button type="button" id="submitBtn" class="submit-btn disabled">Register Student</button>
+    </div>
+
+<script>
+    // REPLACE WITH YOUR GOOGLE APPS SCRIPT WEB APP URL
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx029AncJzxUWpAIzJTHEoZLAhurR3p3-C1nOYuwb5d-tRT9MeG36zqp5g-1a_vmNgE/exec';
+
+    // Initialize form
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('registrationDate').value = today;
+
+    // Photo preview
+    document.getElementById('studentPhoto').addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const preview = document.getElementById('photoPreview');
+                preview.src = e.target.result;
+                preview.style.display = 'block';
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+
+    // Age calculation
+    document.getElementById('dateOfBirth').addEventListener('change', function() {
+        const dob = new Date(this.value);
+        const today = new Date();
+        let age = today.getFullYear() - dob.getFullYear();
+        const monthDiff = today.getMonth() - dob.getMonth();
+        if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < dob.getDate())) {
+            age--;
+        }
+        document.getElementById('age').value = age;
+    });
+
+    // Referral and Other field toggle
+    document.querySelectorAll('input[name="hearAbout"]').forEach(radio => {
+        radio.addEventListener('change', function() {
+            const referralField = document.getElementById('referralField');
+            const otherField = document.getElementById('otherField');
+            
+            if (this.value === 'Referral') {
+                referralField.classList.remove('hidden');
+                otherField.classList.add('hidden');
+            } else if (this.value === 'Other') {
+                otherField.classList.remove('hidden');
+                referralField.classList.add('hidden');
+            } else {
+                referralField.classList.add('hidden');
+                otherField.classList.add('hidden');
+            }
+        });
+    });
+
+    // Terms checkbox toggle submit button
+    const agreeCheckbox = document.getElementById('agreeTerms');
+    const submitBtn = document.getElementById('submitBtn');
+
+    agreeCheckbox.addEventListener('change', function() {
+        if (this.checked) {
+            submitBtn.classList.remove('disabled');
+            submitBtn.classList.add('enabled');
+        } else {
+            submitBtn.classList.remove('enabled');
+            submitBtn.classList.add('disabled');
+        }
+    });
+
+    // Convert file to base64
+    function fileToBase64(file) {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onload = () => resolve(reader.result.split(',')[1]);
+            reader.onerror = reject;
+            reader.readAsDataURL(file);
+        });
+    }
+
+    // Submit handler
+    submitBtn.addEventListener('click', async function() {
+        if (!agreeCheckbox.checked) {
+            alert('Please agree to the Terms & Conditions');
+            return;
+        }
+
+        const loadingMessage = document.getElementById('loadingMessage');
+        loadingMessage.classList.add('show');
+        submitBtn.disabled = true;
+
+        try {
+            // Get file uploads
+            const studentPhotoFile = document.getElementById('studentPhoto').files[0];
+            const emiratesIdFile = document.getElementById('emiratesIdFile').files[0];
+
+            if (!studentPhotoFile) {
+                alert('Please upload student photo');
+                loadingMessage.classList.remove('show');
+                submitBtn.disabled = false;
+                return;
+            }
+
+            if (!emiratesIdFile) {
+                alert('Please upload Emirates ID');
+                loadingMessage.classList.remove('show');
+                submitBtn.disabled = false;
+                return;
+            }
+
+            // Convert files to base64
+            const studentPhotoBase64 = await fileToBase64(studentPhotoFile);
+            const emiratesIdBase64 = await fileToBase64(emiratesIdFile);
+
+            // Collect form data
+            const formData = {
+                registrationDate: document.getElementById('registrationDate').value,
+                branch: document.getElementById('branch').value,
+                paymentStatus: document.getElementById('paymentStatus').value,
+                studentPhoto: studentPhotoBase64,
+                studentPhotoName: studentPhotoFile.name,
+                fullName: document.getElementById('fullName').value,
+                gender: document.getElementById('gender').value,
+                nationality: document.getElementById('nationality').value,
+                dateOfBirth: document.getElementById('dateOfBirth').value,
+                age: document.getElementById('age').value,
+                emiratesId: document.getElementById('emiratesId').value,
+                emiratesIdFile: emiratesIdBase64,
+                emiratesIdFileName: emiratesIdFile.name,
+                weight: document.getElementById('weight').value,
+                playerPosition: document.getElementById('playerPosition').value,
+                playerLevel: document.getElementById('playerLevel').value,
+                jerseyNumber: document.getElementById('jerseyNumber').value,
+                jerseySize: document.getElementById('jerseySize').value,
+                playerRemarks: document.getElementById('playerRemarks').value,
+                medicalConditions: document.getElementById('medicalConditions').value,
+                parentName: document.getElementById('parentName').value,
+                relation: document.getElementById('relation').value,
+                phoneNumber: document.getElementById('phoneNumber').value,
+                whatsappNumber: document.getElementById('whatsappNumber').value,
+                email: document.getElementById('email').value,
+                hearAbout: document.querySelector('input[name="hearAbout"]:checked')?.value,
+                referredBy: document.getElementById('referredBy').value,
+                otherDetails: document.getElementById('otherDetails').value,
+                batch: document.getElementById('batch').value,
+                sessionDays: document.getElementById('sessionDays').value,
+                sessionsPerWeek: document.getElementById('sessionsPerWeek').value
+            };
+
+            // Send to Google Apps Script
+            const response = await fetch(SCRIPT_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            });
+
+            const result = await response.json();
+
+            if (result.status === 'success') {
+                alert(`Registration submitted successfully!\n\nRegistration ID: ${result.registrationId}\n\nConfirmation link has been generated and logged. Please check the confirmation link in your email and WhatsApp.`);
+                
+                // Reset form
+                location.reload();
+            } else {
+                alert('Error: ' + result.message);
+            }
+
+        } catch (error) {
+            console.error('Error:', error);
+            alert('An error occurred during registration. Please try again.');
+        } finally {
+            loadingMessage.classList.remove('show');
+            submitBtn.disabled = false;
+        }
+    });
+</script>
+</body>
+
+</html>
