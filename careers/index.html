@@ -1172,128 +1172,153 @@
 
         /* ═══ JOB DATA ═══ */
         const jobs = [
-            {
-                id: "marketing-exec",
-                icon: "📣",
-                tag: "Full-Time",
-                title: "Marketing & Sales Executive",
-                modDesc: "This role owns the full admissions funnel—from lead generation to paid registrations. You’ll handle enquiries, follow up with parents, convert trials into enrollments, and support daily academy operations while reporting directly on performance and revenue.",
+  {
+    id: "marketing-exec",
+    icon: "📣",
+    tag: "Full-Time",
+    title: "Marketing & Sales Executive",
+    addDesc:"Drive admissions growth and brand visibility for a leading youth football academy. This is a target-driven role with high incentives, ideal for someone who can generate leads, close parents, and scale enrollments fast.",
+    desc: "Drive admissions growth and brand visibility for a leading youth football academy. Target-driven role with high incentives.",
+    pills: ["Target-Driven Role", "High Commission / No Cap", "Sports & Youth Focus", "Dubai-Based"],
 
-                desc: "Drive admissions growth and brand visibility for a leading youth football academy. This is a target-driven role with high incentives, ideal for someone who can generate leads, close parents, and scale enrollments fast.",
-                pills: ["Target-Driven Role", "High Commission / No Cap", "Sports & Youth Focus", "Dubai-Based"],
-                form: {
-                    sections: [
-                        {
-                            label: "Personal Details", fields: [
-                                { name: "fullName", label: "Full Name", type: "text", req: true },
-                                { name: "email", label: "Email Address", type: "email", req: true },
-                                { name: "phone", label: "Phone Number", type: "tel", req: true },
-                                { name: "dob", label: "Date of Birth", type: "date", req: true },
-                            ]
-                        },
-                        {
-                            label: "Professional Info", fields: [
-                                { name: "experience", label: "Years of Marketing Experience", type: "select", req: true, opts: ["1-2 Years", "3-5 Years", "5-7 Years", "7+ Years"] },
-                                { name: "prevCompany", label: "Previous Company / Employer", type: "text", req: false },
-                                { name: "skills", label: "Key Skills (comma separated)", type: "text", req: true },
-                                { name: "portfolio", label: "Portfolio / LinkedIn URL", type: "text", req: false },
-                            ]
-                        },
-                        {
-                            label: "About You", fields: [
-                                { name: "salesApproach", label: "Describe your approach to B2B & sponsorship sales", type: "textarea", req: true },
-                                { name: "whyTSA", label: "Why do you want to join Touchline Sports Academy?", type: "textarea", req: true },
-                            ]
-                        },
-                        {
-                            label: "Documents", fields: [
-                                { name: "resume", label: "Upload Resume / CV", type: "file", req: true },
-                            ]
-                        }
-                    ]
-                }
-            },
+    form: {
+      sections: [
+        {
+          label: "Personal Details",
+          fields: [
+            { name: "fullName", label: "Full Name", type: "text", req: true },
+            { name: "phone", label: "Contact Number", type: "tel", req: true },
+            { name: "email", label: "Email ID", type: "email", req: true },
+            { name: "location", label: "Current Location", type: "text", req: true },
+            { name: "nationality", label: "Nationality", type: "text", req: true },
+          ]
+        },
+        {
+          label: "Education & Experience",
+          fields: [
+            { name: "education", label: "Education", type: "text", req: true },
+            { name: "qualification", label: "Highest Qualification", type: "text", req: true },
+            { name: "uaeExp", label: "UAE Experience", type: "select", req: true, opts: ["None", "Less than 1 Year", "1-2 Years", "3-5 Years", "5+ Years"] },
+            { name: "totalExp", label: "Total Experience", type: "select", req: true, opts: ["0-1 Year", "1-3 Years", "3-5 Years", "5-8 Years", "8+ Years"] },
+          ]
+        },
+        {
+          label: "Language & Availability",
+          fields: [
+            { name: "englishFluency", label: "Fluency in English", type: "select", req: true, opts: ["Native / Fluent", "Good", "Average", "Basic"] },
+            { name: "visaStatus", label: "Current Visa Status", type: "select", req: true, opts: ["Visit Visa", "Employment Visa", "Spouse Visa", "Student Visa", "Cancelled Visa"] },
+            { name: "noticePeriod", label: "Notice Period", type: "select", req: true, opts: ["Immediate", "Within a Week", "Within a Month"] },
+            { name: "expectedSalary", label: "Expected Salary (AED)", type: "text", req: true },
+          ]
+        },
+        {
+          label: "Documents",
+          fields: [
+            { name: "resume", label: "Upload Resume / CV", type: "file", req: true },
+          ]
+        }
+      ]
+    }
+  },
 
-            {
-                id: "head-coach",
-                icon: "⚽",
-                tag: "Full-Time",
-                title: "Head Football Coach",
-                desc: "Lead our flagship U-15 & U-17 squads. Design training programmes, mentor assistant coaches, and represent Touchline in inter-academy tournaments.",
-                pills: ["UEFA Coaching License", "Tactical Planning", "Youth Development", "Leadership"],
-                form: {
-                    sections: [
-                        {
-                            label: "Personal Details", fields: [
-                                { name: "fullName", label: "Full Name", type: "text", req: true },
-                                { name: "email", label: "Email Address", type: "email", req: true },
-                                { name: "phone", label: "Phone Number", type: "tel", req: true },
-                                { name: "nationality", label: "Nationality", type: "text", req: true },
-                            ]
-                        },
-                        {
-                            label: "Coaching Credentials", fields: [
-                                { name: "license", label: "Coaching License Level", type: "select", req: true, opts: ["FIFA / UEFA A", "UEFA B", "National B", "National C", "Other"] },
-                                { name: "coachingYears", label: "Total Coaching Experience (Years)", type: "select", req: true, opts: ["1-3 Years", "3-5 Years", "5-8 Years", "8+ Years"] },
-                                { name: "ageGroups", label: "Age groups you have coached", type: "text", req: true },
-                                { name: "clubs", label: "Previous Clubs / Academies", type: "text", req: true },
-                            ]
-                        },
-                        {
-                            label: "Coaching Philosophy", fields: [
-                                { name: "philosophy", label: "Describe your coaching philosophy & playing style", type: "textarea", req: true },
-                                { name: "youthDev", label: "How do you approach youth player development?", type: "textarea", req: true },
-                            ]
-                        },
-                        {
-                            label: "Documents", fields: [
-                                { name: "resume", label: "Upload Resume / CV", type: "file", req: true },
-                                { name: "license_doc", label: "Upload Coaching License Document", type: "file", req: true },
-                            ]
-                        }
-                    ]
-                }
-            },
-            {
-                id: "asst-coach",
-                icon: "🏅",
-                tag: "Part-Time",
-                title: "Assistant Football Coach",
-                desc: "Support the Head Coach in daily training sessions, match analysis, and player welfare. Ideal for passionate coaches building their career in elite youth football.",
-                pills: ["Training Sessions", "Match Analysis", "Player Welfare", "Teamwork"],
-                form: {
-                    sections: [
-                        {
-                            label: "Personal Details", fields: [
-                                { name: "fullName", label: "Full Name", type: "text", req: true },
-                                { name: "email", label: "Email Address", type: "email", req: true },
-                                { name: "phone", label: "Phone Number", type: "tel", req: true },
-                                { name: "dob", label: "Date of Birth", type: "date", req: true },
-                            ]
-                        },
-                        {
-                            label: "Coaching Info", fields: [
-                                { name: "license", label: "Coaching License (if any)", type: "select", req: false, opts: ["None", "National C", "National B", "UEFA B", "UEFA A"] },
-                                { name: "playingExp", label: "Playing background (club & position)", type: "text", req: true },
-                                { name: "coachExp", label: "Any coaching or assistant coaching experience?", type: "textarea", req: false },
-                            ]
-                        },
-                        {
-                            label: "Motivation", fields: [
-                                { name: "whyCoach", label: "Why do you want to become a football coach?", type: "textarea", req: true },
-                                { name: "availability", label: "Your weekly availability (days & hours)", type: "text", req: true },
-                            ]
-                        },
-                        {
-                            label: "Documents", fields: [
-                                { name: "resume", label: "Upload Resume / CV", type: "file", req: true },
-                            ]
-                        }
-                    ]
-                }
-            },
+  {
+    id: "head-coach",
+    icon: "⚽",
+    tag: "Full-Time",
+    title: "Head Football Coach",
+    desc: "Lead elite youth squads, design training programs and represent the academy in competitions.",
+    pills: ["UEFA License", "Youth Development", "Leadership", "Dubai"],
 
-        ];
+    form: {
+      sections: [
+        {
+          label: "Personal Details",
+          fields: [
+            { name: "fullName", label: "Full Name", type: "text", req: true },
+            { name: "phone", label: "Contact Number", type: "tel", req: true },
+            { name: "email", label: "Email ID", type: "email", req: true },
+            { name: "location", label: "Current Location", type: "text", req: true },
+            { name: "nationality", label: "Nationality", type: "text", req: true },
+          ]
+        },
+        {
+          label: "Education & Experience",
+          fields: [
+            { name: "education", label: "Education", type: "text", req: true },
+            { name: "qualification", label: "Highest Qualification", type: "text", req: true },
+            { name: "uaeExp", label: "UAE Experience", type: "select", req: true, opts: ["None", "1-2 Years", "3-5 Years", "5+ Years"] },
+            { name: "totalExp", label: "Total Experience", type: "select", req: true, opts: ["1-3 Years", "3-5 Years", "5-8 Years", "8+ Years"] },
+          ]
+        },
+        {
+          label: "Language & Availability",
+          fields: [
+            { name: "englishFluency", label: "Fluency in English", type: "select", req: true, opts: ["Native / Fluent", "Good", "Average", "Basic"] },
+            { name: "visaStatus", label: "Current Visa Status", type: "select", req: true, opts: ["Employment Visa", "Spouse Visa", "Visit Visa"] },
+            { name: "noticePeriod", label: "Notice Period", type: "select", req: true, opts: ["Immediate", "Within a Month"] },
+            { name: "expectedSalary", label: "Expected Salary (AED)", type: "text", req: true },
+          ]
+        },
+        {
+          label: "Documents",
+          fields: [
+            { name: "resume", label: "Upload Resume / CV", type: "file", req: true },
+            { name: "license_doc", label: "Upload Coaching License", type: "file", req: true },
+          ]
+        }
+      ]
+    }
+  },
+
+  {
+    id: "asst-coach",
+    icon: "🏅",
+    tag: "Part-Time",
+    title: "Assistant Football Coach",
+    desc: "Support training sessions, match days and player development.",
+    pills: ["Part Time", "Youth Coaching", "Training", "Dubai"],
+
+    form: {
+      sections: [
+        {
+          label: "Personal Details",
+          fields: [
+            { name: "fullName", label: "Full Name", type: "text", req: true },
+            { name: "phone", label: "Contact Number", type: "tel", req: true },
+            { name: "email", label: "Email ID", type: "email", req: true },
+            { name: "location", label: "Current Location", type: "text", req: true },
+            { name: "nationality", label: "Nationality", type: "text", req: true },
+          ]
+        },
+        {
+          label: "Education & Experience",
+          fields: [
+            { name: "education", label: "Education", type: "text", req: true },
+            { name: "qualification", label: "Highest Qualification", type: "text", req: true },
+            { name: "uaeExp", label: "UAE Experience", type: "select", req: true, opts: ["None", "Less than 1 Year", "1-2 Years"] },
+            { name: "totalExp", label: "Total Experience", type: "select", req: true, opts: ["0-1 Year", "1-3 Years", "3-5 Years"] },
+          ]
+        },
+        {
+          label: "Language & Availability",
+          fields: [
+            { name: "englishFluency", label: "Fluency in English", type: "select", req: true, opts: ["Native / Fluent", "Good", "Average", "Basic"] },
+            { name: "visaStatus", label: "Current Visa Status", type: "select", req: true, opts: ["Student Visa", "Visit Visa", "Spouse Visa"] },
+            { name: "noticePeriod", label: "Notice Period", type: "select", req: true, opts: ["Immediate", "Within a Week"] },
+            { name: "expectedSalary", label: "Expected Salary (AED)", type: "text", req: true },
+          ]
+        },
+        {
+          label: "Documents",
+          fields: [
+            { name: "resume", label: "Upload Resume / CV", type: "file", req: true },
+          ]
+        }
+      ]
+    }
+  }
+];
+
 
         /* ═══ GLOBAL STATE ═══ */
         let currentJobId = null;
@@ -1332,7 +1357,7 @@
     <div class="mhead-icon">${j.icon}</div>
     <h2>${j.title}</h2>
     <p>Touchline Sports Academy &nbsp;•&nbsp; ${j.tag}</p><br>
-    ${j.modDesc ? `<p style="margin-top:8px;font-size:1rem;color:var(--txt2);max-width:600px;">${j.modDesc}</p>` : ``}
+    ${j.addDesc ? `<p style="margin-top:8px;font-size:1rem;color:var(--txt2);max-width:600px;">${j.addDesc}</p>` : ``}
   </div>
   <form class="mform" id="applicationForm" onsubmit="submitForm(event)">`;
 
