@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
+    <!-- Homepage - HIGHEST PRIORITY -->
+    <url>
+        <loc>https://www.touchlinesport.ae/</loc>
+        <lastmod>2026-02-10</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>1.0</priority>
+    </url>
+
+    <!-- Registration/Trial Booking - HIGH CONVERSION PAGE -->
+    <url>
+        <loc>https://www.touchlinesport.ae/register</loc>
+        <lastmod>2026-02-10</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.95</priority>
+    </url>
+
+    <!-- Careers Page - HIGH PRIORITY FOR SEO -->
+    <url>
+        <loc>https://www.touchlinesport.ae/careers</loc>
+        <lastmod>2026-02-10</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <!-- About Us -->
+    <url>
+        <loc>https://www.touchlinesport.ae/about-us</loc>
+        <lastmod>2026-02-10</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.85</priority>
+    </url>
+
+    <!-- Gallery -->
+    <url>
+        <loc>https://www.touchlinesport.ae/gallery</loc>
+        <lastmod>2026-02-10</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <!-- Contact Us -->
+    <url>
+        <loc>https://www.touchlinesport.ae/contact%20us</loc>
+        <lastmod>2026-02-10</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.75</priority>
+    </url>
+
+    <!-- Program Pages - HIGH PRIORITY FOR KEYWORD TARGETING -->
+    
+    <!-- U6 Pre-Academy Program -->
+    <url>
+        <loc>https://www.touchlinesport.ae/academy/u6</loc>
+        <lastmod>2026-02-10</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <!-- U8 Academy Program -->
+    <url>
+        <loc>https://www.touchlinesport.ae/academy/u8</loc>
+        <lastmod>2026-02-10</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <!-- U10 Academy Program -->
+    <url>
+        <loc>https://www.touchlinesport.ae/academy/u10</loc>
+        <lastmod>2026-02-10</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <!-- U12 Academy Program -->
+    <url>
+        <loc>https://www.touchlinesport.ae/academy/u12</loc>
+        <lastmod>2026-02-10</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <!-- U14+ Academy Program -->
+    <url>
+        <loc>https://www.touchlinesport.ae/academy/u14+</loc>
+        <lastmod>2026-02-10</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <!-- Girls Program -->
+    <url>
+        <loc>https://www.touchlinesport.ae/academy/girls-program</loc>
+        <lastmod>2026-02-10</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <!-- Adult Training -->
+    <url>
+        <loc>https://www.touchlinesport.ae/academy/adult-training</loc>
+        <lastmod>2026-02-10</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.85</priority>
+    </url>
+
+    <!-- Personal Coaching -->
+    <url>
+        <loc>https://www.touchlinesport.ae/academy/personal-coaching</loc>
+        <lastmod>2026-02-10</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.85</priority>
+    </url>
+
+    <!-- Corporate Team Training -->
+    <url>
+        <loc>https://www.touchlinesport.ae/academy/corporate-team-training</loc>
+        <lastmod>2026-02-10</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Goalkeeping Program -->
+    <url>
+        <loc>https://www.touchlinesport.ae/academy/goalkeeping_update</loc>
+        <lastmod>2026-02-10</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Academy Index Page -->
+    <url>
+        <loc>https://www.touchlinesport.ae/academy/academy_index-page</loc>
+        <lastmod>2026-02-10</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.85</priority>
+    </url>
+
+</urlset>
