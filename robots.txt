@@ -1,20 +1,23 @@
 # Touchline Sports Academy - Robots.txt
 # Optimized for maximum SEO crawling and indexing
+# Updated: 2026-02-27
 
 User-agent: *
 Allow: /
 
 # Prioritize important pages for crawling
-Allow: /careers
-Allow: /register
-Allow: /programs
-Allow: /locations
-Allow: /about-us
+Allow: /careers/
+Allow: /register/
+Allow: /about-us/
+Allow: /gallery/
+Allow: /academy/
+Allow: /locations/
 
-# Disallow admin and private directories (if any)
+# Disallow admin and private directories
 Disallow: /admin/
 Disallow: /private/
 Disallow: /cgi-bin/
+Disallow: /backup/
 Disallow: /*.json$
 
 # Allow all search engines to access CSS, JS, and images
@@ -28,8 +31,8 @@ Allow: /*.gif$
 Allow: /*.svg$
 Allow: /*.webp$
 
-# Sitemap location
-Sitemap: https://www.touchlinesport.ae/sitemap.xml
+# Sitemap location (canonical non-www)
+Sitemap: https://touchlinesport.ae/sitemap.xml
 
 # Specific instructions for major search engines
 User-agent: Googlebot
@@ -61,6 +64,12 @@ User-agent: anthropic-ai
 Allow: /
 
 User-agent: Claude-Web
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Gemini-Bot
 Allow: /
 
 # Social Media Bots (for link previews)
