@@ -134,4 +134,20 @@
         <priority>0.8</priority>
     </url>
 
+    <!-- NEW: Kids Football Academy Dubai Landing Page — SEO target page -->
+    <url>
+        <loc>https://touchlinesport.ae/kids-football-academy-dubai/</loc>
+        <lastmod>2026-03-09</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.95</priority>
+    </url>
+
+    <!-- NEW: Football Academy Dubai Landing Page — Primary keyword page -->
+    <url>
+        <loc>https://touchlinesport.ae/football-academy-dubai/</loc>
+        <lastmod>2026-03-09</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.95</priority>
+    </url>
+
 </urlset>
