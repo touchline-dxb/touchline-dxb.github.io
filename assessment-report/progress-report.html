@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Player Progress Report — Touch Line Sport Academy</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --black: #0a0a0a;
+      --dark: #1c1c1c;
+      --mid: #666;
+      --border: #d4d4d4;
+      --light: #ebebeb;
+      --bg: #f4f4f3;
+      --white: #ffffff;
+      --up: #1a7a4a;
+      --down: #c0392b;
+      --same: #888;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--black);
+      min-height: 100vh;
+    }
+
+    /* HEADER */
+    .header {
+      background: var(--black);
+      color: var(--white);
+      padding: 0 48px;
+      display: flex;
+      align-items: center;
+      min-height: 72px;
+      gap: 20px;
+    }
+
+    .header h1 {
+      font-family: 'Bebas Neue';
+      font-size: 24px;
+      letter-spacing: 3px;
+    }
+
+    .header p {
+      font-family: 'DM Mono';
+      font-size: 10px;
+      letter-spacing: 2px;
+      opacity: .5;
+      margin-top: 3px;
+    }
+
+    .header a {
+      margin-left: auto;
+      color: rgba(255, 255, 255, .6);
+      font-family: 'DM Mono';
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-decoration: none;
+      border: 1px solid rgba(255, 255, 255, .2);
+      padding: 6px 16px;
+      transition: opacity .2s;
+    }
+
+    .header a:hover {
+      opacity: 1;
+      color: white;
+    }
+
+    /* SEARCH */
+    .search-wrap {
+      max-width: 700px;
+      margin: 40px auto;
+      padding: 0 24px;
+    }
+
+    .search-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      padding: 28px 32px;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, .05);
+    }
+
+    .search-title {
+      font-family: 'Bebas Neue';
+      font-size: 22px;
+      letter-spacing: 2px;
+      margin-bottom: 6px;
+    }
+
+    .search-sub {
+      font-family: 'DM Mono';
+      font-size: 10px;
+      color: var(--mid);
+      letter-spacing: 1px;
+      margin-bottom: 20px;
+    }
+
+    .search-row {
+      display: flex;
+      gap: 12px;
+    }
+
+    .search-inp {
+      flex: 1;
+      padding: 11px 16px;
+      border: 1px solid var(--border);
+      font-family: 'DM Sans';
+      font-size: 14px;
+      outline: none;
+      transition: border-color .18s;
+    }
+
+    .search-inp:focus {
+      border-color: var(--black);
+    }
+
+    .search-btn {
+      background: var(--black);
+      color: var(--white);
+      border: none;
+      padding: 11px 28px;
+      font-family: 'Bebas Neue';
+      font-size: 17px;
+      letter-spacing: 2px;
+      cursor: pointer;
+      transition: opacity .2s;
+    }
+
+    .search-btn:hover {
+      opacity: .85;
+    }
+
+    .search-btn:disabled {
+      opacity: .45;
+      cursor: not-allowed;
+    }
+
+    /* RESULTS */
+    .results {
+      max-width: 1100px;
+      margin: 0 auto 80px;
+      padding: 0 24px;
+    }
+
+    /* Empty / loading states */
+    .state-msg {
+      text-align: center;
+      padding: 60px 24px;
+      font-family: 'DM Mono';
+      font-size: 12px;
+      letter-spacing: 1px;
+      color: var(--mid);
+    }
+
+    /* Player banner */
+    .player-banner {
+      background: var(--black);
+      color: var(--white);
+      padding: 20px 28px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .player-avatar {
+      width: 52px;
+      height: 52px;
+      border: 2px solid rgba(255, 255, 255, .4);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Bebas Neue';
+      font-size: 22px;
+      flex-shrink: 0;
+    }
+
+    .player-info h2 {
+      font-family: 'Bebas Neue';
+      font-size: 26px;
+      letter-spacing: 2px;
+    }
+
+    .player-info p {
+      font-family: 'DM Mono';
+      font-size: 10px;
+      opacity: .5;
+      letter-spacing: 2px;
+      margin-top: 3px;
+    }
+
+    .assessment-count {
+      margin-left: auto;
+      font-family: 'DM Mono';
+      font-size: 11px;
+      opacity: .6;
+      text-align: right;
+      line-height: 1.7;
+    }
+
+    /* Comparison table */
+    .comp-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      margin-bottom: 20px;
+      overflow-x: auto;
+    }
+
+    .comp-card-header {
+      background: var(--dark);
+      color: var(--white);
+      padding: 11px 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .comp-card-header h3 {
+      font-family: 'Bebas Neue';
+      font-size: 16px;
+      letter-spacing: 2px;
+    }
+
+    .comp-card-header span {
+      font-family: 'DM Mono';
+      font-size: 9px;
+      opacity: .4;
+      letter-spacing: 2px;
+      margin-left: auto;
+    }
+
+    .comp-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .comp-table thead tr th {
+      background: var(--light);
+      border-bottom: 2px solid var(--black);
+      font-family: 'DM Mono';
+      font-size: 10px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--mid);
+      padding: 10px 16px;
+      text-align: left;
+    }
+
+    .comp-table thead tr th:not(:first-child) {
+      text-align: center;
+      min-width: 110px;
+    }
+
+    .comp-table tbody tr {
+      border-bottom: 1px solid var(--light);
+    }
+
+    .comp-table tbody tr:last-child {
+      border-bottom: none;
+    }
+
+    .comp-table tbody tr:hover {
+      background: #fafafa;
+    }
+
+    .comp-table td {
+      padding: 10px 16px;
+      font-size: 13px;
+    }
+
+    .comp-table td:first-child {
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    .comp-table td:not(:first-child) {
+      text-align: center;
+    }
+
+    /* Score cells */
+    .score-cell {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      font-family: 'DM Mono';
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .score-high {
+      background: var(--black);
+      color: var(--white);
+    }
+
+    .score-mid {
+      background: var(--light);
+      color: var(--black);
+    }
+
+    .score-low {
+      background: #f0f0f0;
+      color: var(--mid);
+    }
+
+    .score-none {
+      color: var(--mid);
+      font-size: 18px;
+    }
+
+    /* Delta badges */
+    .delta {
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+      font-family: 'DM Mono';
+      font-size: 10px;
+      font-weight: 500;
+      padding: 2px 7px;
+      border-radius: 20px;
+      margin-left: 4px;
+    }
+
+    .delta.up {
+      background: #dcfce7;
+      color: var(--up);
+    }
+
+    .delta.down {
+      background: #fee2e2;
+      color: var(--down);
+    }
+
+    .delta.same {
+      background: var(--light);
+      color: var(--same);
+    }
+
+    /* Summary cards row */
+    .summary-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .summary-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      padding: 20px 22px;
+    }
+
+    .summary-card .s-label {
+      font-family: 'DM Mono';
+      font-size: 9px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-bottom: 8px;
+    }
+
+    .summary-card .s-value {
+      font-family: 'Bebas Neue';
+      font-size: 36px;
+      letter-spacing: 1px;
+      line-height: 1;
+    }
+
+    .summary-card .s-sub {
+      font-family: 'DM Mono';
+      font-size: 10px;
+      color: var(--mid);
+      margin-top: 4px;
+    }
+
+    .s-value.up {
+      color: var(--up);
+    }
+
+    .s-value.down {
+      color: var(--down);
+    }
+
+    /* Video links */
+    .video-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--black);
+      font-family: 'DM Mono';
+      font-size: 11px;
+      text-decoration: none;
+      border: 1px solid var(--border);
+      padding: 4px 12px;
+      transition: background .15s;
+    }
+
+    .video-link:hover {
+      background: var(--light);
+    }
+
+    .no-video {
+      color: var(--mid);
+      font-family: 'DM Mono';
+      font-size: 11px;
+    }
+
+    /* Notes section */
+    .notes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+      padding: 20px;
+    }
+
+    .note-block h4 {
+      font-family: 'DM Mono';
+      font-size: 9px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-bottom: 8px;
+    }
+
+    .note-entry {
+      border-left: 3px solid var(--black);
+      padding: 8px 12px;
+      margin-bottom: 10px;
+      background: var(--bg);
+    }
+
+    .note-stage {
+      font-family: 'DM Mono';
+      font-size: 9px;
+      color: var(--mid);
+      margin-bottom: 4px;
+    }
+
+    .note-text {
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 700px) {
+      .header {
+        padding: 0 20px;
+      }
+
+      .search-wrap {
+        padding: 0 16px;
+      }
+
+      .results {
+        padding: 0 16px;
+      }
+
+      .summary-row {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+
+<body>
+  <!-- ── LOGIN PORTAL ── -->
+  <div id="loginView" style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;background:#0a0a0a;color:white;width:100%;position:fixed;top:0;left:0;z-index:9999;">
+    <div style="width:100%;max-width:380px;padding:40px;background:#141414;border:1px solid #333;text-align:center;box-shadow:0 10px 40px rgba(0,0,0,0.5);border-radius:8px;">
+      <img src="../LOGO.png" alt="TSA Logo" style="width:110px;margin-bottom:24px;">
+      <h2 style="font-family:'Bebas Neue';font-size:28px;letter-spacing:3px;margin-bottom:4px;">STAFF PORTAL</h2>
+      <p style="font-family:'DM Mono';font-size:10px;color:#888;margin-bottom:30px;letter-spacing:2px;text-transform:uppercase;">Secure Authentication</p>
+      
+      <div style="display:flex;flex-direction:column;gap:16px;margin-bottom:24px;">
+        <input type="text" id="authUser" placeholder="Username" style="padding:14px 16px;background:#000;border:1px solid #333;color:#fff;font-family:'DM Sans';font-size:14px;width:100%;outline:none;border-radius:4px;">
+        <input type="password" id="authPass" placeholder="Password" style="padding:14px 16px;background:#000;border:1px solid #333;color:#fff;font-family:'DM Sans';font-size:14px;width:100%;outline:none;border-radius:4px;">
+      </div>
+
+      <button onclick="checkAuth()" style="background:#fff;color:#000;border:none;padding:14px;width:100%;font-family:'Bebas Neue';font-size:18px;letter-spacing:2px;cursor:pointer;border-radius:4px;transition:opacity 0.2s;">LOGIN SECURELY</button>
+      <div id="authErr" style="color:#ef4444;font-family:'DM Mono';font-size:11px;margin-top:16px;display:none;">Access Denied: Invalid Credentials</div>
+    </div>
+  </div>
+
+  <div id="appContainer"></div>
+
+  <template id="appTemplate">
+
+  <header class="header">
+    <div class="header-logo-wrap" style="width:60px;flex-shrink:0;">
+      <img src="../LOGO.png" alt="TSA Logo" style="width:100%;height:auto;">
+    </div>
+    <div class="header-text" style="flex:1;min-width:180px;">
+      <h1>Player Progress Report</h1>
+      <p>Touch Line Sport Academy — Assessment Tracker</p>
+    </div>
+    <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:8px;">
+      <button class="pdf-btn" onclick="downloadPDF()" style="display:none;background:var(--white);color:var(--black);border:none;padding:8px 12px;font-family:'Bebas Neue';font-size:16px;letter-spacing:1px;cursor:pointer;white-space:nowrap;transition:opacity 0.2s;">↓ DOWNLOAD PDF</button>
+      <a href="index.html" style="background:transparent;color:var(--white);font-family:'DM Mono';font-size:10px;letter-spacing:2px;padding:8px 12px;text-decoration:none;border:1px solid rgba(255,255,255,.2);white-space:nowrap;">NEW ASSESSMENT →</a>
+    </div>
+  </header>
+
+  <!-- SEARCH -->
+  <div class="search-wrap">
+    <div class="search-card">
+      <div class="search-title">Look Up Player Progress</div>
+      <div class="search-sub">Enter a player's full name to see all their assessments side-by-side</div>
+      <div class="search-row">
+        <input class="search-inp" type="text" id="searchName" list="playerList" placeholder="Wait... loading players..."
+          maxlength="80" disabled>
+        <datalist id="playerList"></datalist>
+        <button class="search-btn" id="searchBtn" onclick="fetchProgress()" disabled>Search</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- RESULTS AREA -->
+  <div class="results" id="results">
+    <div class="state-msg" id="stateMsg">Enter a player name above to view their progress report.</div>
+  </div>
+  </template>
+
+  <script>
+    /* ════════════════════════════════════════════
+       AUTHENTICATION
+       ════════════════════════════════════════════ */
+    function checkAuth() {
+      const u = document.getElementById('authUser').value.trim().toLowerCase();
+      const p = document.getElementById('authPass').value.trim();
+      const encoded = window.btoa(u + ':' + p);
+      
+      // Keys for: coach:touchline
+      if (encoded === 'Y29hY2g6dG91Y2hsaW5l') {
+         sessionStorage.setItem('tsa_auth_v1', '1');
+         initApp();
+      } else {
+         document.getElementById('authErr').style.display = 'block';
+      }
+    }
+
+    function initApp() {
+      document.getElementById('loginView').style.display = 'none';
+      const tmpl = document.getElementById('appTemplate');
+      document.getElementById('appContainer').appendChild(tmpl.content.cloneNode(true));
+      tmpl.remove();
+      loadPlayers();
+      
+      /* Allow Enter key in search box inside cloned template */
+      document.getElementById('searchName').addEventListener('keydown', e => {
+        if (e.key === 'Enter') fetchProgress();
+      });
+    }
+
+    // Check on startup
+    window.addEventListener('DOMContentLoaded', () => {
+      if (sessionStorage.getItem('tsa_auth_v1') === '1') {
+        initApp();
+      }
+    });
+
+    /* Allow Enter key to login */
+    document.getElementById('authPass').addEventListener('keydown', e => {
+      if (e.key === 'Enter') checkAuth();
+    });
+
+    /* ════════════════════════════════════════════
+       CONFIGURATION — same URL as index.html
+       ════════════════════════════════════════════ */
+    const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxm8FskVr4TtUGUTR-6r88gK4cAaN1u95w8tISkOI2RZpVcdpNbuHRWXwVjL92E4Dom1w/exec';
+
+    /* Skill groups for table rendering */
+    const SKILL_GROUPS = [
+      { category: 'Technical Skills', skills: ['Dribbling', 'Passing', 'Shooting', 'Control', 'Tackling'] },
+      { category: 'Tactical Awareness', skills: ['Game Situations', 'Read the Game', 'Decision Making'] },
+      { category: 'Physical Development', skills: ['Speed', 'Agility', 'Endurance', 'Strength'] },
+      { category: 'Mental & Emotional', skills: ['Confidence', 'Focus', 'Teamwork', 'Sportsmanship'] },
+    ];
+
+    const ALL_SKILLS = SKILL_GROUPS.flatMap(g => g.skills);
+    const SKILL_TO_KEY = s => s.toLowerCase().replace(/\s+/g, '_');
+    const HEADER_TO_KEY = {
+      'Dribbling': 'dribbling', 'Passing': 'passing', 'Shooting': 'shooting',
+      'Control': 'control', 'Tackling': 'tackling', 'Game Situations': 'game_situations',
+      'Read the Game': 'read_the_game', 'Decision Making': 'decision_making',
+      'Speed': 'speed', 'Agility': 'agility', 'Endurance': 'endurance', 'Strength': 'strength',
+      'Confidence': 'confidence', 'Focus': 'focus', 'Teamwork': 'teamwork', 'Sportsmanship': 'sportsmanship',
+    };
+
+    // ── Load Players on Startup ──
+    async function loadPlayers() {
+      const inp = document.getElementById('searchName');
+      const btn = document.getElementById('searchBtn');
+      const datalist = document.getElementById('playerList');
+
+      try {
+        const resp = await fetch(APPS_SCRIPT_URL, {
+          method: 'POST',
+          body: JSON.stringify({ action: 'getAllPlayers' })
+        });
+        const result = await resp.json();
+
+        if (result.status === 'success' && result.data) {
+          let optionsHTML = '';
+          result.data.forEach(p => {
+            // Format: Player Name (Batch Name)
+            // Example: Ahmed Al-Rashid (U-14)
+            optionsHTML += `<option value="${p.name} (${p.batch})">Age: ${p.age}</option>`;
+          });
+          datalist.innerHTML = optionsHTML;
+          inp.placeholder = 'Search by name or batch...';
+        } else {
+          inp.placeholder = 'Error loading players.';
+        }
+      } catch (e) {
+        inp.placeholder = 'Failed to load players.';
+      } finally {
+        inp.disabled = false;
+        btn.disabled = false;
+      }
+    }
+
+    /* ════════════════════════════════════════════
+       FETCH DATA
+       ════════════════════════════════════════════ */
+    async function fetchProgress() {
+      const rawVal = document.getElementById('searchName').value.trim();
+      if (!rawVal) return;
+
+      // Extract Name and Batch if they used the datalist format
+      // Format: Name (Batch) -> e.g. "Ahmed (U12)"
+      let name = rawVal;
+      let batch = '';
+      const match = rawVal.match(/^(.*?) \((.*?)\)$/);
+      if (match) {
+        name = match[1].trim();
+        batch = match[2].trim();
+      }
+
+      const btn = document.getElementById('searchBtn');
+      btn.disabled = true;
+      btn.textContent = 'Loading…';
+      setStateMsg('Fetching assessment data…');
+
+      try {
+        const resp = await fetch(APPS_SCRIPT_URL, {
+          method: 'POST',
+          body: JSON.stringify({ action: 'getProgress', playerName: name, batch: batch })
+        });
+        const result = await resp.json();
+
+        if (result.status !== 'success') throw new Error(result.message || 'Fetch failed');
+        renderReport(name, result.data || []);
+
+      } catch (err) {
+        setStateMsg('Error: ' + err.message);
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'Search';
+      }
+    }
+
+    /* ════════════════════════════════════════════
+       RENDER REPORT
+       ════════════════════════════════════════════ */
+    function renderReport(name, records) {
+      const container = document.getElementById('results');
+      const pdfBtn = document.querySelector('.pdf-btn');
+
+      if (!records.length) {
+        container.innerHTML = `<div class="state-msg">No assessments found for "<strong>${esc(name)}</strong>". Check the spelling or select from the dropdown.</div>`;
+        pdfBtn.style.display = 'none';
+        return;
+      }
+      
+      pdfBtn.style.display = 'block';
+
+      // Sort by date
+      records.sort((a, b) => new Date(a['Assessment Date']) - new Date(b['Assessment Date']));
+
+      const stages = records.map(r => r['Assessment Stage'] || r['Assessment Type'] || '—');
+      const initial = records[0];
+      const latest = records[records.length - 1];
+      const hasMultiple = records.length > 1;
+
+      // Compute totals
+      const totalOf = rec => {
+        let sum = 0, count = 0;
+        ALL_SKILLS.forEach(s => {
+          const v = parseFloat(rec[HEADER_TO_KEY[s] ? HEADER_TO_KEY[s] : s]);
+          if (!isNaN(v)) { sum += v; count++; }
+        });
+        return count ? (sum / count).toFixed(1) : '—';
+      };
+
+      const initAvg = parseFloat(totalOf(initial));
+      const latestAvg = parseFloat(totalOf(latest));
+      const diffAvg = hasMultiple ? (latestAvg - initAvg).toFixed(1) : null;
+      const diffSign = diffAvg > 0 ? '+' : '';
+
+      // Most improved skill
+      let mostImprovedSkill = '—', mostImprovedDelta = 0;
+      if (hasMultiple) {
+        ALL_SKILLS.forEach(s => {
+          const k = SKILL_TO_KEY(s);
+          const v1 = parseFloat(initial[k] || 0);
+          const v2 = parseFloat(latest[k] || 0);
+          const d = v2 - v1;
+          if (d > mostImprovedDelta) { mostImprovedDelta = d; mostImprovedSkill = s; }
+        });
+      }
+
+      let html = '';
+
+      // ── Player banner ──
+      const initials = name.split(' ').map(w => w[0] || '').join('').slice(0, 2).toUpperCase();
+      html += `
+    <div class="player-banner">
+      <div class="player-avatar">${esc(initials)}</div>
+      <div class="player-info">
+        <h2>${esc(name)}</h2>
+        <p>Batch: ${esc(initial['Batch'] || '—')} · Age: ${esc(String(initial['Age'] || '—'))}</p>
+      </div>
+      <div class="assessment-count">
+        ${records.length} Assessment${records.length > 1 ? 's' : ''} on record<br>
+        <span style="font-size:9px">${stages.join(' → ')}</span>
+      </div>
+    </div>
+  `;
+
+      // ── Summary cards (only if multiple assessments) ──
+      if (hasMultiple) {
+        const deltaClass = diffAvg > 0 ? 'up' : diffAvg < 0 ? 'down' : '';
+        html += `
+      <div class="summary-row">
+        <div class="summary-card">
+          <div class="s-label">Initial Average</div>
+          <div class="s-value">${initAvg}</div>
+          <div class="s-sub">Across all 16 skills</div>
+        </div>
+        <div class="summary-card">
+          <div class="s-label">Latest Average</div>
+          <div class="s-value">${latestAvg}</div>
+          <div class="s-sub">Across all 16 skills</div>
+        </div>
+        <div class="summary-card">
+          <div class="s-label">Overall Change</div>
+          <div class="s-value ${deltaClass}">${diffSign}${diffAvg}</div>
+          <div class="s-sub">${diffAvg > 0 ? 'Improvement' : diffAvg < 0 ? 'Decline' : 'No change'}</div>
+        </div>
+        <div class="summary-card">
+          <div class="s-label">Most Improved</div>
+          <div class="s-value" style="font-size:22px;line-height:1.2">${esc(mostImprovedSkill)}</div>
+          <div class="s-sub">${mostImprovedDelta > 0 ? '+' + mostImprovedDelta + ' pts' : 'N/A'}</div>
+        </div>
+      </div>
+    `;
+      }
+
+      // ── Scores comparison table ──
+      SKILL_GROUPS.forEach(group => {
+        // Build column headers
+        let headCols = `<th>${esc(group.category)}</th>`;
+        records.forEach((r, i) => {
+          const d = r['Assessment Date'] ? new Date(r['Assessment Date']).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }) : '—';
+          headCols += `<th>${esc(stages[i])}<br><span style="font-size:9px;opacity:.6">${esc(d)}</span></th>`;
+        });
+        if (hasMultiple) headCols += `<th>Change</th>`;
+
+        // Build skill rows
+        let rows = '';
+        group.skills.forEach(skill => {
+          const key = SKILL_TO_KEY(skill);
+          const values = records.map(r => {
+            const v = r[key] || r[skill] || '';
+            return v !== '' ? parseFloat(v) : null;
+          });
+
+          let cols = `<td>${esc(skill)}</td>`;
+          values.forEach(v => {
+            if (v === null) {
+              cols += `<td><span class="score-cell score-none">—</span></td>`;
+            } else {
+              const cls = v >= 8 ? 'score-high' : v >= 5 ? 'score-mid' : 'score-low';
+              cols += `<td><span class="score-cell ${cls}">${v}</span></td>`;
+            }
+          });
+
+          if (hasMultiple) {
+            const v1 = values[0], vLast = values[values.length - 1];
+            if (v1 !== null && vLast !== null) {
+              const d = vLast - v1;
+              const cls = d > 0 ? 'up' : d < 0 ? 'down' : 'same';
+              const sign = d > 0 ? '▲ +' : d < 0 ? '▼ ' : '= ';
+              cols += `<td><span class="delta ${cls}">${sign}${d}</span></td>`;
+            } else {
+              cols += `<td>—</td>`;
+            }
+          }
+
+          rows += `<tr>${cols}</tr>`;
+        });
+
+        html += `
+      <div class="comp-card">
+        <div class="comp-card-header">
+          <h3>${esc(group.category)}</h3>
+          <span>Scores out of 10</span>
+        </div>
+        <table class="comp-table">
+          <thead><tr>${headCols}</tr></thead>
+          <tbody>${rows}</tbody>
+        </table>
+      </div>
+    `;
+      });
+
+      // ── Notes section ──
+      html += `
+    <div class="comp-card">
+      <div class="comp-card-header">
+        <h3>Coach Notes</h3>
+        <span>All Stages</span>
+      </div>
+      <div class="notes-grid">
+  `;
+
+      ['Strengths', 'Areas for Improvement', "Coach's Comments"].forEach(field => {
+        html += `<div class="note-block"><h4>${esc(field)}</h4>`;
+        records.forEach((r, i) => {
+          const val = r[field] || '';
+          if (val) {
+            html += `
+          <div class="note-entry">
+            <div class="note-stage">${esc(stages[i])}</div>
+            <div class="note-text">${esc(val)}</div>
+          </div>
+        `;
+          }
+        });
+        html += `</div>`;
+      });
+
+      html += `</div></div>`;
+
+      // ── Video links ──
+      const videos = records.filter(r => r['Video Link'] && r['Video Link'].startsWith('http'));
+      if (videos.length) {
+        let vLinks = '';
+        videos.forEach((r, i) => {
+          const idx = records.indexOf(r);
+          vLinks += `
+        <a class="video-link" href="${esc(r['Video Link'])}" target="_blank" rel="noopener">
+          ▶ ${esc(stages[idx])} Video
+        </a>
+      `;
+        });
+        html += `
+      <div class="comp-card">
+        <div class="comp-card-header"><h3>Assessment Videos</h3></div>
+        <div style="padding:20px;display:flex;gap:12px;flex-wrap:wrap">${vLinks}</div>
+      </div>
+    `;
+      }
+
+      container.innerHTML = html;
+    }
+
+    /* ════════════════════════════════════════════
+       PDF DOWNLOAD
+       ════════════════════════════════════════════ */
+    function downloadPDF() {
+      const element = document.getElementById('results');
+      // Create a clean filename
+      const rawName = document.getElementById('searchName').value || 'Player';
+      const cleanName = rawName.replace(/[^a-zA-Z0-9_-]/g, '_').replace(/_+/g, '_');
+      
+      const opt = {
+        margin:       [0.4, 0.4, 0.4, 0.4],
+        filename:     `${cleanName}_Progress_Report.pdf`,
+        image:        { type: 'jpeg', quality: 0.98 },
+        html2canvas:  { scale: 2, useCORS: true },
+        jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
+      };
+      
+      const btn = document.querySelector('.pdf-btn');
+      btn.textContent = 'GENERATING...';
+      
+      // Keep background color consistent
+      const originalBg = element.style.background;
+      element.style.background = '#f4f4f3'; // match var(--bg)
+      element.style.padding = '20px'; // Give it some padding for the PDF wrapper
+      
+      html2pdf().set(opt).from(element).save().then(() => {
+        btn.textContent = '↓ DOWNLOAD PDF';
+        element.style.background = originalBg;
+        element.style.padding = '0 24px';
+      }).catch((e) => {
+        console.error('PDF generation failed', e);
+        btn.textContent = 'ERROR - TRY AGAIN';
+        setTimeout(() => btn.textContent = '↓ DOWNLOAD PDF', 2000);
+      });
+    }
+
+    /* ════════════════════════════════════════════
+       HELPERS
+       ════════════════════════════════════════════ */
+    function setStateMsg(msg) {
+      document.getElementById('results').innerHTML = `<div class="state-msg">${msg}</div>`;
+    }
+
+    function esc(str) {
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,1236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Player Assessment — Touch Line Sport Academy</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=DM+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --black: #0a0a0a;
+      --dark: #1c1c1c;
+      --mid: #555;
+      --border: #d4d4d4;
+      --light: #ebebeb;
+      --bg: #f4f4f3;
+      --white: #ffffff;
+      --error: #c0392b;
+      --success: #1a7a4a;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--black);
+      min-height: 100vh;
+    }
+
+    /* ── HEADER ── */
+    .header {
+      background: var(--black);
+      color: var(--white);
+      padding: 0 48px;
+      display: flex;
+      align-items: stretch;
+      min-height: 80px;
+      border-bottom: 4px solid var(--white);
+      position: relative;
+    }
+
+    .header-logo-wrap {
+      display: flex;
+      align-items: center;
+      padding: 20px 0;
+      padding-right: 32px;
+      border-right: 1px solid rgba(255, 255, 255, 0.15);
+      gap: 16px;
+    }
+
+    .logo-circle {
+      width: 52px;
+      height: 52px;
+      border: 2px solid var(--white);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .logo-circle svg {
+      width: 32px;
+      height: 32px;
+    }
+
+    .header-text {
+      padding: 20px 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .header-text h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 28px;
+      letter-spacing: 4px;
+      line-height: 1;
+    }
+
+    .header-text p {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      opacity: 0.5;
+      margin-top: 5px;
+    }
+
+    .header-badge {
+      margin-left: auto;
+      align-self: center;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      padding: 7px 18px;
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      opacity: 0.7;
+    }
+
+    /* ── CONTAINER ── */
+    .container {
+      max-width: 920px;
+      margin: 36px auto 100px;
+      padding: 0 24px;
+    }
+
+    /* ── CARDS ── */
+    .card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      margin-bottom: 20px;
+      overflow: hidden;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    }
+
+    .card-header {
+      background: var(--dark);
+      color: var(--white);
+      padding: 11px 24px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .card-header .num {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      opacity: 0.4;
+      letter-spacing: 1px;
+    }
+
+    .card-header h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 17px;
+      letter-spacing: 2px;
+    }
+
+    .card-header .tag {
+      margin-left: auto;
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      opacity: 0.45;
+    }
+
+    .card-body {
+      padding: 24px;
+    }
+
+    /* ── FIELDS ── */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+    }
+
+    .span-2 {
+      grid-column: 1 / -1;
+    }
+
+    label.lbl {
+      display: block;
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-bottom: 6px;
+    }
+
+    .inp {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1px solid var(--border);
+      background: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      color: var(--black);
+      outline: none;
+      transition: border-color 0.18s;
+      border-radius: 0;
+      -webkit-appearance: none;
+    }
+
+    .inp:focus {
+      border-color: var(--black);
+    }
+
+    .inp.err {
+      border-color: var(--error);
+    }
+
+    select.inp {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%230a0a0a'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 34px;
+      cursor: pointer;
+    }
+
+    .field-err {
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      color: var(--error);
+      letter-spacing: 1px;
+      margin-top: 4px;
+      display: none;
+    }
+
+    .field-err.show {
+      display: block;
+    }
+
+    /* ── RATING TABLE ── */
+    .rating-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .rating-table .cat-row td {
+      background: var(--dark);
+      color: var(--white);
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      padding: 7px 16px;
+    }
+
+    .scale-head {
+      background: var(--light);
+      border-bottom: 2px solid var(--black);
+    }
+
+    .scale-head th {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--mid);
+      padding: 8px 0;
+      text-align: center;
+      border-left: 1px solid var(--border);
+    }
+
+    .scale-head th:first-child {
+      text-align: left;
+      padding-left: 16px;
+      border-left: none;
+      font-size: 9px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      min-width: 180px;
+    }
+
+    .skill-row {
+      border-bottom: 1px solid var(--light);
+    }
+
+    .skill-row:last-child {
+      border-bottom: none;
+    }
+
+    .skill-row td:first-child {
+      padding: 0 16px;
+      font-size: 13px;
+      font-weight: 500;
+      border-right: 1px solid var(--light);
+      white-space: nowrap;
+      min-width: 180px;
+      height: 44px;
+    }
+
+    .skill-row td.num-cell {
+      border-left: 1px solid var(--light);
+      text-align: center;
+      padding: 0;
+    }
+
+    .skill-row td.num-cell input[type="radio"] {
+      display: none;
+    }
+
+    .skill-row td.num-cell label {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 44px;
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--mid);
+      cursor: pointer;
+      transition: background 0.12s, color 0.12s;
+      user-select: none;
+    }
+
+    .skill-row td.num-cell label:hover {
+      background: var(--light);
+      color: var(--black);
+    }
+
+    .skill-row td.num-cell input[type="radio"]:checked+label {
+      background: var(--black);
+      color: var(--white);
+    }
+
+    /* ── VIDEO UPLOAD ── */
+    .upload-zone {
+      border: 2px dashed var(--border);
+      padding: 36px 24px;
+      text-align: center;
+      cursor: pointer;
+      position: relative;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .upload-zone:hover,
+    .upload-zone.dragging {
+      border-color: var(--black);
+      background: var(--bg);
+    }
+
+    .upload-zone input[type="file"] {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      cursor: pointer;
+      width: 100%;
+      height: 100%;
+    }
+
+    .upload-icon-wrap {
+      width: 48px;
+      height: 48px;
+      border: 2px solid var(--black);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 14px;
+    }
+
+    .upload-icon-wrap svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    .upload-main {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .upload-sub {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 1px;
+      color: var(--mid);
+    }
+
+    .file-pill {
+      display: none;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 16px;
+      background: var(--light);
+      border: 1px solid var(--border);
+      margin-top: 12px;
+    }
+
+    .file-pill.show {
+      display: flex;
+    }
+
+    .pill-icon {
+      width: 32px;
+      height: 32px;
+      background: var(--black);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .pill-icon svg {
+      width: 14px;
+      height: 14px;
+      fill: white;
+    }
+
+    .pill-name {
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      font-weight: 500;
+      flex: 1;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .pill-size {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: var(--mid);
+      flex-shrink: 0;
+    }
+
+    .pill-remove {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--mid);
+      font-size: 18px;
+      line-height: 1;
+      padding: 2px 4px;
+      flex-shrink: 0;
+    }
+
+    .pill-remove:hover {
+      color: var(--error);
+    }
+
+    /* ── PROGRESS BAR ── */
+    .progress-wrap {
+      display: none;
+      margin-top: 14px;
+    }
+
+    .progress-wrap.show {
+      display: block;
+    }
+
+    .progress-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 1px;
+      color: var(--mid);
+      margin-bottom: 6px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .progress-track {
+      height: 4px;
+      background: var(--light);
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: var(--black);
+      width: 0%;
+      transition: width 0.4s ease;
+    }
+
+    /* ── TEXTAREAS ── */
+    .ta {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid var(--border);
+      background: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      color: var(--black);
+      outline: none;
+      resize: vertical;
+      min-height: 80px;
+      transition: border-color 0.18s;
+      line-height: 1.6;
+      border-radius: 0;
+    }
+
+    .ta:focus {
+      border-color: var(--black);
+    }
+
+    .notes-stack>div {
+      margin-bottom: 16px;
+    }
+
+    .notes-stack>div:last-child {
+      margin-bottom: 0;
+    }
+
+    /* ── COACH SECTION ── */
+    .coach-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    /* ── SUBMIT BAR ── */
+    .submit-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--white);
+      border: 1px solid var(--border);
+      padding: 20px 28px;
+      margin-bottom: 20px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    }
+
+    .submit-meta {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 1px;
+      color: var(--mid);
+      line-height: 1.8;
+    }
+
+    .btn-submit {
+      background: var(--black);
+      color: var(--white);
+      border: none;
+      padding: 13px 36px;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 19px;
+      letter-spacing: 3px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: opacity 0.2s;
+    }
+
+    .btn-submit:hover {
+      opacity: 0.85;
+    }
+
+    .btn-submit:active {
+      transform: scale(0.98);
+    }
+
+    .btn-submit:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .btn-submit .arrow {
+      font-size: 20px;
+    }
+
+    /* ── TOAST ── */
+    .toast {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      background: var(--black);
+      color: var(--white);
+      padding: 14px 22px;
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      letter-spacing: 0.5px;
+      max-width: 360px;
+      transform: translateY(80px);
+      opacity: 0;
+      transition: all 0.28s ease;
+      z-index: 9999;
+      border-left: 4px solid transparent;
+      line-height: 1.5;
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .toast.success {
+      border-left-color: #22c55e;
+    }
+
+    .toast.error {
+      border-left-color: #ef4444;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 680px) {
+      .header {
+        padding: 0 20px;
+        flex-wrap: wrap;
+      }
+
+      .header-badge {
+        display: none;
+      }
+
+      .container {
+        margin-top: 24px;
+        padding: 0 16px;
+      }
+
+      .grid-2,
+      .grid-3,
+      .coach-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .span-2 {
+        grid-column: auto;
+      }
+
+      .scale-head th:first-child {
+        min-width: 120px;
+      }
+
+      .skill-row td:first-child {
+        min-width: 120px;
+        font-size: 11px;
+        padding: 0 10px;
+      }
+
+      .skill-row td.num-cell label {
+        height: 40px;
+        font-size: 11px;
+      }
+
+      .submit-bar {
+        flex-direction: column;
+        gap: 14px;
+        text-align: center;
+      }
+
+      .btn-submit {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ── LOGIN PORTAL ── -->
+  <div id="loginView" style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;background:#0a0a0a;color:white;width:100%;position:fixed;top:0;left:0;z-index:9999;">
+    <div style="width:100%;max-width:380px;padding:40px;background:#141414;border:1px solid #333;text-align:center;box-shadow:0 10px 40px rgba(0,0,0,0.5);border-radius:8px;">
+      <img src="../LOGO.png" alt="TSA Logo" style="width:110px;margin-bottom:24px;">
+      <h2 style="font-family:'Bebas Neue';font-size:28px;letter-spacing:3px;margin-bottom:4px;">STAFF PORTAL</h2>
+      <p style="font-family:'DM Mono';font-size:10px;color:#888;margin-bottom:30px;letter-spacing:2px;text-transform:uppercase;">Secure Authentication</p>
+      
+      <div style="display:flex;flex-direction:column;gap:16px;margin-bottom:24px;">
+        <input type="text" id="authUser" placeholder="Username" style="padding:14px 16px;background:#000;border:1px solid #333;color:#fff;font-family:'DM Sans';font-size:14px;width:100%;outline:none;border-radius:4px;">
+        <input type="password" id="authPass" placeholder="Password" style="padding:14px 16px;background:#000;border:1px solid #333;color:#fff;font-family:'DM Sans';font-size:14px;width:100%;outline:none;border-radius:4px;">
+      </div>
+
+      <button onclick="checkAuth()" style="background:#fff;color:#000;border:none;padding:14px;width:100%;font-family:'Bebas Neue';font-size:18px;letter-spacing:2px;cursor:pointer;border-radius:4px;transition:opacity 0.2s;">LOGIN SECURELY</button>
+      <div id="authErr" style="color:#ef4444;font-family:'DM Mono';font-size:11px;margin-top:16px;display:none;">Access Denied: Invalid Credentials</div>
+    </div>
+  </div>
+
+  <div id="appContainer"></div>
+
+  <template id="appTemplate">
+
+  <!-- ── HEADER ── -->
+  <header class="header">
+    <div class="header-logo-wrap" style="width:60px;flex-shrink:0;">
+      <img src="../LOGO.png" alt="TSA Logo" style="width:100%;height:auto;" />
+    </div>
+    <div class="header-text" style="flex:1;min-width:180px;">
+      <h1>Touch Line Sport Academy</h1>
+      <p>Player Assessment System · LLC</p>
+    </div>
+    <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:8px;">
+      <div class="header-badge">Confidential Record</div>
+      <a href="progress-report.html" style="background:transparent;color:var(--white);font-family:'DM Mono';font-size:10px;letter-spacing:2px;padding:8px 12px;text-decoration:none;border:1px solid rgba(255,255,255,.2);white-space:nowrap;">PROGRESS REPORT →</a>
+    </div>
+  </header>
+
+  <!-- ── FORM ── -->
+  <div class="container">
+    <form id="assessForm" novalidate>
+
+      <!-- 01 PLAYER INFO -->
+      <div class="card">
+        <div class="card-header">
+          <span class="num">01</span>
+          <h2>Player Information</h2>
+          <span class="tag">Basic Details</span>
+        </div>
+        <div class="card-body">
+          <div class="grid-3">
+            <div>
+              <label class="lbl" for="playerName">Player Name *</label>
+              <input class="inp" type="text" id="playerName" name="playerName" list="playerList" placeholder="Loading existing players..." autocomplete="off" required>
+              <datalist id="playerList"></datalist>
+              <div class="field-err" id="err-playerName">Required</div>
+            </div>
+            <div>
+              <label class="lbl" for="playerAge">Age *</label>
+              <input class="inp" type="number" id="playerAge" name="playerAge" placeholder="e.g. 14" min="5" max="30"
+                required>
+              <div class="field-err" id="err-playerAge">Required</div>
+            </div>
+            <div>
+              <label class="lbl" for="batch">Batch / Group *</label>
+              <input class="inp" type="text" id="batch" name="batch" placeholder="e.g. U-14 Morning" required>
+              <div class="field-err" id="err-batch">Required</div>
+            </div>
+            <div>
+              <label class="lbl" for="assessDate">Assessment Date *</label>
+              <input class="inp" type="date" id="assessDate" name="assessDate" required>
+              <div class="field-err" id="err-assessDate">Required</div>
+            </div>
+            <div class="span-2">
+              <label class="lbl" for="assessType">Assessment Stage *</label>
+              <select class="inp" id="assessType" name="assessType" required>
+                <option value="">— Select Stage —</option>
+                <option value="Initial">Initial Assessment</option>
+                <option value="3-Month">3-Month Review</option>
+                <option value="6-Month">6-Month Review</option>
+              </select>
+              <div class="field-err" id="err-assessType">Required</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 02 SKILLS ASSESSMENT -->
+      <div class="card">
+        <div class="card-header">
+          <span class="num">02</span>
+          <h2>Skills Assessment</h2>
+          <span class="tag">Score 1 – 10 per skill</span>
+        </div>
+        <div class="card-body" style="padding:0; overflow-x:auto;">
+          <table class="rating-table">
+            <thead>
+              <tr class="scale-head">
+                <th>Skill</th>
+                <th>1</th>
+                <th>2</th>
+                <th>3</th>
+                <th>4</th>
+                <th>5</th>
+                <th>6</th>
+                <th>7</th>
+                <th>8</th>
+                <th>9</th>
+                <th>10</th>
+              </tr>
+            </thead>
+            <tbody id="ratingBody">
+              <!-- Generated by JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- 03 COACH NOTES -->
+      <div class="card">
+        <div class="card-header">
+          <span class="num">03</span>
+          <h2>Coach Notes</h2>
+          <span class="tag">Written Evaluation</span>
+        </div>
+        <div class="card-body notes-stack">
+          <div>
+            <label class="lbl" for="strengths">Strengths</label>
+            <textarea class="ta" id="strengths" name="strengths" rows="3"
+              placeholder="Describe the player's notable strengths…"></textarea>
+          </div>
+          <div>
+            <label class="lbl" for="improvements">Areas for Improvement</label>
+            <textarea class="ta" id="improvements" name="improvements" rows="3"
+              placeholder="Key areas to develop and work on…"></textarea>
+          </div>
+          <div>
+            <label class="lbl" for="coachComments">Coach's Comments</label>
+            <textarea class="ta" id="coachComments" name="coachComments" rows="3"
+              placeholder="Overall assessment, recommendations, and next steps…"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- 04 VIDEO UPLOAD -->
+      <div class="card">
+        <div class="card-header">
+          <span class="num">04</span>
+          <h2>Assessment Video</h2>
+          <span class="tag">Optional · Max 25 MB · Saved to Drive</span>
+        </div>
+        <div class="card-body">
+          <div class="upload-zone" id="uploadZone">
+            <input type="file" id="videoFile" accept="video/*">
+            <div class="upload-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path
+                  d="M15 10l4.553-2.069A1 1 0 0121 8.87v6.26a1 1 0 01-1.447.894L15 14M3 8a2 2 0 012-2h8a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V8z" />
+              </svg>
+            </div>
+            <div class="upload-main">Click to upload or drag &amp; drop</div>
+            <div class="upload-sub">MP4, MOV, AVI, MKV · Max 25 MB · Organised by player in Google Drive</div>
+          </div>
+          <div class="file-pill" id="filePill">
+            <div class="pill-icon">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M15 10l4.553-2.069A1 1 0 0121 8.87v6.26a1 1 0 01-1.447.894L15 14M3 8a2 2 0 012-2h8a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V8z" />
+              </svg>
+            </div>
+            <span class="pill-name" id="pillName">—</span>
+            <span class="pill-size" id="pillSize">—</span>
+            <button type="button" class="pill-remove" id="removeVid" title="Remove">✕</button>
+          </div>
+          <div class="field-err" id="err-video"></div>
+          <div class="progress-wrap" id="progressWrap">
+            <div class="progress-label">
+              <span id="progressLabel">Uploading video…</span>
+              <span id="progressPct">0%</span>
+            </div>
+            <div class="progress-track">
+              <div class="progress-fill" id="progressFill"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 05 COACH DETAILS -->
+      <div class="card">
+        <div class="card-header">
+          <span class="num">05</span>
+          <h2>Coach Information</h2>
+          <span class="tag">Signing Off</span>
+        </div>
+        <div class="card-body">
+          <div class="coach-grid">
+            <div>
+              <label class="lbl" for="coachName">Coach Name *</label>
+              <input class="inp" type="text" id="coachName" name="coachName" placeholder="Full name" required>
+              <div class="field-err" id="err-coachName">Required</div>
+            </div>
+            <div>
+              <label class="lbl" for="coachId">Coach ID / Code</label>
+              <input class="inp" type="text" id="coachId" name="coachId" placeholder="e.g. TSA-C01">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SUBMIT -->
+      <div class="submit-bar">
+        <div class="submit-meta">
+          Fields marked * are required<br>
+          Data is submitted securely to academy records (Google Sheets + Drive)
+        </div>
+        <button type="submit" class="btn-submit" id="submitBtn">
+          Submit Assessment <span class="arrow">→</span>
+        </button>
+      </div>
+
+    </form>
+  </div>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast"></div>
+  </template>
+
+  <script>
+    /* ════════════════════════════════════════════
+       AUTHENTICATION
+       ════════════════════════════════════════════ */
+    function checkAuth() {
+      const u = document.getElementById('authUser').value.trim().toLowerCase();
+      const p = document.getElementById('authPass').value.trim();
+      const encoded = window.btoa(u + ':' + p);
+      
+      // Keys for: coach:touchline
+      if (encoded === 'Y29hY2g6dG91Y2hsaW5l') {
+         sessionStorage.setItem('tsa_auth_v1', '1');
+         initApp();
+      } else {
+         document.getElementById('authErr').style.display = 'block';
+      }
+    }
+
+    function initApp() {
+      document.getElementById('loginView').style.display = 'none';
+      const tmpl = document.getElementById('appTemplate');
+      document.getElementById('appContainer').appendChild(tmpl.content.cloneNode(true));
+      tmpl.remove();
+      
+      // Init logic
+      loadPlayers();
+      buildRatingTable();
+      document.getElementById('assessDate').valueAsDate = new Date();
+      
+      // Attach form events inside template
+      attachEvents();
+    }
+
+    // Check on startup
+    window.addEventListener('DOMContentLoaded', () => {
+      if (sessionStorage.getItem('tsa_auth_v1') === '1') {
+        initApp();
+      }
+    });
+
+    /* Allow Enter key to login */
+    document.getElementById('authPass').addEventListener('keydown', e => {
+      if (e.key === 'Enter') checkAuth();
+    });
+
+    /* ════════════════════════════════════════════
+       CONFIGURATION — update before deploying
+       ════════════════════════════════════════════ */
+    const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxm8FskVr4TtUGUTR-6r88gK4cAaN1u95w8tISkOI2RZpVcdpNbuHRWXwVjL92E4Dom1w/exec';
+
+    /* ════════════════════════════════════════════
+       SKILLS DEFINITION
+       ════════════════════════════════════════════ */
+    const SKILL_GROUPS = [
+      {
+        category: 'Technical Skills',
+        skills: ['Dribbling', 'Passing', 'Shooting', 'Control', 'Tackling']
+      },
+      {
+        category: 'Tactical Awareness',
+        skills: ['Game Situations', 'Read the Game', 'Decision Making']
+      },
+      {
+        category: 'Physical Development',
+        skills: ['Speed', 'Agility', 'Endurance', 'Strength']
+      },
+      {
+        category: 'Mental & Emotional',
+        skills: ['Confidence', 'Focus', 'Teamwork', 'Sportsmanship']
+      }
+    ];
+
+    /* ════════════════════════════════════════════
+       BUILD RATING TABLE
+       ════════════════════════════════════════════ */
+    function buildRatingTable() {
+      const tbody = document.getElementById('ratingBody');
+      if (!tbody) return;
+      SKILL_GROUPS.forEach(group => {
+        // Category row
+        const catRow = document.createElement('tr');
+        catRow.className = 'cat-row';
+        catRow.innerHTML = `<td colspan="11">${group.category}</td>`;
+        tbody.appendChild(catRow);
+
+        // Skill rows
+        group.skills.forEach(skill => {
+          const key = skill.toLowerCase().replace(/\s+/g, '_');
+          const tr = document.createElement('tr');
+          tr.className = 'skill-row';
+          let cells = `<td>${skill}</td>`;
+          for (let n = 1; n <= 10; n++) {
+            cells += `
+          <td class="num-cell">
+            <input type="radio" id="${key}_${n}" name="${key}" value="${n}">
+            <label for="${key}_${n}">${n}</label>
+          </td>`;
+          }
+          tr.innerHTML = cells;
+          tbody.appendChild(tr);
+        });
+      });
+    }
+
+    /* ════════════════════════════════════════════
+       LOAD EXISTING PLAYERS
+       ════════════════════════════════════════════ */
+    async function loadPlayers() {
+      const inp = document.getElementById('playerName');
+      const datalist = document.getElementById('playerList');
+      try {
+        const resp = await fetch(APPS_SCRIPT_URL, {
+          method: 'POST',
+          body: JSON.stringify({ action: 'getAllPlayers' })
+        });
+        const result = await resp.json();
+        
+        if (result.status === 'success' && result.data) {
+          let optionsHTML = '';
+          window.playerDataMap = {}; 
+          result.data.forEach(p => {
+            const val = `${p.name} (${p.batch})`;
+            window.playerDataMap[val] = p;
+            optionsHTML += `<option value="${val}">Age: ${p.age}</option>`;
+          });
+          datalist.innerHTML = optionsHTML;
+          inp.placeholder = 'Search existing or enter new...';
+        } else {
+          inp.placeholder = 'Full name';
+        }
+      } catch (e) {
+        inp.placeholder = 'Full name';
+      }
+    }
+
+    function attachEvents() {
+      document.getElementById('playerName').addEventListener('input', function() {
+        const val = this.value;
+        if (window.playerDataMap && window.playerDataMap[val]) {
+           document.getElementById('batch').value = window.playerDataMap[val].batch;
+           document.getElementById('playerAge').value = window.playerDataMap[val].age;
+           this.value = window.playerDataMap[val].name; // Fix input just to have name
+           
+           // Clear validation errors securely
+           document.getElementById('batch').classList.remove('err');
+           document.getElementById('playerAge').classList.remove('err');
+           document.getElementById('err-batch')?.classList.remove('show');
+           document.getElementById('err-playerAge')?.classList.remove('show');
+        }
+      });
+      
+      const videoInput = document.getElementById('videoFile');
+      const uploadZone = document.getElementById('uploadZone');
+      const filePill = document.getElementById('filePill');
+      const pillName = document.getElementById('pillName');
+      const pillSize = document.getElementById('pillSize');
+      const removeVid = document.getElementById('removeVid');
+      const errVideo = document.getElementById('err-video');
+      const MAX_BYTES = 25 * 1024 * 1024;
+
+      videoInput.addEventListener('change', handleFile);
+
+      uploadZone.addEventListener('dragover', e => { e.preventDefault(); uploadZone.classList.add('dragging'); });
+      uploadZone.addEventListener('dragleave', () => uploadZone.classList.remove('dragging'));
+      uploadZone.addEventListener('drop', e => {
+        e.preventDefault();
+        uploadZone.classList.remove('dragging');
+        if (e.dataTransfer.files.length) {
+          videoInput.files = e.dataTransfer.files;
+          handleFile();
+        }
+      });
+
+      function handleFile() {
+        const f = videoInput.files[0];
+        if (!f) return;
+        errVideo.classList.remove('show');
+        if (f.size > MAX_BYTES) {
+          errVideo.textContent = `File too large (${(f.size / 1024 / 1024).toFixed(1)} MB). Max 25 MB allowed.`;
+          errVideo.classList.add('show');
+          videoInput.value = '';
+          return;
+        }
+        pillName.textContent = f.name;
+        pillSize.textContent = (f.size / 1024 / 1024).toFixed(2) + ' MB';
+        filePill.classList.add('show');
+      }
+
+      removeVid.addEventListener('click', () => {
+        videoInput.value = '';
+        filePill.classList.remove('show');
+        pillName.textContent = '—';
+        pillSize.textContent = '—';
+      });
+
+      // Live clear errors
+      ['playerName', 'playerAge', 'batch', 'assessDate', 'assessType', 'coachName'].forEach(id => {
+        document.getElementById(id).addEventListener('input', function () {
+          this.classList.remove('err');
+          const e = document.getElementById('err-' + id);
+          if (e) e.classList.remove('show');
+        });
+      });
+
+      // Submit Form
+      document.getElementById('assessForm').addEventListener('submit', async function (e) {
+        e.preventDefault();
+
+        if (!validate()) {
+          showToast('Please fill in all required fields.', 'error');
+          return;
+        }
+
+        const btn = document.getElementById('submitBtn');
+        btn.disabled = true;
+        btn.innerHTML = 'Submitting… <span class="arrow">↻</span>';
+
+        const payload = collectData();
+
+        const videoFileObj = document.getElementById('videoFile').files[0];
+        if (videoFileObj) {
+          setProgress(20, 'Encoding video…');
+          try {
+            payload.videoBase64 = await toBase64(videoFileObj);
+            payload.videoFileName = videoFileObj.name;
+            payload.videoMimeType = videoFileObj.type;
+          } catch {
+            showToast('Video encode failed. Submitting without video.', 'error');
+          }
+          setProgress(50, 'Uploading…');
+        } else {
+          setProgress(50, 'Saving assessment…');
+        }
+
+        try {
+          const resp = await fetch(APPS_SCRIPT_URL, {
+            method: 'POST',
+            body: JSON.stringify(payload)
+          });
+          const result = await resp.json();
+          setProgress(100, 'Done!');
+
+          if (result.status === 'success') {
+            showToast('✓ Assessment submitted successfully!', 'success');
+            setTimeout(() => {
+              document.getElementById('assessForm').reset();
+              document.getElementById('assessDate').valueAsDate = new Date();
+              filePill.classList.remove('show');
+              setProgress(null);
+            }, 2200);
+          } else {
+            throw new Error(result.message || 'Unknown error');
+          }
+        } catch (err) {
+          showToast('✕ Submission failed: ' + err.message, 'error');
+          setProgress(null);
+        } finally {
+          btn.disabled = false;
+          btn.innerHTML = 'Submit Assessment <span class="arrow">→</span>';
+        }
+      });
+    }
+
+    // AttachEvents overrides these listeners, they are deleted here.
+    function showToast(msg, type = 'success') {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.className = `toast ${type} show`;
+      setTimeout(() => t.classList.remove('show'), 4500);
+    }
+
+    /* ════════════════════════════════════════════
+       VALIDATION
+       ════════════════════════════════════════════ */
+    function validate() {
+      const required = ['playerName', 'playerAge', 'batch', 'assessDate', 'assessType', 'coachName'];
+      let ok = true;
+      required.forEach(id => {
+        const el = document.getElementById(id);
+        const errEl = document.getElementById('err-' + id);
+        if (!el.value.trim()) {
+          el.classList.add('err');
+          if (errEl) errEl.classList.add('show');
+          ok = false;
+        } else {
+          el.classList.remove('err');
+          if (errEl) errEl.classList.remove('show');
+        }
+      });
+      return ok;
+    }
+
+
+    /* ════════════════════════════════════════════
+       COLLECT DATA
+       ════════════════════════════════════════════ */
+    function collectData() {
+      const data = {
+        timestamp: new Date().toISOString(),
+        playerName: document.getElementById('playerName').value.trim(),
+        playerAge: document.getElementById('playerAge').value,
+        batch: document.getElementById('batch').value.trim(),
+        assessDate: document.getElementById('assessDate').value,
+        assessType: document.getElementById('assessType').value,
+        strengths: document.getElementById('strengths').value.trim(),
+        improvements: document.getElementById('improvements').value.trim(),
+        coachComments: document.getElementById('coachComments').value.trim(),
+        coachName: document.getElementById('coachName').value.trim(),
+        coachId: document.getElementById('coachId').value.trim()
+      };
+
+      // Ratings
+      SKILL_GROUPS.forEach(g => g.skills.forEach(skill => {
+        const key = skill.toLowerCase().replace(/\s+/g, '_');
+        const sel = document.querySelector(`input[name="${key}"]:checked`);
+        data[key] = sel ? sel.value : '';
+      }));
+
+      return data;
+    }
+
+    /* ════════════════════════════════════════════
+       FILE → BASE64
+       ════════════════════════════════════════════ */
+    function toBase64(file) {
+      return new Promise((res, rej) => {
+        const r = new FileReader();
+        r.readAsDataURL(file);
+        r.onload = () => res(r.result.split(',')[1]);
+        r.onerror = rej;
+      });
+    }
+
+    /* ════════════════════════════════════════════
+       PROGRESS HELPER
+       ════════════════════════════════════════════ */
+    function setProgress(pct, label) {
+      const wrap = document.getElementById('progressWrap');
+      const fill = document.getElementById('progressFill');
+      const lbl = document.getElementById('progressLabel');
+      const pctEl = document.getElementById('progressPct');
+      if (pct === null) {
+        wrap.classList.remove('show');
+        fill.style.width = '0%';
+        return;
+      }
+      wrap.classList.add('show');
+      fill.style.width = pct + '%';
+      if (label) lbl.textContent = label;
+      pctEl.textContent = pct + '%';
+    }
+
+    // We now have attachEvents taking over form submission logic
+  </script>
+</body>
+
+</html>
