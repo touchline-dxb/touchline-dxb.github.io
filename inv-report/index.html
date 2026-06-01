@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>TSA Inventory Report</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.47.0/tabler-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --tsa-bg: #f9fafb;
+            --tsa-surface: #ffffff;
+            --tsa-black: #09090b;
+            --tsa-dark-grey: #27272a;
+            --tsa-grey: #e4e4e7;
+            --tsa-light-grey: #f4f4f5;
+            --tsa-text: #09090b;
+            --tsa-muted: #71717a;
+            --tsa-border: #e4e4e7;
+            --tsa-accent: #09090b;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--tsa-bg);
+            color: var(--tsa-text);
+            line-height: 1.5;
+            padding-bottom: 90px;
+            /* space for submit bar */
+        }
+
+        .app-header {
+            background: var(--tsa-black);
+            padding: 1rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-image {
+            height: 36px;
+            width: auto;
+            object-fit: contain;
+            background: white;
+            padding: 4px;
+            border-radius: 4px;
+        }
+
+        .app-title {
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .date-badge {
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            padding: 6px 12px;
+            font-size: 13px;
+            font-weight: 600;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            backdrop-filter: blur(4px);
+        }
+
+        .main {
+            padding: 1.5rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .section-card {
+            background: var(--tsa-surface);
+            border-radius: 12px;
+            border: 1px solid var(--tsa-border);
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            overflow: hidden;
+        }
+
+        .section-header {
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid var(--tsa-border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: var(--tsa-surface);
+        }
+
+        .section-title {
+            color: var(--tsa-black);
+            font-weight: 700;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title i {
+            font-size: 20px;
+            color: var(--tsa-muted);
+        }
+
+        .staff-grid {
+            padding: 1.5rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.25rem;
+        }
+
+        .field-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .field-label {
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            color: var(--tsa-muted);
+        }
+
+        input[type=text],
+        input[type=date],
+        select,
+        textarea {
+            padding: 12px 14px;
+            border: 1px solid var(--tsa-border);
+            border-radius: 8px;
+            font-size: 14px;
+            font-family: inherit;
+            color: var(--tsa-text);
+            background: var(--tsa-light-grey);
+            transition: all 0.2s;
+            width: 100%;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: var(--tsa-black);
+            background: var(--tsa-surface);
+            box-shadow: 0 0 0 4px rgba(9, 9, 11, 0.05);
+        }
+
+        .report-type-row {
+            padding: 0 1.5rem 1.5rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 12px;
+        }
+
+        .type-chip {
+            padding: 14px 16px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            border: 1px solid var(--tsa-border);
+            background: var(--tsa-surface);
+            transition: all 0.2s;
+            color: var(--tsa-muted);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            justify-content: center;
+        }
+
+        .type-chip:hover {
+            background: var(--tsa-light-grey);
+            color: var(--tsa-text);
+        }
+
+        .type-chip.selected {
+            border-color: var(--tsa-black);
+            background: var(--tsa-black);
+            color: #ffffff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .inventory-grid {
+            padding: 1rem 1.5rem;
+        }
+
+        .category-label {
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--tsa-black);
+            padding: 20px 0 10px;
+            border-bottom: 2px solid var(--tsa-light-grey);
+            margin-bottom: 12px;
+            margin-top: 8px;
+        }
+
+        .category-label:first-child {
+            margin-top: 0;
+            padding-top: 4px;
+        }
+
+        .inv-row {
+            display: grid;
+            grid-template-columns: 28px 1fr 75px 75px 75px 140px;
+            gap: 12px;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--tsa-light-grey);
+            font-size: 14px;
+        }
+
+        .inv-row:last-child {
+            border-bottom: none;
+        }
+
+        .inv-row:hover {
+            background: #fafafa;
+            border-radius: 8px;
+            padding-left: 8px;
+            padding-right: 8px;
+            margin-left: -8px;
+            margin-right: -8px;
+        }
+
+        .inv-sl {
+            color: var(--tsa-muted);
+            font-size: 12px;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .inv-name {
+            font-weight: 600;
+            color: var(--tsa-dark-grey);
+            display: flex;
+            flex-direction: column;
+            line-height: 1.3;
+        }
+
+        .inv-size {
+            color: var(--tsa-muted);
+            font-size: 12px;
+            font-weight: 500;
+            margin-top: 2px;
+        }
+
+        .inv-row input[type=number] {
+            padding: 10px;
+            text-align: center;
+            width: 100%;
+            border: 1px solid var(--tsa-border);
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            background: var(--tsa-light-grey);
+            -moz-appearance: textfield;
+        }
+
+        .inv-row input[type=number]::-webkit-outer-spin-button,
+        .inv-row input[type=number]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        .inv-row input[type=text] {
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 13px;
+            background: var(--tsa-light-grey);
+        }
+
+        .col-header {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            color: var(--tsa-muted);
+            text-align: center;
+            padding-bottom: 8px;
+        }
+
+        .col-header.remarks-header {
+            text-align: left;
+        }
+
+        .remarks-section {
+            padding: 1.5rem;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-bar {
+            padding: 1rem 1.5rem;
+            background: var(--tsa-surface);
+            border-top: 1px solid var(--tsa-border);
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 40;
+            box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .btn-primary {
+            background: var(--tsa-black);
+            color: #ffffff;
+            padding: 12px 28px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: inherit;
+            transition: all 0.2s;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-primary:hover {
+            background: var(--tsa-dark-grey);
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background: var(--tsa-surface);
+            color: var(--tsa-text);
+            padding: 12px 24px;
+            border: 1px solid var(--tsa-border);
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: inherit;
+            transition: all 0.2s;
+        }
+
+        .btn-secondary:hover {
+            background: var(--tsa-light-grey);
+        }
+
+        .success-toast {
+            position: fixed;
+            top: 24px;
+            right: 24px;
+            background: var(--tsa-black);
+            color: #ffffff;
+            padding: 16px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 100;
+            pointer-events: none;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
+        }
+
+        .success-toast.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .success-toast i {
+            color: #10b981;
+            font-size: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .inv-row {
+                grid-template-columns: 20px 1fr 60px 60px 60px;
+                gap: 8px;
+                padding: 16px 0;
+            }
+
+            .inv-row:hover {
+                background: transparent;
+                padding-left: 0;
+                padding-right: 0;
+                margin-left: 0;
+                margin-right: 0;
+            }
+
+            .inv-row input[type=text] {
+                grid-column: 1 / -1;
+                margin-top: 8px;
+            }
+
+            .col-header:last-child {
+                display: none;
+            }
+
+            .app-header {
+                padding: 1rem;
+            }
+
+            .main {
+                padding: 1rem;
+            }
+
+            .staff-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .report-type-row {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .submit-bar {
+                padding: 1rem;
+            }
+
+            .btn-primary,
+            .btn-secondary {
+                flex: 1;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .report-type-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="success-toast" id="toast"><i class="ti ti-circle-check"></i> <span id="toast-msg">Submitted
+            successfully</span></div>
+
+    <div class="app-header">
+        <div class="logo-area">
+            <img src="../LOGO.png" alt="Touchline Logo" class="logo-image">
+            <div class="app-title">Inventory Report</div>
+        </div>
+        <div class="date-badge"><i class="ti ti-calendar" aria-hidden="true"></i><span id="hdr-date"></span></div>
+    </div>
+
+    <div class="main">
+        <div class="section-card">
+            <div class="section-header">
+                <span class="section-title"><i class="ti ti-user" aria-hidden="true"></i> Staff & Report Info</span>
+            </div>
+            <div class="staff-grid">
+                <div class="field-group">
+                    <label class="field-label">Staff Name *</label>
+                    <input type="text" id="staff-name" placeholder="Enter your name" list="staff-list">
+                    <datalist id="staff-list"></datalist>
+                </div>
+                <div class="field-group">
+                    <label class="field-label">Role</label>
+                    <select id="staff-role">
+                        <option value="Coach">Coach</option>
+                        <option value="Admin">Admin</option>
+                        <option value="Manager">Manager</option>
+                    </select>
+                </div>
+                <div class="field-group">
+                    <label class="field-label">Date</label>
+                    <input type="date" id="report-date">
+                </div>
+                <div class="field-group">
+                    <label class="field-label">Location / Pitch</label>
+                    <input type="text" id="location" placeholder="e.g. Pitch A">
+                </div>
+            </div>
+
+            <div style="padding: 0.5rem 1.5rem 1rem">
+                <div class="field-label" style="margin-bottom:12px">Report Type *</div>
+            </div>
+            <div class="report-type-row">
+                <button class="type-chip selected" onclick="selectType('check',this)"><i class="ti ti-clipboard-list"
+                        aria-hidden="true"></i> Inventory Check</button>
+                <button class="type-chip" onclick="selectType('missing',this)"><i class="ti ti-alert-circle"
+                        aria-hidden="true"></i> Missing Items</button>
+                <button class="type-chip" onclick="selectType('damaged',this)"><i class="ti ti-tools"
+                        aria-hidden="true"></i> Damaged Items</button>
+                <button class="type-chip" onclick="selectType('full',this)"><i class="ti ti-package"
+                        aria-hidden="true"></i> Full Stock Count</button>
+            </div>
+        </div>
+
+        <div class="section-card" id="inventory-section">
+            <div class="section-header">
+                <span class="section-title"><i class="ti ti-box" aria-hidden="true"></i> Equipment List</span>
+                <span style="color:var(--tsa-muted); font-size:13px; font-weight:500">Fill in the counts below</span>
+            </div>
+            <div class="inventory-grid">
+                <div class="inv-row" style="padding-bottom:8px; border-bottom: 2px solid var(--tsa-light-grey);">
+                    <span></span>
+                    <span class="col-header" style="text-align: left;">Item</span>
+                    <span class="col-header">Avail</span>
+                    <span class="col-header">Miss</span>
+                    <span class="col-header">Dmg</span>
+                    <span class="col-header remarks-header">Remarks</span>
+                </div>
+                <div id="inv-list"></div>
+            </div>
+        </div>
+
+        <div class="section-card">
+            <div class="section-header">
+                <span class="section-title"><i class="ti ti-message" aria-hidden="true"></i> General Remarks</span>
+            </div>
+            <div class="remarks-section">
+                <textarea id="general-remarks"
+                    placeholder="Any additional notes, observations, or issues..."></textarea>
+            </div>
+        </div>
+
+        <div class="submit-bar">
+            <button class="btn-secondary" onclick="clearForm()">Clear Form</button>
+            <button class="btn-primary" onclick="submitReport()"><i class="ti ti-send" aria-hidden="true"></i> Submit
+                Report</button>
+        </div>
+    </div>
+
+    <script>
+        const ITEMS = [
+            { sl: 1, name: "Pole Stand", size: "Normal", cat: "Poles & Cones" },
+            { sl: 2, name: "Pole", size: "1.5m", cat: "Poles & Cones" },
+            { sl: 3, name: "Pole", size: "1m", cat: "Poles & Cones" },
+            { sl: 4, name: "Pole", size: "70cm", cat: "Poles & Cones" },
+            { sl: 5, name: "Cons", size: "Large", cat: "Poles & Cones" },
+            { sl: 6, name: "Cons", size: "Medium", cat: "Poles & Cones" },
+            { sl: 7, name: "Cons", size: "Small", cat: "Poles & Cones" },
+            { sl: 8, name: "Parachute", size: "", cat: "Training Equipment" },
+            { sl: 9, name: "Marker", size: "Green", cat: "Markers" },
+            { sl: 10, name: "Marker", size: "Orange", cat: "Markers" },
+            { sl: 11, name: "Marker", size: "Blue", cat: "Markers" },
+            { sl: 12, name: "Marker", size: "Yellow", cat: "Markers" },
+            { sl: 13, name: "Marker", size: "Red", cat: "Markers" },
+            { sl: 14, name: "Marker", size: "Black", cat: "Markers" },
+            { sl: 15, name: "Marker", size: "White", cat: "Markers" },
+            { sl: 16, name: "Circle Marker", size: "Green", cat: "Markers" },
+            { sl: 17, name: "Circle Marker", size: "Orange", cat: "Markers" },
+            { sl: 18, name: "Circle Marker", size: "Blue", cat: "Markers" },
+            { sl: 19, name: "Circle Marker", size: "Yellow", cat: "Markers" },
+            { sl: 20, name: "Circle Marker", size: "Red", cat: "Markers" },
+            { sl: 21, name: "Football", size: "3", cat: "Footballs" },
+            { sl: 22, name: "Football", size: "4", cat: "Footballs" },
+            { sl: 23, name: "Football", size: "5", cat: "Footballs" },
+            { sl: 24, name: "Rings", size: "", cat: "Training Equipment" },
+            { sl: 25, name: "Mannequin", size: "", cat: "Training Equipment" },
+            { sl: 26, name: "Hurdles", size: "Large", cat: "Hurdles" },
+            { sl: 27, name: "Hurdles", size: "Medium", cat: "Hurdles" },
+            { sl: 28, name: "Hurdles", size: "Small", cat: "Hurdles" },
+            { sl: 29, name: "Adjustable Hurdles", size: "Green", cat: "Hurdles" },
+            { sl: 30, name: "Adjustable Hurdles", size: "Orange", cat: "Hurdles" },
+            { sl: 31, name: "Agility Ladder", size: "", cat: "Training Equipment" },
+            { sl: 32, name: "Tactical Board", size: "", cat: "Training Equipment" },
+            { sl: 33, name: "First Aid Kit", size: "", cat: "Safety" },
+            { sl: 34, name: "Kids Bibs", size: "Orange", cat: "Bibs" },
+            { sl: 35, name: "Kids Bibs", size: "Green", cat: "Bibs" },
+            { sl: 36, name: "Adult Bibs", size: "Orange", cat: "Bibs" },
+            { sl: 37, name: "Adult Bibs", size: "Green", cat: "Bibs" },
+            { sl: 38, name: "Adult Bibs", size: "Yellow", cat: "Bibs" },
+        ];
+
+        let currentType = 'check';
+        let staffList = JSON.parse(localStorage.getItem('tsa_staff') || '["Coach Ali","Coach Sarah","Admin Omar"]');
+        let gsheetUrl = localStorage.getItem('tsa_gsheet') || 'https://script.google.com/macros/s/AKfycbw6wrQAsJ9qW-8UF7_Oqzs_ppfXVUoASE0gPyoki4J9t1aW5S5_RROSpy70ck3wJSGK6A/exec'; // Example placeholder, will try to post if owner updates it
+
+        function init() {
+            const now = new Date();
+            document.getElementById('hdr-date').textContent = now.toLocaleDateString('en-GB').replace(/\//g, '/').replace(/(\d+)\/(\d+)\/(\d+)/, (m, d, mo, y) => `${d.padStart(2, '0')}/${mo.padStart(2, '0')}/${y}`);
+            document.getElementById('report-date').value = now.toISOString().slice(0, 10);
+            renderInventory();
+            renderStaffList();
+
+            // Check if user is typing a new staff name and save it on blur
+            document.getElementById('staff-name').addEventListener('blur', function (e) {
+                const name = e.target.value.trim();
+                if (name && !staffList.includes(name)) {
+                    staffList.push(name);
+                    localStorage.setItem('tsa_staff', JSON.stringify(staffList));
+                    renderStaffList();
+                }
+            });
+        }
+
+        function renderInventory() {
+            const list = document.getElementById('inv-list');
+            let lastCat = '';
+            let html = '';
+            ITEMS.forEach(item => {
+                if (item.cat !== lastCat) {
+                    html += `<div class="category-label">${item.cat}</div>`;
+                    lastCat = item.cat;
+                }
+                const label = item.size ? `${item.name} <span class="inv-size">${item.size}</span>` : `<span style="margin-bottom:4px">${item.name}</span>`;
+                html += `<div class="inv-row" id="irow-${item.sl}">
+          <span class="inv-sl">${item.sl}</span>
+          <span class="inv-name">${label}</span>
+          <input type="number" min="0" value="" placeholder="—" id="av-${item.sl}" style="display:${currentType === 'missing' || currentType === 'damaged' ? 'none' : 'block'}">
+          <input type="number" min="0" value="" placeholder="—" id="ms-${item.sl}">
+          <input type="number" min="0" value="" placeholder="—" id="dm-${item.sl}">
+          <input type="text" placeholder="Remarks..." id="rm-${item.sl}">
+        </div>`;
+            });
+            list.innerHTML = html;
+        }
+
+        function selectType(type, btn) {
+            currentType = type;
+            document.querySelectorAll('.type-chip').forEach(c => c.className = 'type-chip');
+            btn.classList.add('selected');
+            const avInputs = ITEMS.map(i => document.getElementById(`av-${i.sl}`)).filter(Boolean);
+            avInputs.forEach(inp => inp.style.display = (type === 'missing' || type === 'damaged') ? 'none' : 'block');
+            document.querySelector('.inv-row .col-header:nth-child(3)').textContent = (type === 'missing' || type === 'damaged') ? '' : 'Avail';
+        }
+
+        function renderStaffList() {
+            const datalist = document.getElementById('staff-list');
+            datalist.innerHTML = staffList.map(s => `<option value="${s}">`).join('');
+        }
+
+        function submitReport() {
+            const staff = document.getElementById('staff-name').value.trim();
+            const date = document.getElementById('report-date').value;
+            if (!staff) { alert('Please enter your name before submitting.'); return; }
+            if (!date) { alert('Please select a date.'); return; }
+
+            const items = ITEMS.map(item => ({
+                sl: item.sl,
+                name: item.name,
+                size: item.size,
+                available: parseInt(document.getElementById(`av-${item.sl}`)?.value) || 0,
+                missing: parseInt(document.getElementById(`ms-${item.sl}`)?.value) || 0,
+                damaged: parseInt(document.getElementById(`dm-${item.sl}`)?.value) || 0,
+                remarks: document.getElementById(`rm-${item.sl}`)?.value || ''
+            })).filter(i => i.available || i.missing || i.damaged || i.remarks);
+
+            if (items.length === 0 && !document.getElementById('general-remarks').value) {
+                alert('Please enter at least one item count or a general remark.');
+                return;
+            }
+
+            const payload = {
+                timestamp: new Date().toISOString(),
+                staff,
+                role: document.getElementById('staff-role').value,
+                location: document.getElementById('location').value,
+                reportType: currentType,
+                generalRemarks: document.getElementById('general-remarks').value,
+                items
+            };
+
+            const submitBtn = document.querySelector('.btn-primary');
+            submitBtn.innerHTML = '<i class="ti ti-loader" style="animation: spin 1s linear infinite;"></i> Submitting...';
+            submitBtn.disabled = true;
+
+            // Optional: Still save to local storage for local backups
+            let history = JSON.parse(localStorage.getItem('tsa_inv_history') || '[]');
+            history.unshift(payload);
+            localStorage.setItem('tsa_inv_history', JSON.stringify(history));
+
+            if (gsheetUrl && gsheetUrl.includes('script.google.com')) {
+                fetch(gsheetUrl, {
+                    method: 'POST', mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                }).then(() => {
+                    showToast('Report submitted successfully!');
+                    clearForm();
+                    resetBtn(submitBtn);
+                }).catch(() => {
+                    // even if no-cors fails (network error), we still saved locally.
+                    showToast('Report saved locally! Connect to internet to sync.');
+                    clearForm();
+                    resetBtn(submitBtn);
+                });
+            } else {
+                showToast('Report saved locally!');
+                clearForm();
+                resetBtn(submitBtn);
+            }
+        }
+
+        function resetBtn(btn) {
+            btn.innerHTML = '<i class="ti ti-send" aria-hidden="true"></i> Submit Report';
+            btn.disabled = false;
+        }
+
+        function clearForm() {
+            document.getElementById('staff-name').value = '';
+            document.getElementById('location').value = '';
+            document.getElementById('general-remarks').value = '';
+            ITEMS.forEach(item => {
+                ['av', 'ms', 'dm'].forEach(p => { const el = document.getElementById(`${p}-${item.sl}`); if (el) el.value = ''; });
+                const rm = document.getElementById(`rm-${item.sl}`); if (rm) rm.value = '';
+            });
+        }
+
+        function showToast(msg) {
+            const t = document.getElementById('toast');
+            document.getElementById('toast-msg').textContent = msg;
+            t.classList.add('show');
+            setTimeout(() => t.classList.remove('show'), 3000);
+        }
+
+        // Add a simple spin animation for loading state
+        const style = document.createElement('style');
+        style.innerHTML = `@keyframes spin { 100% { transform: rotate(360deg); } }`;
+        document.head.appendChild(style);
+
+        init();
+    </script>
+</body>
+
+</html>
