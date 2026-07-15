@@ -3011,3 +3011,69 @@ img-gl{
             align-items: center;
             gap: 10px;
         }
+
+/* New Dynamic Styles for Performance & CLS */
+.tsa-nav-register-btn { background:#BEB071;color:#06203D;font-family:'Oswald',sans-serif;font-weight:700;padding:9px 22px;border-radius:50px; }
+.tsa-overview-bg { padding:6rem 0; }
+.tsa-overview-box { max-width:1200px;margin:0 auto;padding:40px 20px;display:flex;flex-direction:column;align-items:center;text-align:center; }
+.tsa-btn-dark { display:inline-flex;align-items:center;background-color:#000;color:#fff;padding:12px 24px;border-radius:5px;text-decoration:none;font-size:16px;font-weight:600;transition:0.3s; }
+.tsa-btn-dark-mt { display:inline-flex;align-items:center;background-color:#000;color:#fff;padding:12px 24px;border-radius:5px;text-decoration:none;font-size:16px;font-weight:600;transition:0.3s; margin-top:30px;}
+.tsa-icon-svg { margin-left:10px;width:16px;height:16px;fill:white; }
+.tsa-seo-bg { background:#fff; padding:4rem 0; }
+.tsa-seo-wrapper { max-width:960px; margin:0 auto; padding:0 20px; color:#2c3e50; line-height:1.85; }
+.tsa-seo-title { font-family:'Oswald',sans-serif; font-size:1.8rem; color:#06203D; margin-bottom:1rem; }
+.tsa-seo-title-mt { font-family:'Oswald',sans-serif; font-size:1.8rem; color:#06203D; margin:2rem 0 1rem; }
+.tsa-seo-p { font-size:1.05rem; margin-bottom:1.2rem; }
+.tsa-seo-p-sm { font-size:1.05rem; margin-bottom:1rem; }
+.tsa-seo-p-mb0 { font-size:1.05rem; margin-bottom:0; }
+.tsa-seo-list { font-size:1.05rem; padding-left:1.5rem; margin-bottom:1.2rem; line-height:2.1; }
+.tsa-seo-link { color:#06203D; font-weight:600; }
+.tsa-seo-link-bold { color:#06203D; font-weight:700; }
+.tsa-testi-bg { padding: 6rem 0; background-color: #f9fafb; }
+.tsa-container-1200 { max-width: 1200px; margin: 0 auto; }
+.mb-1rem { margin-bottom: 1rem; }
+.tsa-rating-box { display: flex; justify-content: center; align-items: center; gap: 10px; margin-bottom: 2rem; }
+.tsa-wh-24 { width: 24px; height: 24px; }
+.tsa-font-rating { font-weight: bold; font-size: 1.2rem; color: #4b5563; }
+.tsa-star-color { color: #fbbf24; }
+.tsa-font-reviews { color: #6b7280; font-size: 0.9rem; }
+.tsa-testi-card-box { background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); height: 100%; text-align: left; position: relative; min-height: 250px; }
+.tsa-testi-google-icon { position: absolute; top: 1.5rem; right: 1.5rem; }
+.tsa-op-50 { width: 20px; opacity: 0.5; }
+.tsa-testi-author { display: flex; align-items: center; margin-bottom: 1rem; }
+.tsa-testi-avatar-1 { width: 40px; height: 40px; background: #06203D; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; margin-right: 10px; }
+.tsa-testi-avatar-2 { width: 40px; height: 40px; background: #BEB071; color: #06203D; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; margin-right: 10px; }
+.tsa-testi-avatar-3 { width: 40px; height: 40px; background: #374151; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; margin-right: 10px; }
+.tsa-testi-name { font-weight: bold; color: #06203D; display: block; }
+.tsa-star-sm { color: #fbbf24; font-size: 0.8rem; }
+.tsa-testi-quote { font-style: italic; color: #4b5563; font-size: 0.95rem; }
+.mt-3rem { margin-top: 3rem; }
+.tsa-google-btn { display: inline-flex; align-items: center; gap: 8px; text-decoration: none; background: white; padding: 10px 20px; border-radius: 50px; border: 1px solid #e5e7eb; color: #4b5563; font-weight: 600; transition: all 0.2s; }
+.tsa-wh-18 { width: 18px; }
+.tsa-training-bg { padding: 6rem 0; display: flex; align-items: center; justify-content: center; }
+.tsa-training-box { max-width: 1200px; margin: 0 auto; padding: 40px 20px; display: flex; flex-direction: column; align-items: flex-start; text-align: left; }
+.tsa-title-start { line-height: 1!important; text-align: start!important; }
+.tsa-training-p { font-size: 18px; max-width: 800px; margin-bottom: 30px; }
+.tsa-tip-box { font-size: 1rem; color: #06203d; background-color: #beb07185; padding: 10px; border-radius: 5px; margin-top: 10px; max-width: 800px; }
+.font-bold { font-weight: bold; }
+.tsa-loc-bg { background-color: #f4f4f4; padding: 60px 20px; }
+.tsa-loc-box { max-width: 1200px; margin: 0 auto; text-align: center; display: flex; flex-direction: column; align-items: center; }
+.tsa-loc-title { font-size: 2.5rem; margin-bottom: 20px; color: #2c3e50; }
+.tsa-loc-p { font-size: 1.2rem; max-width: 800px; margin-bottom: 30px; color: #34495e; }
+.tsa-map-wrap { position: relative; width: 100%; height: 400px; border-radius: 8px; overflow: hidden; }
+.tsa-map-iframe { border:0; width: 100%; height: 100%; }
+.tsa-loc-addr-box { margin-top: 30px; text-align: center; color: #2c3e50; }
+.tsa-loc-addr-p { font-size: 1.1rem; max-width: 800px; margin: 0 auto; }
+.tsa-sticky-cta { position: fixed; bottom: 0; left: 0; width: 100%; z-index: 1000; padding: 10px; background: white; box-shadow: 0 -2px 10px rgba(0,0,0,0.1); border-top: 1px solid #eee; }
+.tsa-sticky-btn { display: block; width: 100%; border-radius: 8px; font-weight: bold; text-align: center; padding: 12px; font-size: 1.1rem; text-decoration: none; background: #BEB071; color: #06203D; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+.tsa-footer-detail-mb10 { margin-bottom: 10px; }
+.tsa-footer-detail-mb0 { margin-bottom: 0; }
+.tsa-ig-embed { background: #FFF; border: 0; border-radius: 12px; box-shadow: 0 15px 35px rgba(0,0,0,0.3); margin: 0; max-width: 400px; min-width: 250px; padding: 0; width: calc(100% - 2px); }
+.tsa-exit-popup-wrap { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 2000; justify-content: center; align-items: center; }
+.tsa-exit-popup-box { background: white; padding: 2rem; border-radius: 12px; max-width: 500px; width: 90%; text-align: center; position: relative; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1); min-height: 200px; }
+.tsa-exit-close { position: absolute; top: 10px; right: 15px; background: none; border: none; font-size: 1.5rem; cursor: pointer; }
+.tsa-exit-icon { font-size: 3rem; margin-bottom: 10px; }
+.tsa-exit-title { color: #06203D; font-weight: bold; margin-bottom: 1rem; }
+.tsa-exit-p { font-size: 1.1rem; color: #4b5563; margin-bottom: 1.5rem; }
+.tsa-exit-btn { display: inline-block; background: #BEB071; color: #06203D; padding: 12px 30px; font-weight: bold; text-decoration: none; border-radius: 8px; font-size: 1.1rem; width: 100%; }
+.tsa-exit-p-sm { margin-top: 1rem; font-size: 0.85rem; color: #9ca3af; }
