@@ -54,6 +54,9 @@ Crawl-delay: 1
 User-agent: GPTBot
 Allow: /
 
+User-agent: OAI-SearchBot
+Allow: /
+
 User-agent: ChatGPT-User
 Allow: /
 
@@ -70,6 +73,9 @@ User-agent: PerplexityBot
 Allow: /
 
 User-agent: Gemini-Bot
+Allow: /
+
+User-agent: cohere-ai
 Allow: /
 
 # Social Media Bots (for link previews)

@@ -217,14 +217,14 @@ Optimize ALL program pages with:
 ## 📱 QUICK CONTACT OPTIMIZATION
 
 ### Make Sure These Are Clickable Everywhere:
-- ✅ Phone: +971 58 569 8277 (click-to-call)
+- ✅ Phone: +971 56 130 0850 (click-to-call)
 - ✅ WhatsApp: Link to WhatsApp chat
 - ✅ Email: touchlinedxb@gmail.com
 - ✅ Location: Google Maps links
 
 ### Add These CTAs on Every Page:
 - "Book Free Trial"
-- "Call Now: +971 58 569 8277"
+- "Call Now: +971 56 130 0850"
 - "WhatsApp Us"
 - "Get Directions"
 

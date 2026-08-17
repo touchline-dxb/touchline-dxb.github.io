@@ -1,615 +1,810 @@
 <!doctype html>
 <html lang="en">
+
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Touchline — Player of the Day Poster Generator</title>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --bg1: #052244;
-    --bg2: #0b3b72;
-    --accent: #1b66c4;
-    --muted: #9fb7dd;
-    --card: #0e2336;
-    --white: #ffffff;
-  }
-  *{box-sizing:border-box}
-  html,body{height:100%; margin:0; font-family:Poppins,system-ui, -apple-system, "Segoe UI", Roboto, Arial; background: linear-gradient(180deg,#041a36 0%, #081a2b 100%);}
-  .app{max-width:1200px; margin:18px auto; display:flex; gap:18px; padding:14px; align-items:flex-start;}
-  .panel{width:360px; min-width:280px; background:rgba(255,255,255,0.03); border-radius:12px; padding:16px; color:var(--white); box-shadow:0 8px 30px rgba(0,0,0,0.6); display:flex; flex-direction:column; gap:10px;}
-  .panel h2{font-family:Montserrat, sans-serif; font-size:18px; margin:0 0 4px}
-  label{font-size:13px; color:var(--muted); display:block; margin-top:8px}
-  input[type="text"], select, .file-drop, button, input[type="range"]{width:100%}
-  .file-drop{background:rgba(255,255,255,0.02); padding:10px; border-radius:8px; text-align:center; position:relative; cursor:pointer; color:var(--muted)}
-  .file-drop input{position:absolute; inset:0; width:100%; height:100%; opacity:0; cursor:pointer}
-  .row{display:flex; gap:8px}
-  .half{flex:1}
-  .btn{background:var(--accent); color:white; border:0; padding:10px; border-radius:8px; cursor:pointer; font-weight:700}
-  .ghost{background:transparent; border:1px solid rgba(255,255,255,0.06)}
-  .muted{color:var(--muted); font-size:13px}
-  .small{font-size:12px;color:var(--muted)}
-  .control-group{background:rgba(255,255,255,0.015); padding:10px; border-radius:8px; margin-top:8px}
-  .stage{flex:1; display:flex; flex-direction:column; align-items:center; gap:12px}
-  .canvas-card{background:linear-gradient(180deg,var(--card), #05213a); padding:14px; border-radius:12px; box-shadow:0 14px 40px rgba(2,8,20,0.6); width:100%; max-width:820px}
-  .preview-outer{width:100%; aspect-ratio:1/1; background:transparent; border-radius:10px; overflow:hidden; position:relative; display:block}
-  canvas#poster{width:100%; height:100%; display:block; background:transparent}
-  .bottom-controls{display:flex; gap:8px; justify-content:space-between; align-items:center; margin-top:6px}
-  .right-controls{display:flex; gap:8px; align-items:center}
-  @media (max-width:980px){ .app{flex-direction:column; padding:10px} .panel{width:100%; order:2} .canvas-card{order:1; width:100%} }
-  .badge{display:inline-block; background:var(--accent); color:white; padding:6px 10px; border-radius:6px; font-weight:700}
-  .muted-note{font-size:12px;color:var(--muted); margin-top:6px}
-  .file-preview{display:flex;gap:8px;align-items:center}
-  .file-preview img{width:48px;height:48px;border-radius:6px;object-fit:cover;border:2px solid rgba(255,255,255,0.04)}
-  select{padding:10px; border-radius:8px; background:rgba(255,255,255,0.02); border:0; color:var(--white)}
-</style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Touchline — Player of the Day Poster Generator</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Poppins:wght@400;600;700&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg1: #052244;
+      --bg2: #0b3b72;
+      --accent: #1b66c4;
+      --muted: #9fb7dd;
+      --card: #0e2336;
+      --white: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box
+    }
+
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      font-family: Poppins, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+      background: linear-gradient(180deg, #041a36 0%, #081a2b 100%);
+    }
+
+    .app {
+      max-width: 1200px;
+      margin: 18px auto;
+      display: flex;
+      gap: 18px;
+      padding: 14px;
+      align-items: flex-start;
+    }
+
+    .panel {
+      width: 360px;
+      min-width: 280px;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 12px;
+      padding: 16px;
+      color: var(--white);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .panel h2 {
+      font-family: Montserrat, sans-serif;
+      font-size: 18px;
+      margin: 0 0 4px
+    }
+
+    label {
+      font-size: 13px;
+      color: var(--muted);
+      display: block;
+      margin-top: 8px
+    }
+
+    input[type="text"],
+    select,
+    .file-drop,
+    button,
+    input[type="range"] {
+      width: 100%
+    }
+
+    .file-drop {
+      background: rgba(255, 255, 255, 0.02);
+      padding: 10px;
+      border-radius: 8px;
+      text-align: center;
+      position: relative;
+      cursor: pointer;
+      color: var(--muted)
+    }
+
+    .file-drop input {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      cursor: pointer
+    }
+
+    .row {
+      display: flex;
+      gap: 8px
+    }
+
+    .half {
+      flex: 1
+    }
+
+    .btn {
+      background: var(--accent);
+      color: white;
+      border: 0;
+      padding: 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 700
+    }
+
+    .ghost {
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.06)
+    }
+
+    .muted {
+      color: var(--muted);
+      font-size: 13px
+    }
+
+    .small {
+      font-size: 12px;
+      color: var(--muted)
+    }
+
+    .control-group {
+      background: rgba(255, 255, 255, 0.015);
+      padding: 10px;
+      border-radius: 8px;
+      margin-top: 8px
+    }
+
+    .stage {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px
+    }
+
+    .canvas-card {
+      background: linear-gradient(180deg, var(--card), #05213a);
+      padding: 14px;
+      border-radius: 12px;
+      box-shadow: 0 14px 40px rgba(2, 8, 20, 0.6);
+      width: 100%;
+      max-width: 820px
+    }
+
+    .preview-outer {
+      width: 100%;
+      aspect-ratio: 1/1;
+      background: transparent;
+      border-radius: 10px;
+      overflow: hidden;
+      position: relative;
+      display: block
+    }
+
+    canvas#poster {
+      width: 100%;
+      height: 100%;
+      display: block;
+      background: transparent
+    }
+
+    .bottom-controls {
+      display: flex;
+      gap: 8px;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 6px
+    }
+
+    .right-controls {
+      display: flex;
+      gap: 8px;
+      align-items: center
+    }
+
+    @media (max-width:980px) {
+      .app {
+        flex-direction: column;
+        padding: 10px
+      }
+
+      .panel {
+        width: 100%;
+        order: 2
+      }
+
+      .canvas-card {
+        order: 1;
+        width: 100%
+      }
+    }
+
+    .badge {
+      display: inline-block;
+      background: var(--accent);
+      color: white;
+      padding: 6px 10px;
+      border-radius: 6px;
+      font-weight: 700
+    }
+
+    .muted-note {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 6px
+    }
+
+    .file-preview {
+      display: flex;
+      gap: 8px;
+      align-items: center
+    }
+
+    .file-preview img {
+      width: 48px;
+      height: 48px;
+      border-radius: 6px;
+      object-fit: cover;
+      border: 2px solid rgba(255, 255, 255, 0.04)
+    }
+
+    select {
+      padding: 10px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 0;
+      color: var(--white)
+    }
+  </style>
 </head>
+
 <body>
-<div class="app" role="application" aria-label="Touchline poster generator">
+  <div class="app" role="application" aria-label="Touchline poster generator">
 
-  <aside class="panel" aria-label="Controls">
-    <h2>Poster Generator — Touchline</h2>
-    <div class="muted">Template: <span class="badge">Player of the Day</span></div>
+    <aside class="panel" aria-label="Controls">
+      <h2>Poster Generator — Touchline</h2>
+      <div class="muted">Template: <span class="badge">Player of the Day</span></div>
 
-    <label>Background</label>
-    <select id="bgSelect" aria-label="Background selector">
-      <option value="touchline">Touchline Blue (default)</option>
-      <option value="red">Red Energy</option>
-      <option value="gold">Gold Champion</option>
-      <option value="green">Green Victory</option>
-      <option value="upload">Upload Custom Background…</option>
-    </select>
-    <div class="file-drop" id="bgDrop" style="display:none">Drop background image here
-      <input id="bgFile" type="file" accept="image/*">
-    </div>
-
-    <label>Team photo (main)</label>
-    <div class="file-drop" id="teamDrop">Click or drag & drop team photo
-      <input id="teamFile" type="file" accept="image/*">
-    </div>
-
-    <label>Player portrait</label>
-    <div class="file-drop" id="playerDrop">Click or drag & drop player portrait
-      <input id="playerFile" type="file" accept="image/*">
-    </div>
-
-    <label>Logo (optional)</label>
-    <div class="file-drop" id="logoDrop">Upload logo
-      <input id="logoFile" type="file" accept="image/*">
-    </div>
-
-    <div class="control-group">
-      <label>Player name</label>
-      <input id="playerName" type="text" value="EZAAAN" />
-
-      <label>Age group (badge)</label>
-      <input id="ageLabel" type="text" value="UNDER 11" />
-
-      <div class="row">
-        <div class="half">
-          <label>Date</label>
-          <input id="dateField" type="text" value="07 - NOVEMBER - 2025" />
-        </div>
-        <div class="half">
-          <label>Academy</label>
-          <input id="academy" type="text" value="TOUCHLINE FOOTBALL ACADEMY" />
-        </div>
-      </div>
-    </div>
-
-    <div class="control-group">
-      <div class="inline-label">Team photo: zoom</div>
-      <input id="teamZoom" type="range" min="0.2" max="4" step="0.01" value="1">
-      <div style="height:8px"></div>
-      <div class="inline-label">Player portrait: zoom</div>
-      <input id="playerZoom" type="range" min="0.2" max="6" step="0.01" value="1">
-      <div style="height:8px"></div>
-
-      <div class="row">
-        <div class="half"><button id="teamReset" class="btn ghost">Reset Team</button></div>
-        <div class="half"><button id="playerReset" class="btn ghost">Reset Player</button></div>
+      <label>Background</label>
+      <select id="bgSelect" aria-label="Background selector">
+        <option value="touchline">Touchline Blue (default)</option>
+        <option value="red">Red Energy</option>
+        <option value="gold">Gold Champion</option>
+        <option value="green">Green Victory</option>
+        <option value="upload">Upload Custom Background…</option>
+      </select>
+      <div class="file-drop" id="bgDrop" style="display:none">Drop background image here
+        <input id="bgFile" type="file" accept="image/*">
       </div>
 
-      <div style="height:8px"></div>
-      <label class="small">Effects</label>
-      <div class="row">
-        <button id="toggleHalftone" class="btn ghost">Halftone</button>
-        <button id="toggleCircuit" class="btn ghost">Accents</button>
-      </div>
-    </div>
-
-    <div style="margin-top:10px; display:flex; gap:8px">
-      <button id="update" class="btn">Update Preview</button>
-      <button id="export" class="btn ghost">Export PNG</button>
-    </div>
-
-    <div class="muted-note">Tip: Drag images inside the poster preview to reposition. Use zoom sliders to scale. Choose a background from the dropdown or upload your own.</div>
-  </aside>
-
-  <main class="stage" aria-label="Poster preview">
-    <div class="canvas-card">
-      <div class="preview-outer" id="previewWrap" title="Drag to move images, pinch to zoom">
-        <canvas id="poster" width="760" height="760" aria-label="Poster canvas"></canvas>
+      <label>Team photo (main)</label>
+      <div class="file-drop" id="teamDrop">Click or drag & drop team photo
+        <input id="teamFile" type="file" accept="image/*">
       </div>
 
-      <div class="bottom-controls">
-        <div class="small">Preview (interactive)</div>
-        <div class="right-controls">
-          <button id="fitTeam" class="btn ghost">Fit Team</button>
-          <button id="fitPlayer" class="btn ghost">Fit Player</button>
+      <label>Player portrait</label>
+      <div class="file-drop" id="playerDrop">Click or drag & drop player portrait
+        <input id="playerFile" type="file" accept="image/*">
+      </div>
+
+      <label>Logo (optional)</label>
+      <div class="file-drop" id="logoDrop">Upload logo
+        <input id="logoFile" type="file" accept="image/*">
+      </div>
+
+      <div class="control-group">
+        <label>Player name</label>
+        <input id="playerName" type="text" value="EZAAAN" />
+
+        <label>Age group (badge)</label>
+        <input id="ageLabel" type="text" value="UNDER 11" />
+
+        <div class="row">
+          <div class="half">
+            <label>Date</label>
+            <input id="dateField" type="text" value="07 - NOVEMBER - 2025" />
+          </div>
+          <div class="half">
+            <label>Academy</label>
+            <input id="academy" type="text" value="TOUCHLINE FOOTBALL ACADEMY" />
+          </div>
         </div>
       </div>
-    </div>
-  </main>
 
-</div>
+      <div class="control-group">
+        <div class="inline-label">Team photo: zoom</div>
+        <input id="teamZoom" type="range" min="0.2" max="4" step="0.01" value="1">
+        <div style="height:8px"></div>
+        <div class="inline-label">Player portrait: zoom</div>
+        <input id="playerZoom" type="range" min="0.2" max="6" step="0.01" value="1">
+        <div style="height:8px"></div>
 
-<script>
-/* ------------------------
-   Fixed Poster Generator
-   - All drawing functions now accept a ctx parameter (no reassigning const)
-   - Export redraws to a temporary high-res canvas and downloads it
-   - Minor positioning fixes (academy centered) and safe default logo behavior
-   ------------------------ */
+        <div class="row">
+          <div class="half"><button id="teamReset" class="btn ghost">Reset Team</button></div>
+          <div class="half"><button id="playerReset" class="btn ghost">Reset Player</button></div>
+        </div>
 
-const DEFAULT_BG_URL = 'templates/WINNER (2).png';
-const CANVAS_PX = 760, EXPORT_PX = 2400;
+        <div style="height:8px"></div>
+        <label class="small">Effects</label>
+        <div class="row">
+          <button id="toggleHalftone" class="btn ghost">Halftone</button>
+          <button id="toggleCircuit" class="btn ghost">Accents</button>
+        </div>
+      </div>
 
-const canvas = document.getElementById('poster');
-canvas.width = CANVAS_PX; canvas.height = CANVAS_PX;
-const ctx = canvas.getContext('2d', { alpha:false });
+      <div style="margin-top:10px; display:flex; gap:8px">
+        <button id="update" class="btn">Update Preview</button>
+        <button id="export" class="btn ghost">Export PNG</button>
+      </div>
 
-/* DOM */
-const bgSelect = document.getElementById('bgSelect'), bgDrop = document.getElementById('bgDrop'), bgFile = document.getElementById('bgFile');
-const teamFile = document.getElementById('teamFile'), teamDrop = document.getElementById('teamDrop');
-const playerFile = document.getElementById('playerFile'), playerDrop = document.getElementById('playerDrop');
-const logoFile = document.getElementById('logoFile'), logoDrop = document.getElementById('logoDrop');
-const playerNameEl = document.getElementById('playerName'), ageLabel = document.getElementById('ageLabel');
-const dateField = document.getElementById('dateField'), academy = document.getElementById('academy');
-const teamZoom = document.getElementById('teamZoom'), playerZoom = document.getElementById('playerZoom');
-const teamReset = document.getElementById('teamReset'), playerReset = document.getElementById('playerReset');
-const updateBtn = document.getElementById('update'), exportBtn = document.getElementById('export');
-const fitTeam = document.getElementById('fitTeam'), fitPlayer = document.getElementById('fitPlayer');
-const toggleHalftone = document.getElementById('toggleHalftone'), toggleCircuit = document.getElementById('toggleCircuit');
+      <div class="muted-note">Tip: Drag images inside the poster preview to reposition. Use zoom sliders to scale.
+        Choose a background from the dropdown or upload your own.</div>
+    </aside>
 
-const state = {
-  backgroundType: 'touchline',
-  backgroundImg: null,
-  templateImg: null,
-  team: { img:null, x: CANVAS_PX*0.5, y: CANVAS_PX*0.32, scale:1, min:0.2, max:6, dragging:false, last:{x:0,y:0} },
-  player: { img:null, x: CANVAS_PX*0.79, y: CANVAS_PX*0.63, scale:1, min:0.2, max:6, dragging:false, last:{x:0,y:0} },
-  logo: { img:null },
-  pointers: {},
-  effects: { halftone:true, circuit:true }
-};
+    <main class="stage" aria-label="Poster preview">
+      <div class="canvas-card">
+        <div class="preview-outer" id="previewWrap" title="Drag to move images, pinch to zoom">
+          <canvas id="poster" width="760" height="760" aria-label="Poster canvas"></canvas>
+        </div>
 
-const FRAMES = {
-  team: { x:44, y:140, w:520, h:320, r:22 },
-  player: { x:560, y:500, w:200, h:240, r:14, angle:10 }
-};
+        <div class="bottom-controls">
+          <div class="small">Preview (interactive)</div>
+          <div class="right-controls">
+            <button id="fitTeam" class="btn ghost">Fit Team</button>
+            <button id="fitPlayer" class="btn ghost">Fit Player</button>
+          </div>
+        </div>
+      </div>
+    </main>
 
-/* load default template background (Touchline Blue) */
-(function loadDefaultBg(){
-  const img = new Image();
-  img.crossOrigin = 'anonymous';
-  img.onload = ()=> { state.templateImg = img; draw(ctx); };
-  img.onerror = ()=> { state.templateImg = null; draw(ctx); };
-  img.src = DEFAULT_BG_URL;
-})();
+  </div>
 
-/* file -> image helper */
-function fileToImage(file, cb){
-  const r = new FileReader();
-  r.onload = e => { const img = new Image(); img.onload = ()=> cb(img); img.src = e.target.result; };
-  r.readAsDataURL(file);
-}
+  <script>
+    /* ------------------------
+       Fixed Poster Generator
+       - All drawing functions now accept a ctx parameter (no reassigning const)
+       - Export redraws to a temporary high-res canvas and downloads it
+       - Minor positioning fixes (academy centered) and safe default logo behavior
+       ------------------------ */
 
-/* wire inputs and drop areas */
-function setupDropArea(el, key){
-  ['dragenter','dragover','dragleave','drop'].forEach(ev => el.addEventListener(ev, e => e.preventDefault()));
-  el.addEventListener('drop', e=>{
-    const f = e.dataTransfer.files && e.dataTransfer.files[0];
-    if(!f) return;
-    fileToImage(f, img=>{
-      if(key==='team') { state.team.img = img; fitLayer('team'); }
-      if(key==='player') { state.player.img = img; fitLayer('player'); }
-      if(key==='logo') { state.logo.img = img; }
-      if(key==='bg') { state.backgroundImg = img; state.backgroundType = 'custom'; bgSelect.value = 'upload'; bgDrop.style.display='none'; }
+    const DEFAULT_BG_URL = 'templates/WINNER (2).png';
+    const CANVAS_PX = 760, EXPORT_PX = 2400;
+
+    const canvas = document.getElementById('poster');
+    canvas.width = CANVAS_PX; canvas.height = CANVAS_PX;
+    const ctx = canvas.getContext('2d', { alpha: false });
+
+    /* DOM */
+    const bgSelect = document.getElementById('bgSelect'), bgDrop = document.getElementById('bgDrop'), bgFile = document.getElementById('bgFile');
+    const teamFile = document.getElementById('teamFile'), teamDrop = document.getElementById('teamDrop');
+    const playerFile = document.getElementById('playerFile'), playerDrop = document.getElementById('playerDrop');
+    const logoFile = document.getElementById('logoFile'), logoDrop = document.getElementById('logoDrop');
+    const playerNameEl = document.getElementById('playerName'), ageLabel = document.getElementById('ageLabel');
+    const dateField = document.getElementById('dateField'), academy = document.getElementById('academy');
+    const teamZoom = document.getElementById('teamZoom'), playerZoom = document.getElementById('playerZoom');
+    const teamReset = document.getElementById('teamReset'), playerReset = document.getElementById('playerReset');
+    const updateBtn = document.getElementById('update'), exportBtn = document.getElementById('export');
+    const fitTeam = document.getElementById('fitTeam'), fitPlayer = document.getElementById('fitPlayer');
+    const toggleHalftone = document.getElementById('toggleHalftone'), toggleCircuit = document.getElementById('toggleCircuit');
+
+    const state = {
+      backgroundType: 'touchline',
+      backgroundImg: null,
+      templateImg: null,
+      team: { img: null, x: CANVAS_PX * 0.5, y: CANVAS_PX * 0.32, scale: 1, min: 0.2, max: 6, dragging: false, last: { x: 0, y: 0 } },
+      player: { img: null, x: CANVAS_PX * 0.79, y: CANVAS_PX * 0.63, scale: 1, min: 0.2, max: 6, dragging: false, last: { x: 0, y: 0 } },
+      logo: { img: null },
+      pointers: {},
+      effects: { halftone: true, circuit: true }
+    };
+
+    const FRAMES = {
+      team: { x: 44, y: 140, w: 520, h: 320, r: 22 },
+      player: { x: 560, y: 500, w: 200, h: 240, r: 14, angle: 10 }
+    };
+
+    /* load default template background (Touchline Blue) */
+    (function loadDefaultBg() {
+      const img = new Image();
+      img.crossOrigin = 'anonymous';
+      img.onload = () => { state.templateImg = img; draw(ctx); };
+      img.onerror = () => { state.templateImg = null; draw(ctx); };
+      img.src = DEFAULT_BG_URL;
+    })();
+
+    /* file -> image helper */
+    function fileToImage(file, cb) {
+      const r = new FileReader();
+      r.onload = e => { const img = new Image(); img.onload = () => cb(img); img.src = e.target.result; };
+      r.readAsDataURL(file);
+    }
+
+    /* wire inputs and drop areas */
+    function setupDropArea(el, key) {
+      ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(ev => el.addEventListener(ev, e => e.preventDefault()));
+      el.addEventListener('drop', e => {
+        const f = e.dataTransfer.files && e.dataTransfer.files[0];
+        if (!f) return;
+        fileToImage(f, img => {
+          if (key === 'team') { state.team.img = img; fitLayer('team'); }
+          if (key === 'player') { state.player.img = img; fitLayer('player'); }
+          if (key === 'logo') { state.logo.img = img; }
+          if (key === 'bg') { state.backgroundImg = img; state.backgroundType = 'custom'; bgSelect.value = 'upload'; bgDrop.style.display = 'none'; }
+          draw(ctx);
+        });
+      });
+    }
+    setupDropArea(teamDrop, 'team'); setupDropArea(playerDrop, 'player'); setupDropArea(logoDrop, 'logo'); setupDropArea(bgDrop, 'bg');
+
+    /* file inputs */
+    teamFile.addEventListener('change', e => { const f = e.target.files[0]; if (!f) return; fileToImage(f, img => { state.team.img = img; fitLayer('team'); draw(ctx); }); });
+    playerFile.addEventListener('change', e => { const f = e.target.files[0]; if (!f) return; fileToImage(f, img => { state.player.img = img; fitLayer('player'); draw(ctx); }); });
+    logoFile.addEventListener('change', e => { const f = e.target.files[0]; if (!f) return; fileToImage(f, img => { state.logo.img = img; draw(ctx); }); });
+    bgFile.addEventListener('change', e => { const f = e.target.files[0]; if (!f) return; fileToImage(f, img => { state.backgroundImg = img; state.backgroundType = 'custom'; bgDrop.style.display = 'none'; bgSelect.value = 'upload'; draw(ctx); }); });
+
+    bgSelect.addEventListener('change', () => {
+      const v = bgSelect.value;
+      if (v === 'upload') { bgDrop.style.display = 'block'; state.backgroundType = 'custom'; }
+      else { bgDrop.style.display = 'none'; state.backgroundType = v; }
       draw(ctx);
     });
-  });
-}
-setupDropArea(teamDrop,'team'); setupDropArea(playerDrop,'player'); setupDropArea(logoDrop,'logo'); setupDropArea(bgDrop,'bg');
 
-/* file inputs */
-teamFile.addEventListener('change', e=>{ const f=e.target.files[0]; if(!f) return; fileToImage(f,img=>{ state.team.img=img; fitLayer('team'); draw(ctx); });});
-playerFile.addEventListener('change', e=>{ const f=e.target.files[0]; if(!f) return; fileToImage(f,img=>{ state.player.img=img; fitLayer('player'); draw(ctx); });});
-logoFile.addEventListener('change', e=>{ const f=e.target.files[0]; if(!f) return; fileToImage(f,img=>{ state.logo.img=img; draw(ctx); });});
-bgFile.addEventListener('change', e=>{ const f=e.target.files[0]; if(!f) return; fileToImage(f,img=>{ state.backgroundImg = img; state.backgroundType = 'custom'; bgDrop.style.display='none'; bgSelect.value='upload'; draw(ctx); });});
+    /* fit layer (cover) */
+    function fitLayer(which) {
+      const layer = which === 'team' ? state.team : state.player;
+      const frame = which === 'team' ? FRAMES.team : FRAMES.player;
+      if (!layer.img) return;
+      const sx = frame.w / layer.img.width;
+      const sy = frame.h / layer.img.height;
+      const s = Math.max(sx, sy);
+      layer.scale = s;
+      layer.x = frame.x + frame.w / 2;
+      layer.y = frame.y + frame.h / 2;
+      if (which === 'team') teamZoom.value = layer.scale;
+      else playerZoom.value = layer.scale;
+    }
 
-bgSelect.addEventListener('change', ()=>{
-  const v = bgSelect.value;
-  if(v==='upload'){ bgDrop.style.display = 'block'; state.backgroundType = 'custom'; }
-  else { bgDrop.style.display = 'none'; state.backgroundType = v; }
-  draw(ctx);
-});
+    /* resets */
+    teamReset.addEventListener('click', () => { state.team.scale = 1; state.team.x = CANVAS_PX * 0.5; state.team.y = CANVAS_PX * 0.32; teamZoom.value = state.team.scale; draw(ctx); });
+    playerReset.addEventListener('click', () => { state.player.scale = 1; state.player.x = CANVAS_PX * 0.79; state.player.y = CANVAS_PX * 0.63; playerZoom.value = state.player.scale; draw(ctx); });
+    fitTeam.addEventListener('click', () => { fitLayer('team'); draw(ctx); });
+    fitPlayer.addEventListener('click', () => { fitLayer('player'); draw(ctx); });
 
-/* fit layer (cover) */
-function fitLayer(which){
-  const layer = which==='team'? state.team : state.player;
-  const frame = which==='team'? FRAMES.team : FRAMES.player;
-  if(!layer.img) return;
-  const sx = frame.w / layer.img.width;
-  const sy = frame.h / layer.img.height;
-  const s = Math.max(sx, sy);
-  layer.scale = s;
-  layer.x = frame.x + frame.w/2;
-  layer.y = frame.y + frame.h/2;
-  if(which==='team') teamZoom.value = layer.scale;
-  else playerZoom.value = layer.scale;
-}
+    teamZoom.addEventListener('input', () => { state.team.scale = parseFloat(teamZoom.value); draw(ctx); });
+    playerZoom.addEventListener('input', () => { state.player.scale = parseFloat(playerZoom.value); draw(ctx); });
 
-/* resets */
-teamReset.addEventListener('click', ()=>{ state.team.scale=1; state.team.x=CANVAS_PX*0.5; state.team.y=CANVAS_PX*0.32; teamZoom.value=state.team.scale; draw(ctx); });
-playerReset.addEventListener('click', ()=>{ state.player.scale=1; state.player.x=CANVAS_PX*0.79; state.player.y=CANVAS_PX*0.63; playerZoom.value=state.player.scale; draw(ctx); });
-fitTeam.addEventListener('click', ()=>{ fitLayer('team'); draw(ctx); });
-fitPlayer.addEventListener('click', ()=>{ fitLayer('player'); draw(ctx); });
+    toggleHalftone.addEventListener('click', () => { state.effects.halftone = !state.effects.halftone; toggleHalftone.classList.toggle('btn'); draw(ctx); });
+    toggleCircuit.addEventListener('click', () => { state.effects.circuit = !state.effects.circuit; toggleCircuit.classList.toggle('btn'); draw(ctx); });
 
-teamZoom.addEventListener('input', ()=>{ state.team.scale = parseFloat(teamZoom.value); draw(ctx); });
-playerZoom.addEventListener('input', ()=>{ state.player.scale = parseFloat(playerZoom.value); draw(ctx); });
+    updateBtn.addEventListener('click', () => draw(ctx));
 
-toggleHalftone.addEventListener('click', ()=>{ state.effects.halftone = !state.effects.halftone; toggleHalftone.classList.toggle('btn'); draw(ctx); });
-toggleCircuit.addEventListener('click', ()=>{ state.effects.circuit = !state.effects.circuit; toggleCircuit.classList.toggle('btn'); draw(ctx); });
-
-updateBtn.addEventListener('click', ()=>draw(ctx));
-
-/* pointer interactions */
-let active = null;
-function getPointerPos(evt){
-  const r = canvas.getBoundingClientRect();
-  return { x: (evt.clientX - r.left) * (canvas.width / r.width), y: (evt.clientY - r.top) * (canvas.height / r.height) };
-}
-canvas.addEventListener('pointerdown', ev=>{
-  ev.preventDefault();
-  canvas.setPointerCapture && canvas.setPointerCapture(ev.pointerId);
-  state.pointers[ev.pointerId] = {x:ev.clientX, y:ev.clientY};
-  const p = getPointerPos(ev);
-  const pf = FRAMES.player, tf = FRAMES.team;
-  if(pointInParallelogram(p.x,p.y,pf)){ active = state.player; active.dragging=true; active.last={x:p.x,y:p.y}; return; }
-  if(pointInRect(p.x,p.y,tf)){ active = state.team; active.dragging=true; active.last={x:p.x,y:p.y}; return; }
-  active = null;
-});
-canvas.addEventListener('pointermove', ev=>{
-  state.pointers[ev.pointerId] = {x:ev.clientX, y:ev.clientY};
-  const keys = Object.keys(state.pointers);
-  if(keys.length===2){
-    const a = state.pointers[keys[0]], b = state.pointers[keys[1]];
-    const dist = Math.hypot(a.x-b.x, a.y-b.y);
-    if(state._lastPinchDist){
-      const delta = dist - state._lastPinchDist;
-      const factor = 1 + delta/250;
-      const mid = {x:(a.x+b.x)/2, y:(a.y+b.y)/2};
+    /* pointer interactions */
+    let active = null;
+    function getPointerPos(evt) {
       const r = canvas.getBoundingClientRect();
-      const midC = {x:(mid.x - r.left)*(canvas.width/r.width), y:(mid.y - r.top)*(canvas.height/r.height)};
-      if(pointInParallelogram(midC.x, midC.y, FRAMES.player)){
-        const old = state.player.scale;
-        state.player.scale = Math.max(state.player.min, Math.min(state.player.max, state.player.scale * factor));
-        const mx = midC.x, my = midC.y;
-        const sx = (mx - state.player.x) * (state.player.scale/old - 1);
-        const sy = (my - state.player.y) * (state.player.scale/old - 1);
-        state.player.x -= sx; state.player.y -= sy; playerZoom.value = state.player.scale;
-      } else {
-        const old = state.team.scale;
-        state.team.scale = Math.max(state.team.min, Math.min(state.team.max, state.team.scale * factor));
-        const mx = midC.x, my = midC.y;
-        const sx = (mx - state.team.x) * (state.team.scale/old - 1);
-        const sy = (my - state.team.y) * (state.team.scale/old - 1);
-        state.team.x -= sx; state.team.y -= sy; teamZoom.value = state.team.scale;
+      return { x: (evt.clientX - r.left) * (canvas.width / r.width), y: (evt.clientY - r.top) * (canvas.height / r.height) };
+    }
+    canvas.addEventListener('pointerdown', ev => {
+      ev.preventDefault();
+      canvas.setPointerCapture && canvas.setPointerCapture(ev.pointerId);
+      state.pointers[ev.pointerId] = { x: ev.clientX, y: ev.clientY };
+      const p = getPointerPos(ev);
+      const pf = FRAMES.player, tf = FRAMES.team;
+      if (pointInParallelogram(p.x, p.y, pf)) { active = state.player; active.dragging = true; active.last = { x: p.x, y: p.y }; return; }
+      if (pointInRect(p.x, p.y, tf)) { active = state.team; active.dragging = true; active.last = { x: p.x, y: p.y }; return; }
+      active = null;
+    });
+    canvas.addEventListener('pointermove', ev => {
+      state.pointers[ev.pointerId] = { x: ev.clientX, y: ev.clientY };
+      const keys = Object.keys(state.pointers);
+      if (keys.length === 2) {
+        const a = state.pointers[keys[0]], b = state.pointers[keys[1]];
+        const dist = Math.hypot(a.x - b.x, a.y - b.y);
+        if (state._lastPinchDist) {
+          const delta = dist - state._lastPinchDist;
+          const factor = 1 + delta / 250;
+          const mid = { x: (a.x + b.x) / 2, y: (a.y + b.y) / 2 };
+          const r = canvas.getBoundingClientRect();
+          const midC = { x: (mid.x - r.left) * (canvas.width / r.width), y: (mid.y - r.top) * (canvas.height / r.height) };
+          if (pointInParallelogram(midC.x, midC.y, FRAMES.player)) {
+            const old = state.player.scale;
+            state.player.scale = Math.max(state.player.min, Math.min(state.player.max, state.player.scale * factor));
+            const mx = midC.x, my = midC.y;
+            const sx = (mx - state.player.x) * (state.player.scale / old - 1);
+            const sy = (my - state.player.y) * (state.player.scale / old - 1);
+            state.player.x -= sx; state.player.y -= sy; playerZoom.value = state.player.scale;
+          } else {
+            const old = state.team.scale;
+            state.team.scale = Math.max(state.team.min, Math.min(state.team.max, state.team.scale * factor));
+            const mx = midC.x, my = midC.y;
+            const sx = (mx - state.team.x) * (state.team.scale / old - 1);
+            const sy = (my - state.team.y) * (state.team.scale / old - 1);
+            state.team.x -= sx; state.team.y -= sy; teamZoom.value = state.team.scale;
+          }
+          draw(ctx);
+        }
+        state._lastPinchDist = dist;
+        return;
       }
+
+      if (!active || !active.dragging) return;
+      const p = getPointerPos(ev);
+      const dx = p.x - active.last.x, dy = p.y - active.last.y;
+      active.x += dx; active.y += dy; active.last = { x: p.x, y: p.y };
       draw(ctx);
+    });
+    canvas.addEventListener('pointerup', ev => {
+      delete state.pointers[ev.pointerId];
+      if (Object.keys(state.pointers).length < 2) state._lastPinchDist = null;
+      if (active) active.dragging = false; active = null;
+      canvas.releasePointerCapture && canvas.releasePointerCapture(ev.pointerId);
+    });
+    canvas.addEventListener('wheel', ev => {
+      ev.preventDefault();
+      const p = getPointerPos(ev);
+      if (pointInParallelogram(p.x, p.y, FRAMES.player)) {
+        const delta = -ev.deltaY * 0.0015;
+        const old = state.player.scale;
+        state.player.scale = Math.max(state.player.min, Math.min(state.player.max, state.player.scale * (1 + delta)));
+        const mx = p.x, my = p.y;
+        const sx = (mx - state.player.x) * (state.player.scale / old - 1);
+        const sy = (my - state.player.y) * (state.player.scale / old - 1);
+        state.player.x -= sx; state.player.y -= sy; playerZoom.value = state.player.scale;
+        draw(ctx);
+      } else if (pointInRect(p.x, p.y, FRAMES.team)) {
+        const delta = -ev.deltaY * 0.0015;
+        const old = state.team.scale;
+        state.team.scale = Math.max(state.team.min, Math.min(state.team.max, state.team.scale * (1 + delta)));
+        const mx = p.x, my = p.y;
+        const sx = (mx - state.team.x) * (state.team.scale / old - 1);
+        const sy = (my - state.team.y) * (state.team.scale / old - 1);
+        state.team.x -= sx; state.team.y -= sy; teamZoom.value = state.team.scale;
+        draw(ctx);
+      }
+    }, { passive: false });
+
+    function pointInRect(px, py, frame) { return px >= frame.x && px <= frame.x + frame.w && py >= frame.y && py <= frame.y + frame.h; }
+    function pointInParallelogram(px, py, frame) {
+      const x = frame.x, y = frame.y, w = frame.w, h = frame.h, angle = frame.angle || 0;
+      const skew = Math.tan((angle || 0) * Math.PI / 180) * h;
+      const pA = { x: x + skew, y: y }, pB = { x: x + skew + w, y: y }, pC = { x: x + w, y: y + h }, pD = { x: x, y: y + h };
+      return pointInPoly(px, py, [pA, pB, pC, pD]);
     }
-    state._lastPinchDist = dist;
-    return;
-  }
+    function pointInPoly(x, y, poly) { let inside = false; for (let i = 0, j = poly.length - 1; i < poly.length; j = i++) { const xi = poly[i].x, yi = poly[i].y, xj = poly[j].x, yj = poly[j].y; const intersect = ((yi > y) != (yj > y)) && (x < (xj - xi) * (y - yi) / (yj - yi) + xi); if (intersect) inside = !inside; } return inside; }
 
-  if(!active || !active.dragging) return;
-  const p = getPointerPos(ev);
-  const dx = p.x - active.last.x, dy = p.y - active.last.y;
-  active.x += dx; active.y += dy; active.last = {x:p.x,y:p.y};
-  draw(ctx);
-});
-canvas.addEventListener('pointerup', ev=>{
-  delete state.pointers[ev.pointerId];
-  if(Object.keys(state.pointers).length<2) state._lastPinchDist = null;
-  if(active) active.dragging=false; active = null;
-  canvas.releasePointerCapture && canvas.releasePointerCapture(ev.pointerId);
-});
-canvas.addEventListener('wheel', ev=>{
-  ev.preventDefault();
-  const p = getPointerPos(ev);
-  if(pointInParallelogram(p.x,p.y,FRAMES.player)){
-    const delta = -ev.deltaY * 0.0015;
-    const old = state.player.scale;
-    state.player.scale = Math.max(state.player.min, Math.min(state.player.max, state.player.scale * (1+delta)));
-    const mx = p.x, my = p.y;
-    const sx = (mx - state.player.x) * (state.player.scale/old - 1);
-    const sy = (my - state.player.y) * (state.player.scale/old - 1);
-    state.player.x -= sx; state.player.y -= sy; playerZoom.value = state.player.scale;
-    draw(ctx);
-  } else if(pointInRect(p.x,p.y,FRAMES.team)){
-    const delta = -ev.deltaY * 0.0015;
-    const old = state.team.scale;
-    state.team.scale = Math.max(state.team.min, Math.min(state.team.max, state.team.scale * (1+delta)));
-    const mx = p.x, my = p.y;
-    const sx = (mx - state.team.x) * (state.team.scale/old - 1);
-    const sy = (my - state.team.y) * (state.team.scale/old - 1);
-    state.team.x -= sx; state.team.y -= sy; teamZoom.value = state.team.scale;
-    draw(ctx);
-  }
-}, { passive:false });
+    /* draw helpers */
+    function roundRect(ctx, x, y, w, h, r) { ctx.beginPath(); ctx.moveTo(x + r, y); ctx.arcTo(x + w, y, x + w, y + h, r); ctx.arcTo(x + w, y + h, x, y + h, r); ctx.arcTo(x, y + h, x, y, r); ctx.arcTo(x, y, x + w, y, r); ctx.closePath(); }
 
-function pointInRect(px,py,frame){ return px>=frame.x && px<=frame.x+frame.w && py>=frame.y && py<=frame.y+frame.h; }
-function pointInParallelogram(px,py,frame){
-  const x=frame.x,y=frame.y,w=frame.w,h=frame.h,angle=frame.angle||0;
-  const skew = Math.tan((angle||0)*Math.PI/180)*h;
-  const pA={x:x+skew,y:y}, pB={x:x+skew+w,y:y}, pC={x:x+w,y:y+h}, pD={x:x,y:y+h};
-  return pointInPoly(px,py,[pA,pB,pC,pD]);
-}
-function pointInPoly(x,y,poly){ let inside=false; for(let i=0,j=poly.length-1;i<poly.length;j=i++){ const xi=poly[i].x, yi=poly[i].y, xj=poly[j].x, yj=poly[j].y; const intersect = ((yi>y)!=(yj>y)) && (x < (xj-xi)*(y-yi)/(yj-yi)+xi); if(intersect) inside=!inside; } return inside; }
+    /* ----- DRAWING FUNCTIONS (all accept ctx param) ----- */
 
-/* draw helpers */
-function roundRect(ctx,x,y,w,h,r){ ctx.beginPath(); ctx.moveTo(x+r,y); ctx.arcTo(x+w,y,x+w,y+h,r); ctx.arcTo(x+w,y+h,x,y+h,r); ctx.arcTo(x,y+h,x,y,r); ctx.arcTo(x,y,x+w,y,r); ctx.closePath(); }
+    function drawBackground(targetCtx) {
+      const ctxLocal = targetCtx;
+      if (state.backgroundType === 'touchline') {
+        if (state.templateImg) ctxLocal.drawImage(state.templateImg, 0, 0, CANVAS_PX, CANVAS_PX);
+        else {
+          const g = ctxLocal.createLinearGradient(0, 0, CANVAS_PX, CANVAS_PX); g.addColorStop(0, '#0a3a73'); g.addColorStop(1, '#04294b'); ctxLocal.fillStyle = g; ctxLocal.fillRect(0, 0, CANVAS_PX, CANVAS_PX);
+        }
+      } else if (state.backgroundType === 'custom' && state.backgroundImg) {
+        ctxLocal.drawImage(state.backgroundImg, 0, 0, CANVAS_PX, CANVAS_PX);
+      } else if (state.backgroundType === 'red') {
+        const g = ctxLocal.createLinearGradient(0, 0, CANVAS_PX, CANVAS_PX); g.addColorStop(0, '#7a0b0b'); g.addColorStop(1, '#2b0f0f'); ctxLocal.fillStyle = g; ctxLocal.fillRect(0, 0, CANVAS_PX, CANVAS_PX);
+      } else if (state.backgroundType === 'gold') {
+        const g = ctxLocal.createLinearGradient(0, 0, CANVAS_PX, CANVAS_PX); g.addColorStop(0, '#e6b800'); g.addColorStop(1, '#6f4f00'); ctxLocal.fillStyle = g; ctxLocal.fillRect(0, 0, CANVAS_PX, CANVAS_PX);
+      } else if (state.backgroundType === 'green') {
+        const g = ctxLocal.createLinearGradient(0, 0, CANVAS_PX, CANVAS_PX); g.addColorStop(0, '#1b7a3a'); g.addColorStop(1, '#073a20'); ctxLocal.fillStyle = g; ctxLocal.fillRect(0, 0, CANVAS_PX, CANVAS_PX);
+      } else {
+        ctxLocal.fillStyle = '#04294b'; ctxLocal.fillRect(0, 0, CANVAS_PX, CANVAS_PX);
+      }
 
-/* ----- DRAWING FUNCTIONS (all accept ctx param) ----- */
+      // faint repeating wordmark
+      if (state.backgroundType === 'touchline' || state.backgroundType === 'red' || state.backgroundType === 'gold' || state.backgroundType === 'green') {
+        ctxLocal.save();
+        ctxLocal.globalAlpha = 0.05;
+        ctxLocal.fillStyle = '#ffffff';
+        ctxLocal.font = 'bold 100px Poppins';
+        ctxLocal.textAlign = 'center';
+        for (let y = -80; y < CANVAS_PX + 180; y += 120) {
+          for (let x = -40; x < CANVAS_PX + 40; x += 330) {
+            ctxLocal.fillText('TOUCHLINE', x, y, 300);
+          }
+        }
+        ctxLocal.restore();
+      }
 
-function drawBackground(targetCtx){
-  const ctxLocal = targetCtx;
-  if(state.backgroundType==='touchline'){
-    if(state.templateImg) ctxLocal.drawImage(state.templateImg,0,0,CANVAS_PX,CANVAS_PX);
-    else {
-      const g=ctxLocal.createLinearGradient(0,0,CANVAS_PX,CANVAS_PX); g.addColorStop(0,'#0a3a73'); g.addColorStop(1,'#04294b'); ctxLocal.fillStyle=g; ctxLocal.fillRect(0,0,CANVAS_PX,CANVAS_PX);
-    }
-  } else if(state.backgroundType==='custom' && state.backgroundImg){
-    ctxLocal.drawImage(state.backgroundImg,0,0,CANVAS_PX,CANVAS_PX);
-  } else if(state.backgroundType==='red'){
-    const g=ctxLocal.createLinearGradient(0,0,CANVAS_PX,CANVAS_PX); g.addColorStop(0,'#7a0b0b'); g.addColorStop(1,'#2b0f0f'); ctxLocal.fillStyle=g; ctxLocal.fillRect(0,0,CANVAS_PX,CANVAS_PX);
-  } else if(state.backgroundType==='gold'){
-    const g=ctxLocal.createLinearGradient(0,0,CANVAS_PX,CANVAS_PX); g.addColorStop(0,'#e6b800'); g.addColorStop(1,'#6f4f00'); ctxLocal.fillStyle=g; ctxLocal.fillRect(0,0,CANVAS_PX,CANVAS_PX);
-  } else if(state.backgroundType==='green'){
-    const g=ctxLocal.createLinearGradient(0,0,CANVAS_PX,CANVAS_PX); g.addColorStop(0,'#1b7a3a'); g.addColorStop(1,'#073a20'); ctxLocal.fillStyle=g; ctxLocal.fillRect(0,0,CANVAS_PX,CANVAS_PX);
-  } else {
-    ctxLocal.fillStyle='#04294b'; ctxLocal.fillRect(0,0,CANVAS_PX,CANVAS_PX);
-  }
+      // halftone
+      if (state.effects.halftone) {
+        ctxLocal.save();
+        const step = 12;
+        for (let y = 20; y < CANVAS_PX; y += step) {
+          for (let x = 20; x < CANVAS_PX; x += step) {
+            const d = Math.hypot(x - 60, y - 60);
+            const a = Math.max(0, 0.35 - d / 700);
+            if (a > 0.01) {
+              ctxLocal.fillStyle = `rgba(255,255,255,${a * 0.06})`;
+              ctxLocal.beginPath(); ctxLocal.arc(x, y, (1 + a * 6), 0, Math.PI * 2); ctxLocal.fill();
+            }
+          }
+        }
+        ctxLocal.restore();
+      }
 
-  // faint repeating wordmark
-  if(state.backgroundType==='touchline' || state.backgroundType==='red' || state.backgroundType==='gold' || state.backgroundType==='green'){
-    ctxLocal.save();
-    ctxLocal.globalAlpha = 0.05;
-    ctxLocal.fillStyle = '#ffffff';
-    ctxLocal.font = 'bold 100px Poppins';
-    ctxLocal.textAlign = 'center';
-    for(let y=-80;y<CANVAS_PX+180;y+=120){
-      for(let x=-40;x<CANVAS_PX+40;x+=330){
-        ctxLocal.fillText('TOUCHLINE', x, y, 300);
+      // circuit accent
+      if (state.effects.circuit) {
+        ctxLocal.save();
+        ctxLocal.strokeStyle = 'rgba(255,255,255,0.04)';
+        ctxLocal.lineWidth = 2;
+        ctxLocal.beginPath(); ctxLocal.moveTo(60, CANVAS_PX - 120); ctxLocal.lineTo(220, CANVAS_PX - 120); ctxLocal.lineTo(260, CANVAS_PX - 160); ctxLocal.stroke();
+        ctxLocal.beginPath(); ctxLocal.moveTo(320, CANVAS_PX - 100); ctxLocal.lineTo(420, CANVAS_PX - 100); ctxLocal.stroke();
+        ctxLocal.restore();
       }
     }
-    ctxLocal.restore();
-  }
 
-  // halftone
-  if(state.effects.halftone){
-    ctxLocal.save();
-    const step = 12;
-    for(let y=20;y<CANVAS_PX;y+=step){
-      for(let x=20;x<CANVAS_PX;x+=step){
-        const d = Math.hypot(x-60,y-60);
-        const a = Math.max(0, 0.35 - d/700);
-        if(a>0.01){
-          ctxLocal.fillStyle = `rgba(255,255,255,${a*0.06})`;
-          ctxLocal.beginPath(); ctxLocal.arc(x,y, (1 + a*6), 0, Math.PI*2); ctxLocal.fill();
+    function drawTeam(targetCtx) {
+      const ctxLocal = targetCtx;
+      const tf = FRAMES.team;
+      ctxLocal.save(); roundRect(ctxLocal, tf.x, tf.y, tf.w, tf.h, tf.r); ctxLocal.fillStyle = 'rgba(8,18,36,0.35)'; ctxLocal.fill(); ctxLocal.clip();
+      if (state.team.img) {
+        const img = state.team.img;
+        const w = img.width * state.team.scale; const h = img.height * state.team.scale;
+        const dx = state.team.x - w / 2; const dy = state.team.y - h / 2;
+        ctxLocal.drawImage(img, dx, dy, w, h);
+        ctxLocal.fillStyle = 'rgba(2,6,14,0.22)'; ctxLocal.fillRect(tf.x, tf.y + tf.h - 100, tf.w, 100);
+      } else {
+        ctxLocal.fillStyle = 'rgba(0,0,0,0.25)'; ctxLocal.fillRect(tf.x, tf.y, tf.w, tf.h);
+      }
+      ctxLocal.restore();
+
+      // headline and age badge & date
+      ctxLocal.save();
+      ctxLocal.fillStyle = '#fff';
+      ctxLocal.font = '800 40px Montserrat';
+      ctxLocal.textAlign = 'left';
+      ctxLocal.shadowColor = 'rgba(2,8,20,0.6)'; ctxLocal.shadowBlur = 12;
+      ctxLocal.fillText('PLAYER OF THE DAY', 36, 66);
+
+      const ageText = (ageLabel.value || '').toUpperCase();
+      ctxLocal.font = '700 16px Montserrat';
+      const ageW = Math.max(120, ctxLocal.measureText(ageText).width + 36);
+      const ageX = CANVAS_PX - ageW - 36, ageY = 26, ageH = 40;
+      ctxLocal.beginPath(); const s = Math.tan(-8 * Math.PI / 180) * ageH;
+      ctxLocal.moveTo(ageX + s, ageY); ctxLocal.lineTo(ageX + s + ageW, ageY); ctxLocal.lineTo(ageX + ageW, ageY + ageH); ctxLocal.lineTo(ageX, ageY + ageH); ctxLocal.closePath();
+      ctxLocal.fillStyle = '#1b66c4'; ctxLocal.fill();
+      ctxLocal.fillStyle = '#fff'; ctxLocal.textAlign = 'center';
+      ctxLocal.fillText(ageText, ageX + ageW / 2, ageY + ageH / 2 + 1);
+
+      // date below team frame center
+      ctxLocal.fillStyle = '#cfe6ff'; ctxLocal.font = '600 16px Poppins';
+      ctxLocal.textAlign = 'center';
+      ctxLocal.fillText((dateField.value || ''), tf.x + 420, tf.y + tf.h + 40);
+      ctxLocal.restore();
+    }
+
+    function drawPlayer(targetCtx) {
+      const ctxLocal = targetCtx;
+      const pf = FRAMES.player;
+      // shadow base
+      ctxLocal.save(); ctxLocal.shadowColor = 'rgba(3,12,28,0.7)'; ctxLocal.shadowBlur = 26;
+      const s = Math.tan((pf.angle || 0) * Math.PI / 180) * pf.h;
+      ctxLocal.beginPath(); ctxLocal.moveTo(pf.x + s, pf.y); ctxLocal.lineTo(pf.x + s + pf.w, pf.y); ctxLocal.lineTo(pf.x + pf.w, pf.y + pf.h); ctxLocal.lineTo(pf.x, pf.y + pf.h); ctxLocal.closePath();
+      ctxLocal.fillStyle = '#071226'; ctxLocal.fill(); ctxLocal.restore();
+
+      // clip to parallelogram and draw player img
+      ctxLocal.save();
+      const s2 = Math.tan((pf.angle || 0) * Math.PI / 180) * pf.h;
+      ctxLocal.beginPath(); ctxLocal.moveTo(pf.x + s2, pf.y); ctxLocal.lineTo(pf.x + s2 + pf.w, pf.y); ctxLocal.lineTo(pf.x + pf.w, pf.y + pf.h); ctxLocal.lineTo(pf.x, pf.y + pf.h); ctxLocal.closePath();
+      ctxLocal.clip();
+      if (state.player.img) {
+        const img = state.player.img;
+        const w = img.width * state.player.scale; const h = img.height * state.player.scale;
+        const dx = state.player.x - w / 2; const dy = state.player.y - h / 2;
+        ctxLocal.drawImage(img, dx, dy, w, h);
+      } else {
+        ctxLocal.fillStyle = '#071224'; ctxLocal.fillRect(pf.x, pf.y, pf.w, pf.h);
+      }
+      ctxLocal.restore();
+
+      // stroke
+      ctxLocal.save(); ctxLocal.lineWidth = 6; ctxLocal.strokeStyle = 'rgba(27,102,196,0.95)';
+      ctxLocal.beginPath(); ctxLocal.moveTo(pf.x + s2, pf.y); ctxLocal.lineTo(pf.x + s2 + pf.w, pf.y); ctxLocal.lineTo(pf.x + pf.w, pf.y + pf.h); ctxLocal.lineTo(pf.x, pf.y + pf.h); ctxLocal.closePath(); ctxLocal.stroke(); ctxLocal.restore();
+
+      // name badge: larger height + auto-fit font
+      const name = (playerNameEl.value || 'PLAYER').toUpperCase();
+      ctxLocal.save();
+      ctxLocal.font = '800 20px Montserrat';
+      const baseNameW = Math.max(180, ctxLocal.measureText(name).width + 200);
+      const nameH = 44;
+      const nameX = pf.x + pf.w / 2 - baseNameW / 2;
+      // place badge a bit below the player's parallelogram (so it doesn't go off-canvas)
+      let nameY = pf.y + pf.h - 30;
+      if (nameY > CANVAS_PX - 140) {
+        nameY = CANVAS_PX - 50;
+      }
+
+      const ang = 6;
+      const s3 = Math.tan(ang * Math.PI / 180) * nameH;
+      ctxLocal.beginPath();
+      ctxLocal.moveTo(nameX + s3, nameY);
+      ctxLocal.lineTo(nameX + s3 + baseNameW, nameY);
+      ctxLocal.lineTo(nameX + baseNameW, nameY + nameH);
+      ctxLocal.lineTo(nameX, nameY + nameH);
+      ctxLocal.closePath();
+      ctxLocal.fillStyle = '#1b66c4'; ctxLocal.fill();
+
+      // auto-scale font to fit width
+      ctxLocal.fillStyle = '#fff'; ctxLocal.textAlign = 'center';
+      let fontSize = 28;
+      ctxLocal.font = `800 ${fontSize}px Montserrat`;
+      while (ctxLocal.measureText(name).width > baseNameW - 24 && fontSize > 12) {
+        fontSize -= 1;
+        ctxLocal.font = `800 ${fontSize}px Montserrat`;
+      }
+      const textY = nameY + nameH / 2 + (fontSize * 0.22);
+      ctxLocal.fillText(name, nameX + baseNameW / 2, textY);
+      ctxLocal.restore();
+
+      // academy below name (centered under badge)
+      ctxLocal.save(); ctxLocal.fillStyle = '#e7f3ff'; ctxLocal.font = '600 13px Poppins'; ctxLocal.textAlign = 'center';
+      ctxLocal.fillText((academy.value || '').toUpperCase(), CANVAS_PX / 2, nameY + nameH + 20);
+      ctxLocal.restore();
+    }
+    (function loadDefaultLogo() {
+      const img = new Image();
+      img.src = './logo.png';
+      img.onload = () => {
+        state.logo.img = img;
+        draw();
+      };
+    })();
+    function drawFooter(targetCtx) {
+      const ctxLocal = targetCtx;
+      ctxLocal.save();
+      if (state.logo.img) {
+        const lw = 120, lh = 120;
+        ctxLocal.drawImage(state.logo.img, 36, CANVAS_PX - lh - 36, lw, lh);
+      } else {
+        // attempt to draw an inline default logo if available; ignore if not found
+        const defaultLogo = new Image();
+        defaultLogo.src = './logo.png';
+        defaultLogo.onload = () => {
+          try {
+            const lw = 120, lh = 120;
+            // draw only if context still valid (async load)
+            ctxLocal.drawImage(defaultLogo, 36, CANVAS_PX - lh - 36, lw, lh);
+          } catch (e) {
+            // ignore
+          }
         }
       }
+      ctxLocal.fillStyle = '#cfe6ff'; ctxLocal.font = '600 13px Poppins'; ctxLocal.textAlign = 'left';
+      ctxLocal.fillText('+971 56 130 0850', 36 + 140, CANVAS_PX - 52);
+      ctxLocal.fillText('www.touchlinesport.ae', 36 + 140, CANVAS_PX - 34);
+      ctxLocal.restore();
     }
-    ctxLocal.restore();
-  }
 
-  // circuit accent
-  if(state.effects.circuit){
-    ctxLocal.save();
-    ctxLocal.strokeStyle = 'rgba(255,255,255,0.04)';
-    ctxLocal.lineWidth = 2;
-    ctxLocal.beginPath(); ctxLocal.moveTo(60, CANVAS_PX-120); ctxLocal.lineTo(220, CANVAS_PX-120); ctxLocal.lineTo(260, CANVAS_PX-160); ctxLocal.stroke();
-    ctxLocal.beginPath(); ctxLocal.moveTo(320, CANVAS_PX-100); ctxLocal.lineTo(420, CANVAS_PX-100); ctxLocal.stroke();
-    ctxLocal.restore();
-  }
-}
-
-function drawTeam(targetCtx){
-  const ctxLocal = targetCtx;
-  const tf = FRAMES.team;
-  ctxLocal.save(); roundRect(ctxLocal, tf.x, tf.y, tf.w, tf.h, tf.r); ctxLocal.fillStyle='rgba(8,18,36,0.35)'; ctxLocal.fill(); ctxLocal.clip();
-  if(state.team.img){
-    const img = state.team.img;
-    const w = img.width * state.team.scale; const h = img.height * state.team.scale;
-    const dx = state.team.x - w/2; const dy = state.team.y - h/2;
-    ctxLocal.drawImage(img, dx, dy, w, h);
-    ctxLocal.fillStyle = 'rgba(2,6,14,0.22)'; ctxLocal.fillRect(tf.x, tf.y + tf.h - 100, tf.w, 100);
-  } else {
-    ctxLocal.fillStyle='rgba(0,0,0,0.25)'; ctxLocal.fillRect(tf.x, tf.y, tf.w, tf.h);
-  }
-  ctxLocal.restore();
-
-  // headline and age badge & date
-  ctxLocal.save();
-  ctxLocal.fillStyle = '#fff';
-  ctxLocal.font = '800 40px Montserrat';
-  ctxLocal.textAlign = 'left';
-  ctxLocal.shadowColor = 'rgba(2,8,20,0.6)'; ctxLocal.shadowBlur = 12;
-  ctxLocal.fillText('PLAYER OF THE DAY', 36, 66);
-
-  const ageText = (ageLabel.value||'').toUpperCase();
-  ctxLocal.font = '700 16px Montserrat';
-  const ageW = Math.max(120, ctxLocal.measureText(ageText).width + 36);
-  const ageX = CANVAS_PX - ageW - 36, ageY = 26, ageH = 40;
-  ctxLocal.beginPath(); const s = Math.tan(-8*Math.PI/180)*ageH;
-  ctxLocal.moveTo(ageX + s, ageY); ctxLocal.lineTo(ageX + s + ageW, ageY); ctxLocal.lineTo(ageX + ageW, ageY + ageH); ctxLocal.lineTo(ageX, ageY + ageH); ctxLocal.closePath();
-  ctxLocal.fillStyle = '#1b66c4'; ctxLocal.fill();
-  ctxLocal.fillStyle = '#fff'; ctxLocal.textAlign='center';
-  ctxLocal.fillText(ageText, ageX + ageW/2, ageY + ageH/2 + 1);
-
-  // date below team frame center
-  ctxLocal.fillStyle = '#cfe6ff'; ctxLocal.font = '600 16px Poppins';
-  ctxLocal.textAlign = 'center';
-  ctxLocal.fillText((dateField.value||''), tf.x + 420, tf.y + tf.h + 40);
-  ctxLocal.restore();
-}
-
-function drawPlayer(targetCtx){
-  const ctxLocal = targetCtx;
-  const pf = FRAMES.player;
-  // shadow base
-  ctxLocal.save(); ctxLocal.shadowColor = 'rgba(3,12,28,0.7)'; ctxLocal.shadowBlur = 26;
-  const s = Math.tan((pf.angle||0)*Math.PI/180)*pf.h;
-  ctxLocal.beginPath(); ctxLocal.moveTo(pf.x + s, pf.y); ctxLocal.lineTo(pf.x + s + pf.w, pf.y); ctxLocal.lineTo(pf.x + pf.w, pf.y + pf.h); ctxLocal.lineTo(pf.x, pf.y + pf.h); ctxLocal.closePath();
-  ctxLocal.fillStyle = '#071226'; ctxLocal.fill(); ctxLocal.restore();
-
-  // clip to parallelogram and draw player img
-  ctxLocal.save();
-  const s2 = Math.tan((pf.angle||0)*Math.PI/180)*pf.h;
-  ctxLocal.beginPath(); ctxLocal.moveTo(pf.x + s2, pf.y); ctxLocal.lineTo(pf.x + s2 + pf.w, pf.y); ctxLocal.lineTo(pf.x + pf.w, pf.y + pf.h); ctxLocal.lineTo(pf.x, pf.y + pf.h); ctxLocal.closePath();
-  ctxLocal.clip();
-  if(state.player.img){
-    const img = state.player.img;
-    const w = img.width * state.player.scale; const h = img.height * state.player.scale;
-    const dx = state.player.x - w/2; const dy = state.player.y - h/2;
-    ctxLocal.drawImage(img, dx, dy, w, h);
-  } else {
-    ctxLocal.fillStyle = '#071224'; ctxLocal.fillRect(pf.x, pf.y, pf.w, pf.h);
-  }
-  ctxLocal.restore();
-
-  // stroke
-  ctxLocal.save(); ctxLocal.lineWidth = 6; ctxLocal.strokeStyle = 'rgba(27,102,196,0.95)';
-  ctxLocal.beginPath(); ctxLocal.moveTo(pf.x + s2, pf.y); ctxLocal.lineTo(pf.x + s2 + pf.w, pf.y); ctxLocal.lineTo(pf.x + pf.w, pf.y + pf.h); ctxLocal.lineTo(pf.x, pf.y + pf.h); ctxLocal.closePath(); ctxLocal.stroke(); ctxLocal.restore();
-
-  // name badge: larger height + auto-fit font
-  const name = (playerNameEl.value||'PLAYER').toUpperCase();
-  ctxLocal.save();
-  ctxLocal.font = '800 20px Montserrat';
-  const baseNameW = Math.max(180, ctxLocal.measureText(name).width + 200);
-  const nameH = 44;
-  const nameX = pf.x + pf.w/2 - baseNameW/2;
-  // place badge a bit below the player's parallelogram (so it doesn't go off-canvas)
-let nameY = pf.y + pf.h - 30; 
-if (nameY > CANVAS_PX - 140) {
-    nameY = CANVAS_PX - 50;
-}
-
-  const ang = 6;
-  const s3 = Math.tan(ang*Math.PI/180)*nameH;
-  ctxLocal.beginPath();
-  ctxLocal.moveTo(nameX + s3, nameY);
-  ctxLocal.lineTo(nameX + s3 + baseNameW, nameY);
-  ctxLocal.lineTo(nameX + baseNameW, nameY + nameH);
-  ctxLocal.lineTo(nameX, nameY + nameH);
-  ctxLocal.closePath();
-  ctxLocal.fillStyle = '#1b66c4'; ctxLocal.fill();
-
-  // auto-scale font to fit width
-  ctxLocal.fillStyle = '#fff'; ctxLocal.textAlign='center';
-  let fontSize = 28;
-  ctxLocal.font = `800 ${fontSize}px Montserrat`;
-  while(ctxLocal.measureText(name).width > baseNameW - 24 && fontSize > 12){
-    fontSize -= 1;
-    ctxLocal.font = `800 ${fontSize}px Montserrat`;
-  }
-  const textY = nameY + nameH/2 + (fontSize*0.22);
-  ctxLocal.fillText(name, nameX + baseNameW/2, textY);
-  ctxLocal.restore();
-
-  // academy below name (centered under badge)
-  ctxLocal.save(); ctxLocal.fillStyle = '#e7f3ff'; ctxLocal.font = '600 13px Poppins'; ctxLocal.textAlign='center';
-  ctxLocal.fillText((academy.value||'').toUpperCase(), CANVAS_PX / 2, nameY + nameH + 20);
-  ctxLocal.restore();
-}
-(function loadDefaultLogo(){
-    const img = new Image();
-    img.src = './logo.png';
-    img.onload = () => { 
-        state.logo.img = img; 
-        draw(); 
-    };
-})();
-function drawFooter(targetCtx){
-  const ctxLocal = targetCtx;
-  ctxLocal.save();
-  if(state.logo.img){
-    const lw=120, lh=120;
-    ctxLocal.drawImage(state.logo.img, 36, CANVAS_PX - lh - 36, lw, lh);
-  } else {
-    // attempt to draw an inline default logo if available; ignore if not found
-    const defaultLogo = new Image();
-    defaultLogo.src = './logo.png';
-    defaultLogo.onload = () => {
-      try {
-        const lw = 120, lh = 120;
-        // draw only if context still valid (async load)
-        ctxLocal.drawImage(defaultLogo, 36, CANVAS_PX - lh - 36, lw, lh);
-      } catch (e) {
-        // ignore
-      }
+    /* central draw - pass ctx (canvas ctx or export ctx) */
+    function draw(targetCtx) {
+      const ctxLocal = targetCtx || ctx; // default to preview canvas context
+      ctxLocal.clearRect(0, 0, CANVAS_PX, CANVAS_PX);
+      drawBackground(ctxLocal);
+      drawTeam(ctxLocal);
+      drawPlayer(ctxLocal);
+      drawFooter(ctxLocal);
     }
-  }
-  ctxLocal.fillStyle = '#cfe6ff'; ctxLocal.font = '600 13px Poppins'; ctxLocal.textAlign='left';
-  ctxLocal.fillText('+971 58 569 8277', 36 + 140, CANVAS_PX - 52);
-  ctxLocal.fillText('www.touchlinesport.ae', 36 + 140, CANVAS_PX - 34);
-  ctxLocal.restore();
-}
 
-/* central draw - pass ctx (canvas ctx or export ctx) */
-function draw(targetCtx){
-  const ctxLocal = targetCtx || ctx; // default to preview canvas context
-  ctxLocal.clearRect(0,0,CANVAS_PX,CANVAS_PX);
-  drawBackground(ctxLocal);
-  drawTeam(ctxLocal);
-  drawPlayer(ctxLocal);
-  drawFooter(ctxLocal);
-}
+    /* initial preview draw */
+    draw(ctx);
 
-/* initial preview draw */
-draw(ctx);
+    /* export to high res */
+    exportBtn.addEventListener('click', () => {
+      const exp = document.createElement('canvas');
+      exp.width = EXPORT_PX;
+      exp.height = EXPORT_PX;
+      const ex = exp.getContext('2d', { alpha: false });
 
-/* export to high res */
-exportBtn.addEventListener('click', () => {
-    const exp = document.createElement('canvas');
-    exp.width = EXPORT_PX;
-    exp.height = EXPORT_PX;
-    const ex = exp.getContext('2d', { alpha:false });
+      // scale the export context so all drawing commands remain in original coordinate space (760)
+      const scale = EXPORT_PX / CANVAS_PX;
+      ex.save();
+      ex.scale(scale, scale);
 
-    // scale the export context so all drawing commands remain in original coordinate space (760)
-    const scale = EXPORT_PX / CANVAS_PX;
-    ex.save();
-    ex.scale(scale, scale);
+      // redraw everything on the high-res canvas
+      draw(ex);
 
-    // redraw everything on the high-res canvas
-    draw(ex);
+      ex.restore();
 
-    ex.restore();
+      // download
+      const url = exp.toDataURL('image/png');
+      const a = document.createElement('a');
+      const safeName = (playerNameEl.value || 'player').replace(/\s+/g, '_').toLowerCase();
+      a.href = url;
+      a.download = `${safeName}_poster.png`;
+      a.click();
+    });
 
-    // download
-    const url = exp.toDataURL('image/png');
-    const a = document.createElement('a');
-    const safeName = (playerNameEl.value||'player').replace(/\s+/g,'_').toLowerCase();
-    a.href = url;
-    a.download = `${safeName}_poster.png`;
-    a.click();
-});
+    /* If user changes inputs, update live */
+    [playerNameEl, ageLabel, dateField, academy].forEach(el => el.addEventListener('input', () => draw(ctx)));
 
-/* If user changes inputs, update live */
-[playerNameEl, ageLabel, dateField, academy].forEach(el => el.addEventListener('input', ()=>draw(ctx)));
+    bgSelect.addEventListener('change', () => { if (bgSelect.value === 'upload') bgDrop.style.display = 'block'; else bgDrop.style.display = 'none'; });
 
-bgSelect.addEventListener('change', ()=>{ if(bgSelect.value === 'upload') bgDrop.style.display = 'block'; else bgDrop.style.display='none'; });
-
-</script>
+  </script>
 </body>
+
 </html>
