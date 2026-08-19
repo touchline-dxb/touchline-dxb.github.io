@@ -1,4 +1,4 @@
-# SEO Validation Checklist - Touchline Sports Academy Careers Page
+# SEO Validation Checklist - Touchline Sport Academy Careers Page
 
 ## 🔍 Pre-Launch Validation Steps
 
@@ -166,7 +166,7 @@
 - "football coach jobs dubai" - Top 10
 - "football academy careers uae" - Top 10
 - "head coach jobs dubai" - Top 5
-- "touchline sports academy careers" - #1
+- "Touchline Sport Academy careers" - #1
 
 ### Traffic Goals
 - Month 1: 100+ organic visits

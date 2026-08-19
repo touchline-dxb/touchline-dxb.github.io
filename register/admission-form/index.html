@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Touchline Sports Academy - Admission Form</title>
-<style>
-      * {
+    <title>Touchline Sport Academy - Admission Form</title>
+    <style>
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -378,14 +378,16 @@
                 font-size: 1.25rem;
             }
         }
-</style></head>
+    </style>
+</head>
 
 <body>
     <header>
         <div class="header-content">
-            <div class="logo"><img src="https://touchlinesport.ae/LOGO.png" alt="Touchline Sports Academy Logo" width="60"></div>
+            <div class="logo"><img src="https://touchlinesport.ae/LOGO.png" alt="Touchline Sport Academy Logo"
+                    width="60"></div>
             <div class="header-text">
-                <h1>Touchline Sports Academy</h1>
+                <h1>Touchline Sport Academy</h1>
                 <p>Admission Form</p>
             </div>
         </div>
@@ -416,7 +418,7 @@
                         <option value="Al Nahda">Al Nahda</option>
                     </select>
                 </div>
-                 <div>
+                <div>
                     <label>Payment Status *</label>
                     <select id="paymentStatus" required>
                         <option value="">Select Payment Status</option>
@@ -692,8 +694,8 @@
                 <h2>Terms & Conditions</h2>
             </div>
             <div class="terms-box">
-                <p style="font-weight: 600; margin-bottom: 0.5rem;">TOUCHLINE SPORTS ACADEMY - TERMS AND CONDITIONS</p>
-                <p style="margin-bottom: 0.5rem;">By registering with Touchline Sports Academy, you agree to the
+                <p style="font-weight: 600; margin-bottom: 0.5rem;">Touchline Sport Academy - TERMS AND CONDITIONS</p>
+                <p style="margin-bottom: 0.5rem;">By registering with Touchline Sport Academy, you agree to the
                     following terms:</p>
                 <ul>
                     <li>Parents or guardians are responsible for arranging transportation for their children. The
@@ -709,7 +711,7 @@
                     <li>Parents or guardians must apply in advance for a leave of absence. Approval is at the academy's
                         discretion.</li>
                     <li>Students are not permitted to participate in training sessions or matches at any other academy
-                        during the current season unless explicitly authorized in writing by Touchline Sports Academy
+                        during the current season unless explicitly authorized in writing by Touchline Sport Academy
                         (TSA).</li>
                     <li>Students must follow instructions and behave respectfully. The academy may suspend or remove a
                         student for repeated misconduct.</li>
@@ -740,181 +742,181 @@
         <button type="button" id="submitBtn" class="submit-btn disabled">Register Student</button>
     </div>
 
-<script>
-    // REPLACE WITH YOUR GOOGLE APPS SCRIPT WEB APP URL
-    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyKpLbbg6orYZvqUZLi3vk2aXy-aB2XZVJq75pWkeJ9j9BfW5kU8SzXwDFv5zAXiYQQ/exec';
+    <script>
+        // REPLACE WITH YOUR GOOGLE APPS SCRIPT WEB APP URL
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyKpLbbg6orYZvqUZLi3vk2aXy-aB2XZVJq75pWkeJ9j9BfW5kU8SzXwDFv5zAXiYQQ/exec';
 
-    // Initialize form
-    const today = new Date().toISOString().split('T')[0];
-    document.getElementById('registrationDate').value = today;
+        // Initialize form
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('registrationDate').value = today;
 
-    // Photo preview
-    document.getElementById('studentPhoto').addEventListener('change', function(e) {
-        const file = e.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                const preview = document.getElementById('photoPreview');
-                preview.src = e.target.result;
-                preview.style.display = 'block';
-            };
-            reader.readAsDataURL(file);
-        }
-    });
-
-    // Age calculation
-    document.getElementById('dateOfBirth').addEventListener('change', function() {
-        const dob = new Date(this.value);
-        const today = new Date();
-        let age = today.getFullYear() - dob.getFullYear();
-        const monthDiff = today.getMonth() - dob.getMonth();
-        if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < dob.getDate())) {
-            age--;
-        }
-        document.getElementById('age').value = age;
-    });
-
-    // Referral and Other field toggle
-    document.querySelectorAll('input[name="hearAbout"]').forEach(radio => {
-        radio.addEventListener('change', function() {
-            const referralField = document.getElementById('referralField');
-            const otherField = document.getElementById('otherField');
-            
-            if (this.value === 'Referral') {
-                referralField.classList.remove('hidden');
-                otherField.classList.add('hidden');
-            } else if (this.value === 'Other') {
-                otherField.classList.remove('hidden');
-                referralField.classList.add('hidden');
-            } else {
-                referralField.classList.add('hidden');
-                otherField.classList.add('hidden');
+        // Photo preview
+        document.getElementById('studentPhoto').addEventListener('change', function (e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    const preview = document.getElementById('photoPreview');
+                    preview.src = e.target.result;
+                    preview.style.display = 'block';
+                };
+                reader.readAsDataURL(file);
             }
         });
-    });
 
-    // Terms checkbox toggle submit button
-    const agreeCheckbox = document.getElementById('agreeTerms');
-    const submitBtn = document.getElementById('submitBtn');
-
-    agreeCheckbox.addEventListener('change', function() {
-        if (this.checked) {
-            submitBtn.classList.remove('disabled');
-            submitBtn.classList.add('enabled');
-        } else {
-            submitBtn.classList.remove('enabled');
-            submitBtn.classList.add('disabled');
-        }
-    });
-
-    // Convert file to base64
-    function fileToBase64(file) {
-        return new Promise((resolve, reject) => {
-            const reader = new FileReader();
-            reader.onload = () => resolve(reader.result.split(',')[1]);
-            reader.onerror = reject;
-            reader.readAsDataURL(file);
+        // Age calculation
+        document.getElementById('dateOfBirth').addEventListener('change', function () {
+            const dob = new Date(this.value);
+            const today = new Date();
+            let age = today.getFullYear() - dob.getFullYear();
+            const monthDiff = today.getMonth() - dob.getMonth();
+            if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < dob.getDate())) {
+                age--;
+            }
+            document.getElementById('age').value = age;
         });
-    }
 
-    // Submit handler
-    submitBtn.addEventListener('click', async function() {
-        if (!agreeCheckbox.checked) {
-            alert('Please agree to the Terms & Conditions');
-            return;
-        }
+        // Referral and Other field toggle
+        document.querySelectorAll('input[name="hearAbout"]').forEach(radio => {
+            radio.addEventListener('change', function () {
+                const referralField = document.getElementById('referralField');
+                const otherField = document.getElementById('otherField');
 
-        const loadingMessage = document.getElementById('loadingMessage');
-        loadingMessage.classList.add('show');
-        submitBtn.disabled = true;
-
-        try {
-            // Get file uploads
-            const studentPhotoFile = document.getElementById('studentPhoto').files[0];
-            const emiratesIdFile = document.getElementById('emiratesIdFile').files[0];
-
-            if (!studentPhotoFile) {
-                alert('Please upload student photo');
-                loadingMessage.classList.remove('show');
-                submitBtn.disabled = false;
-                return;
-            }
-
-            if (!emiratesIdFile) {
-                alert('Please upload Emirates ID');
-                loadingMessage.classList.remove('show');
-                submitBtn.disabled = false;
-                return;
-            }
-
-            // Convert files to base64
-            const studentPhotoBase64 = await fileToBase64(studentPhotoFile);
-            const emiratesIdBase64 = await fileToBase64(emiratesIdFile);
-
-            // Collect form data
-            const formData = {
-                registrationDate: document.getElementById('registrationDate').value,
-                branch: document.getElementById('branch').value,
-                paymentStatus: document.getElementById('paymentStatus').value,
-                studentPhoto: studentPhotoBase64,
-                studentPhotoName: studentPhotoFile.name,
-                fullName: document.getElementById('fullName').value,
-                gender: document.getElementById('gender').value,
-                nationality: document.getElementById('nationality').value,
-                dateOfBirth: document.getElementById('dateOfBirth').value,
-                age: document.getElementById('age').value,
-                emiratesId: document.getElementById('emiratesId').value,
-                emiratesIdFile: emiratesIdBase64,
-                emiratesIdFileName: emiratesIdFile.name,
-                weight: document.getElementById('weight').value,
-                playerPosition: document.getElementById('playerPosition').value,
-                playerLevel: document.getElementById('playerLevel').value,
-                jerseyNumber: document.getElementById('jerseyNumber').value,
-                jerseySize: document.getElementById('jerseySize').value,
-                playerRemarks: document.getElementById('playerRemarks').value,
-                medicalConditions: document.getElementById('medicalConditions').value,
-                parentName: document.getElementById('parentName').value,
-                relation: document.getElementById('relation').value,
-                phoneNumber: document.getElementById('phoneNumber').value,
-                whatsappNumber: document.getElementById('whatsappNumber').value,
-                email: document.getElementById('email').value,
-                hearAbout: document.querySelector('input[name="hearAbout"]:checked')?.value,
-                referredBy: document.getElementById('referredBy').value,
-                otherDetails: document.getElementById('otherDetails').value,
-                batch: document.getElementById('batch').value,
-                sessionDays: document.getElementById('sessionDays').value,
-                sessionsPerWeek: document.getElementById('sessionsPerWeek').value
-            };
-
-            // Send to Google Apps Script
-            const response = await fetch(SCRIPT_URL, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(formData)
+                if (this.value === 'Referral') {
+                    referralField.classList.remove('hidden');
+                    otherField.classList.add('hidden');
+                } else if (this.value === 'Other') {
+                    otherField.classList.remove('hidden');
+                    referralField.classList.add('hidden');
+                } else {
+                    referralField.classList.add('hidden');
+                    otherField.classList.add('hidden');
+                }
             });
+        });
 
-            const result = await response.json();
+        // Terms checkbox toggle submit button
+        const agreeCheckbox = document.getElementById('agreeTerms');
+        const submitBtn = document.getElementById('submitBtn');
 
-            if (result.status === 'success') {
-                alert(`Registration submitted successfully!\n\nRegistration ID: ${result.registrationId}\n\nConfirmation link has been generated and logged. Please check the confirmation link in your email and WhatsApp.`);
-                
-                // Reset form
-                location.reload();
+        agreeCheckbox.addEventListener('change', function () {
+            if (this.checked) {
+                submitBtn.classList.remove('disabled');
+                submitBtn.classList.add('enabled');
             } else {
-                alert('Error: ' + result.message);
+                submitBtn.classList.remove('enabled');
+                submitBtn.classList.add('disabled');
+            }
+        });
+
+        // Convert file to base64
+        function fileToBase64(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = () => resolve(reader.result.split(',')[1]);
+                reader.onerror = reject;
+                reader.readAsDataURL(file);
+            });
+        }
+
+        // Submit handler
+        submitBtn.addEventListener('click', async function () {
+            if (!agreeCheckbox.checked) {
+                alert('Please agree to the Terms & Conditions');
+                return;
             }
 
-        } catch (error) {
-            console.error('Error:', error);
-            alert('An error occurred during registration. Please try again.');
-        } finally {
-            loadingMessage.classList.remove('show');
-            submitBtn.disabled = false;
-        }
-    });
-</script>
+            const loadingMessage = document.getElementById('loadingMessage');
+            loadingMessage.classList.add('show');
+            submitBtn.disabled = true;
+
+            try {
+                // Get file uploads
+                const studentPhotoFile = document.getElementById('studentPhoto').files[0];
+                const emiratesIdFile = document.getElementById('emiratesIdFile').files[0];
+
+                if (!studentPhotoFile) {
+                    alert('Please upload student photo');
+                    loadingMessage.classList.remove('show');
+                    submitBtn.disabled = false;
+                    return;
+                }
+
+                if (!emiratesIdFile) {
+                    alert('Please upload Emirates ID');
+                    loadingMessage.classList.remove('show');
+                    submitBtn.disabled = false;
+                    return;
+                }
+
+                // Convert files to base64
+                const studentPhotoBase64 = await fileToBase64(studentPhotoFile);
+                const emiratesIdBase64 = await fileToBase64(emiratesIdFile);
+
+                // Collect form data
+                const formData = {
+                    registrationDate: document.getElementById('registrationDate').value,
+                    branch: document.getElementById('branch').value,
+                    paymentStatus: document.getElementById('paymentStatus').value,
+                    studentPhoto: studentPhotoBase64,
+                    studentPhotoName: studentPhotoFile.name,
+                    fullName: document.getElementById('fullName').value,
+                    gender: document.getElementById('gender').value,
+                    nationality: document.getElementById('nationality').value,
+                    dateOfBirth: document.getElementById('dateOfBirth').value,
+                    age: document.getElementById('age').value,
+                    emiratesId: document.getElementById('emiratesId').value,
+                    emiratesIdFile: emiratesIdBase64,
+                    emiratesIdFileName: emiratesIdFile.name,
+                    weight: document.getElementById('weight').value,
+                    playerPosition: document.getElementById('playerPosition').value,
+                    playerLevel: document.getElementById('playerLevel').value,
+                    jerseyNumber: document.getElementById('jerseyNumber').value,
+                    jerseySize: document.getElementById('jerseySize').value,
+                    playerRemarks: document.getElementById('playerRemarks').value,
+                    medicalConditions: document.getElementById('medicalConditions').value,
+                    parentName: document.getElementById('parentName').value,
+                    relation: document.getElementById('relation').value,
+                    phoneNumber: document.getElementById('phoneNumber').value,
+                    whatsappNumber: document.getElementById('whatsappNumber').value,
+                    email: document.getElementById('email').value,
+                    hearAbout: document.querySelector('input[name="hearAbout"]:checked')?.value,
+                    referredBy: document.getElementById('referredBy').value,
+                    otherDetails: document.getElementById('otherDetails').value,
+                    batch: document.getElementById('batch').value,
+                    sessionDays: document.getElementById('sessionDays').value,
+                    sessionsPerWeek: document.getElementById('sessionsPerWeek').value
+                };
+
+                // Send to Google Apps Script
+                const response = await fetch(SCRIPT_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                const result = await response.json();
+
+                if (result.status === 'success') {
+                    alert(`Registration submitted successfully!\n\nRegistration ID: ${result.registrationId}\n\nConfirmation link has been generated and logged. Please check the confirmation link in your email and WhatsApp.`);
+
+                    // Reset form
+                    location.reload();
+                } else {
+                    alert('Error: ' + result.message);
+                }
+
+            } catch (error) {
+                console.error('Error:', error);
+                alert('An error occurred during registration. Please try again.');
+            } finally {
+                loadingMessage.classList.remove('show');
+                submitBtn.disabled = false;
+            }
+        });
+    </script>
 </body>
 
 </html>

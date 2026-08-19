@@ -54,7 +54,7 @@
 **URGENT**: Create these images (1200x630px):
 
 **Homepage Image** (`/images/touchline-og-home.jpg`):
-- Touchline Sports Academy logo
+- Touchline Sport Academy logo
 - Text: "#1 Football Academy in Dubai"
 - Text: "Kids & Youth Training | Ages 3-18"
 - Text: "Free Trial Available"
@@ -72,7 +72,7 @@
 ```
 For Al Nahda Location:
 1. Go to: https://business.google.com
-2. Select "Touchline Sports Academy - Al Nahda"
+2. Select "Touchline Sport Academy - Al Nahda"
 3. Add post: "Now Enrolling! Free Trial Available"
 4. Upload 10+ photos of facility and training
 5. Update business description with keywords

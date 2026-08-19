@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Touchline Sports Academy - Match Report Form</title>
+    <title>Touchline Sport Academy - Match Report Form</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <style>
         * {
@@ -103,7 +104,9 @@
             color: var(--primary);
         }
 
-        input, select, textarea {
+        input,
+        select,
+        textarea {
             width: 100%;
             padding: 12px;
             border: 2px solid var(--border);
@@ -112,7 +115,9 @@
             transition: all 0.3s ease;
         }
 
-        input:focus, select:focus, textarea:focus {
+        input:focus,
+        select:focus,
+        textarea:focus {
             outline: none;
             border-color: var(--secondary);
             box-shadow: 0 0 0 3px rgba(190, 176, 113, 0.2);
@@ -276,6 +281,7 @@
         }
     </style>
 </head>
+
 <body>
     <div class="dummy-toggle">
         <button class="btn btn-small btn-secondary" onclick="toggleDummyData()">
@@ -285,7 +291,7 @@
 
     <div class="container">
         <div class="header">
-            <h1>Touchline Sports Academy</h1>
+            <h1>Touchline Sport Academy</h1>
             <p>Match Report Form</p>
         </div>
 
@@ -367,7 +373,8 @@
                     <div class="form-row">
                         <div class="form-group">
                             <label for="matchDuration">Match Duration</label>
-                            <input type="text" id="matchDuration" name="matchDuration" placeholder="e.g., 2 x 20 mins" required>
+                            <input type="text" id="matchDuration" name="matchDuration" placeholder="e.g., 2 x 20 mins"
+                                required>
                         </div>
                         <div class="form-group">
                             <label for="formation">Formation Used</label>
@@ -384,7 +391,8 @@
                     </div>
                     <div class="form-group">
                         <label for="substitutionNotes">Substitution Notes</label>
-                        <textarea id="substitutionNotes" name="substitutionNotes" placeholder="Brief notes about substitutions made..."></textarea>
+                        <textarea id="substitutionNotes" name="substitutionNotes"
+                            placeholder="Brief notes about substitutions made..."></textarea>
                     </div>
                 </div>
 
@@ -393,7 +401,8 @@
                     <h3>Pre-Match Analysis</h3>
                     <div class="form-group">
                         <label for="gamePlan">Coach's Game Plan</label>
-                        <textarea id="gamePlan" name="gamePlan" placeholder="Describe the game plan and strategy..." required></textarea>
+                        <textarea id="gamePlan" name="gamePlan" placeholder="Describe the game plan and strategy..."
+                            required></textarea>
                     </div>
                 </div>
 
@@ -402,7 +411,8 @@
                     <h3>Match Summary</h3>
                     <div class="form-group">
                         <label for="matchSummary">Brief Summary (2-3 lines)</label>
-                        <textarea id="matchSummary" name="matchSummary" placeholder="Provide a brief summary of the match..." required></textarea>
+                        <textarea id="matchSummary" name="matchSummary"
+                            placeholder="Provide a brief summary of the match..." required></textarea>
                     </div>
                 </div>
 
@@ -441,7 +451,8 @@
                     </div>
                     <div class="form-group">
                         <label for="customPositives">Custom Positives</label>
-                        <textarea id="customPositives" name="customPositives" placeholder="Add any additional positive observations..."></textarea>
+                        <textarea id="customPositives" name="customPositives"
+                            placeholder="Add any additional positive observations..."></textarea>
                     </div>
                 </div>
 
@@ -476,7 +487,8 @@
                     </div>
                     <div class="form-group">
                         <label for="customImprovements">Custom Improvements</label>
-                        <textarea id="customImprovements" name="customImprovements" placeholder="Add any additional areas for improvement..."></textarea>
+                        <textarea id="customImprovements" name="customImprovements"
+                            placeholder="Add any additional areas for improvement..."></textarea>
                     </div>
                 </div>
 
@@ -501,7 +513,8 @@
                             </div>
                         </div>
                     </div>
-                    <button type="button" class="btn btn-secondary btn-small" onclick="addPlayerHighlight()">Add Player</button>
+                    <button type="button" class="btn btn-secondary btn-small" onclick="addPlayerHighlight()">Add
+                        Player</button>
                 </div>
 
                 <!-- Remarks Section -->
@@ -510,16 +523,19 @@
                     <div class="form-row">
                         <div class="form-group">
                             <label for="injuries">Injuries</label>
-                            <textarea id="injuries" name="injuries" placeholder="List any injuries or write 'None'"></textarea>
+                            <textarea id="injuries" name="injuries"
+                                placeholder="List any injuries or write 'None'"></textarea>
                         </div>
                         <div class="form-group">
                             <label for="behavior">Behavior / Discipline Notes</label>
-                            <textarea id="behavior" name="behavior" placeholder="Any behavioral observations..."></textarea>
+                            <textarea id="behavior" name="behavior"
+                                placeholder="Any behavioral observations..."></textarea>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="equipment">Equipment Issues</label>
-                        <textarea id="equipment" name="equipment" placeholder="Any equipment issues or write 'None'"></textarea>
+                        <textarea id="equipment" name="equipment"
+                            placeholder="Any equipment issues or write 'None'"></textarea>
                     </div>
                 </div>
 
@@ -528,7 +544,8 @@
                     <h3>Suggestions for Next Match</h3>
                     <div class="form-group">
                         <label for="suggestions">Training or Game Suggestions</label>
-                        <textarea id="suggestions" name="suggestions" placeholder="Suggestions for improvement or preparation for next match..."></textarea>
+                        <textarea id="suggestions" name="suggestions"
+                            placeholder="Suggestions for improvement or preparation for next match..."></textarea>
                     </div>
                 </div>
 
@@ -557,7 +574,7 @@
 
     <script>
         // Set today's date as default when page loads
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             document.getElementById('submissionDate').value = new Date().toISOString().split('T')[0];
         });
 
@@ -629,7 +646,7 @@
                     const nameInputs = document.querySelectorAll('input[name="playerName[]"]');
                     const highlightInputs = document.querySelectorAll('input[name="playerHighlight[]"]');
                     const goalInputs = document.querySelectorAll('input[name="playerGoals[]"]');
-                    
+
                     nameInputs[index].value = name;
                     highlightInputs[index].value = playerHighlights[index];
                     goalInputs[index].value = playerGoals[index];
@@ -640,7 +657,7 @@
         function addPlayerHighlight() {
             const container = document.getElementById('playerHighlights');
             const playerCount = container.querySelectorAll('.player-highlight').length;
-            
+
             if (playerCount < 5) {
                 const playerDiv = document.createElement('div');
                 playerDiv.className = 'player-highlight';
@@ -667,7 +684,7 @@
         function clearForm() {
             document.getElementById('matchReportForm').reset();
             document.getElementById('submissionDate').value = new Date().toISOString().split('T')[0];
-            
+
             // Clear extra player highlights
             const container = document.getElementById('playerHighlights');
             const playerHighlights = container.querySelectorAll('.player-highlight');
@@ -679,47 +696,47 @@
         function generatePDF() {
             const { jsPDF } = window.jspdf;
             const doc = new jsPDF();
-            
+
             // Colors
             const primaryColor = [6, 32, 61];
             const secondaryColor = [190, 176, 113];
-            
+
             // Header
             doc.setFillColor(...primaryColor);
             doc.rect(0, 0, 210, 40, 'F');
-            
+
             doc.setTextColor(255, 255, 255);
             doc.setFontSize(20);
             doc.setFont('helvetica', 'bold');
-            doc.text('TOUCHLINE SPORTS ACADEMY', 105, 15, { align: 'center' });
-            
+            doc.text('Touchline Sport Academy', 105, 15, { align: 'center' });
+
             doc.setFontSize(14);
             doc.setFont('helvetica', 'normal');
             doc.text('Match Report', 105, 25, { align: 'center' });
-            
+
             doc.setFontSize(10);
             doc.text('Generated on: ' + new Date().toLocaleDateString(), 105, 35, { align: 'center' });
-            
+
             // Reset text color for body
             doc.setTextColor(0, 0, 0);
             let y = 50;
-            
+
             // Match Information
             doc.setFontSize(14);
             doc.setFont('helvetica', 'bold');
             doc.setTextColor(...primaryColor);
             doc.text('MATCH INFORMATION', 20, y);
             y += 10;
-            
+
             doc.setFontSize(10);
             doc.setFont('helvetica', 'normal');
             doc.setTextColor(0, 0, 0);
-            
+
             const matchType = document.getElementById('matchType').value;
             const matchDate = document.getElementById('matchDate').value;
             const venue = document.getElementById('venue').value;
             const opponent = document.getElementById('opponent').value;
-            
+
             doc.text(`Match Type: ${matchType}`, 20, y);
             doc.text(`Date: ${matchDate}`, 120, y);
             y += 6;
@@ -727,51 +744,51 @@
             y += 6;
             doc.text(`Opponent: ${opponent}`, 20, y);
             y += 10;
-            
+
             // Batch information
             const batches = Array.from(document.querySelectorAll('input[name="batch"]:checked')).map(cb => cb.value);
             if (batches.length > 0) {
                 doc.text(`Batch: ${batches.join(', ')}`, 20, y);
                 y += 10;
             }
-            
+
             // Final Score
             doc.setFontSize(14);
             doc.setFont('helvetica', 'bold');
             doc.setTextColor(...primaryColor);
             doc.text('FINAL SCORE', 20, y);
             y += 10;
-            
+
             const touchlineScore = document.getElementById('touchlineScore').value;
             const opponentScore = document.getElementById('opponentScore').value;
-            
+
             doc.setFontSize(16);
             doc.setFont('helvetica', 'bold');
             doc.setTextColor(...secondaryColor);
             doc.text(`Touchline ${touchlineScore} - ${opponentScore} ${opponent}`, 20, y);
             y += 15;
-            
+
             // Match Details
             doc.setFontSize(12);
             doc.setFont('helvetica', 'bold');
             doc.setTextColor(...primaryColor);
             doc.text('MATCH DETAILS', 20, y);
             y += 8;
-            
+
             doc.setFontSize(10);
             doc.setFont('helvetica', 'normal');
             doc.setTextColor(0, 0, 0);
-            
+
             const duration = document.getElementById('matchDuration').value;
             const formation = document.getElementById('formation').value;
             const substitutions = document.getElementById('substitutions').value;
-            
+
             doc.text(`Duration: ${duration}`, 20, y);
             doc.text(`Formation: ${formation}`, 120, y);
             y += 6;
             doc.text(`Substitutions: ${substitutions}`, 20, y);
             y += 10;
-            
+
             // Game Plan
             const gamePlan = document.getElementById('gamePlan').value;
             if (gamePlan) {
@@ -780,7 +797,7 @@
                 doc.setTextColor(...primaryColor);
                 doc.text('GAME PLAN', 20, y);
                 y += 8;
-                
+
                 doc.setFontSize(10);
                 doc.setFont('helvetica', 'normal');
                 doc.setTextColor(0, 0, 0);
@@ -788,7 +805,7 @@
                 doc.text(gamePlanLines, 20, y);
                 y += gamePlanLines.length * 5 + 5;
             }
-            
+
             // Match Summary
             const matchSummary = document.getElementById('matchSummary').value;
             if (matchSummary) {
@@ -797,7 +814,7 @@
                 doc.setTextColor(...primaryColor);
                 doc.text('MATCH SUMMARY', 20, y);
                 y += 8;
-                
+
                 doc.setFontSize(10);
                 doc.setFont('helvetica', 'normal');
                 doc.setTextColor(0, 0, 0);
@@ -805,33 +822,33 @@
                 doc.text(summaryLines, 20, y);
                 y += summaryLines.length * 5 + 5;
             }
-            
+
             // Check if we need a new page
             if (y > 250) {
                 doc.addPage();
                 y = 20;
             }
-            
+
             // Positives
             const positives = Array.from(document.querySelectorAll('input[name="positives"]:checked')).map(cb => cb.value);
             const customPositives = document.getElementById('customPositives').value;
-            
+
             if (positives.length > 0 || customPositives) {
                 doc.setFontSize(12);
                 doc.setFont('helvetica', 'bold');
                 doc.setTextColor(...primaryColor);
                 doc.text('POSITIVES', 20, y);
                 y += 8;
-                
+
                 doc.setFontSize(10);
                 doc.setFont('helvetica', 'normal');
                 doc.setTextColor(0, 0, 0);
-                
+
                 positives.forEach(positive => {
                     doc.text(`• ${positive}`, 25, y);
                     y += 5;
                 });
-                
+
                 if (customPositives) {
                     const customLines = doc.splitTextToSize(`• ${customPositives}`, 165);
                     doc.text(customLines, 25, y);
@@ -839,27 +856,27 @@
                 }
                 y += 5;
             }
-            
+
             // Areas to Improve
             const improvements = Array.from(document.querySelectorAll('input[name="improvements"]:checked')).map(cb => cb.value);
             const customImprovements = document.getElementById('customImprovements').value;
-            
+
             if (improvements.length > 0 || customImprovements) {
                 doc.setFontSize(12);
                 doc.setFont('helvetica', 'bold');
                 doc.setTextColor(...primaryColor);
                 doc.text('AREAS TO IMPROVE', 20, y);
                 y += 8;
-                
+
                 doc.setFontSize(10);
                 doc.setFont('helvetica', 'normal');
                 doc.setTextColor(0, 0, 0);
-                
+
                 improvements.forEach(improvement => {
                     doc.text(`• ${improvement}`, 25, y);
                     y += 5;
                 });
-                
+
                 if (customImprovements) {
                     const customLines = doc.splitTextToSize(`• ${customImprovements}`, 165);
                     doc.text(customLines, 25, y);
@@ -867,25 +884,25 @@
                 }
                 y += 5;
             }
-            
+
             // Player Highlights
             const playerNames = Array.from(document.querySelectorAll('input[name="playerName[]"]')).map(input => input.value).filter(name => name.trim());
             const playerHighlights = Array.from(document.querySelectorAll('input[name="playerHighlight[]"]')).map(input => input.value);
             const playerGoals = Array.from(document.querySelectorAll('input[name="playerGoals[]"]')).map(input => input.value);
-            
+
             if (playerNames.length > 0) {
                 // Check if we need a new page
                 if (y > 220) {
                     doc.addPage();
                     y = 20;
                 }
-                
+
                 doc.setFontSize(12);
                 doc.setFont('helvetica', 'bold');
                 doc.setTextColor(...primaryColor);
                 doc.text('PLAYER HIGHLIGHTS', 20, y);
                 y += 10;
-                
+
                 // Table header
                 doc.setFillColor(...secondaryColor);
                 doc.rect(20, y - 2, 170, 8, 'F');
@@ -896,22 +913,22 @@
                 doc.text('Highlight', 80, y + 3);
                 doc.text('Goals', 170, y + 3);
                 y += 8;
-                
+
                 // Table content
                 doc.setTextColor(0, 0, 0);
                 doc.setFont('helvetica', 'normal');
-                
+
                 playerNames.forEach((name, index) => {
                     if (name.trim()) {
                         const highlight = playerHighlights[index] || '';
                         const goals = playerGoals[index] || '0';
-                        
+
                         // Alternate row colors
                         if (index % 2 === 0) {
                             doc.setFillColor(248, 249, 250);
                             doc.rect(20, y - 2, 170, 6, 'F');
                         }
-                        
+
                         doc.text(name, 25, y + 2);
                         const highlightText = doc.splitTextToSize(highlight, 85);
                         doc.text(highlightText, 80, y + 2);
@@ -921,29 +938,29 @@
                 });
                 y += 5;
             }
-            
+
             // Remarks
             const injuries = document.getElementById('injuries').value;
             const behavior = document.getElementById('behavior').value;
             const equipment = document.getElementById('equipment').value;
-            
+
             if (injuries || behavior || equipment) {
                 // Check if we need a new page
                 if (y > 230) {
                     doc.addPage();
                     y = 20;
                 }
-                
+
                 doc.setFontSize(12);
                 doc.setFont('helvetica', 'bold');
                 doc.setTextColor(...primaryColor);
                 doc.text('REMARKS', 20, y);
                 y += 8;
-                
+
                 doc.setFontSize(10);
                 doc.setFont('helvetica', 'normal');
                 doc.setTextColor(0, 0, 0);
-                
+
                 if (injuries) {
                     doc.setFont('helvetica', 'bold');
                     doc.text('Injuries:', 20, y);
@@ -952,7 +969,7 @@
                     doc.text(injuryLines, 45, y);
                     y += injuryLines.length * 5 + 3;
                 }
-                
+
                 if (behavior) {
                     doc.setFont('helvetica', 'bold');
                     doc.text('Behavior:', 20, y);
@@ -961,7 +978,7 @@
                     doc.text(behaviorLines, 45, y);
                     y += behaviorLines.length * 5 + 3;
                 }
-                
+
                 if (equipment) {
                     doc.setFont('helvetica', 'bold');
                     doc.text('Equipment:', 20, y);
@@ -972,7 +989,7 @@
                 }
                 y += 5;
             }
-            
+
             // Suggestions
             const suggestions = document.getElementById('suggestions').value;
             if (suggestions) {
@@ -981,13 +998,13 @@
                     doc.addPage();
                     y = 20;
                 }
-                
+
                 doc.setFontSize(12);
                 doc.setFont('helvetica', 'bold');
                 doc.setTextColor(...primaryColor);
                 doc.text('SUGGESTIONS FOR NEXT MATCH', 20, y);
                 y += 8;
-                
+
                 doc.setFontSize(10);
                 doc.setFont('helvetica', 'normal');
                 doc.setTextColor(0, 0, 0);
@@ -995,30 +1012,30 @@
                 doc.text(suggestionLines, 20, y);
                 y += suggestionLines.length * 5 + 10;
             }
-            
+
             // Submission Info
             const submittedBy = document.getElementById('submittedBy').value;
             const submissionDate = document.getElementById('submissionDate').value;
-            
+
             // Check if we need a new page
             if (y > 260) {
                 doc.addPage();
                 y = 20;
             }
-            
+
             doc.setFontSize(12);
             doc.setFont('helvetica', 'bold');
             doc.setTextColor(...primaryColor);
             doc.text('SUBMISSION INFORMATION', 20, y);
             y += 8;
-            
+
             doc.setFontSize(10);
             doc.setFont('helvetica', 'normal');
             doc.setTextColor(0, 0, 0);
             doc.text(`Report Submitted By: ${submittedBy}`, 20, y);
             y += 6;
             doc.text(`Date of Submission: ${submissionDate}`, 20, y);
-            
+
             // Footer
             const pageCount = doc.internal.getNumberOfPages();
             for (let i = 1; i <= pageCount; i++) {
@@ -1026,15 +1043,16 @@
                 doc.setFontSize(8);
                 doc.setTextColor(128, 128, 128);
                 doc.text(`Page ${i} of ${pageCount}`, 105, 290, { align: 'center' });
-                doc.text('Touchline Sports Academy - Confidential Match Report', 105, 285, { align: 'center' });
+                doc.text('Touchline Sport Academy - Confidential Match Report', 105, 285, { align: 'center' });
             }
-            
+
             // Generate filename with date and opponent
             const fileName = `TouchlineAcademy_MatchReport_${matchDate}_vs_${opponent.replace(/[^a-zA-Z0-9]/g, '_')}.pdf`;
-            
+
             // Save the PDF
             doc.save(fileName);
         }
     </script>
 </body>
+
 </html>

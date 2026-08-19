@@ -25,7 +25,7 @@
 **Required**: Create `/images/careers-og-image.jpg` (1200x630px)
 
 **Design Elements**:
-- Touchline Sports Academy logo
+- Touchline Sport Academy logo
 - Text: "We're Hiring! Join Our Team"
 - List: "Head Coach | Assistant Coach | Marketing Executive"
 - Background: Navy blue (#06203D) with gold accents (#BEB071)
@@ -37,7 +37,7 @@
 Post on all platforms with this template:
 
 ```
-🚀 We're Hiring at Touchline Sports Academy! 🚀
+🚀 We're Hiring at Touchline Sport Academy! 🚀
 
 Join Dubai's fastest-growing football academy!
 
@@ -125,7 +125,7 @@ Use tools like:
 2. football academy careers uae
 3. head coach jobs dubai
 4. assistant football coach dubai
-5. touchline sports academy careers
+5. Touchline Sport Academy careers
 
 ### Analytics Review
 - Page views on /careers
@@ -165,7 +165,7 @@ Check competitors' careers pages:
 ## 🎯 Content Marketing Strategy
 
 ### Blog Post Ideas (Publish 1 per month)
-1. "Why Join Touchline Sports Academy: A Coach's Perspective"
+1. "Why Join Touchline Sport Academy: A Coach's Perspective"
 2. "Career Growth Opportunities in Youth Football Coaching"
 3. "From Application to Onboarding: Your Journey at Touchline"
 4. "  Certification: Why It Matters for Football Coaches"

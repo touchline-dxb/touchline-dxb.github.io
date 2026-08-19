@@ -1,4 +1,4 @@
-# Touchline Sports Academy - Robots.txt
+# Touchline Sport Academy - Robots.txt
 # Optimized for maximum SEO crawling and indexing
 # Updated: 2026-02-27
 

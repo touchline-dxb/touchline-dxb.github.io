@@ -1,4 +1,4 @@
-# SEO Optimization Report - Touchline Sports Academy Careers Page
+# SEO Optimization Report - Touchline Sport Academy Careers Page
 
 ## ✅ Implemented SEO Enhancements
 

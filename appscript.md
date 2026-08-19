@@ -292,7 +292,7 @@ function createAcknowledgmentEmailTemplate(data) {
             </div>
             
             <div class="message">
-                Thank you for reaching out to Touchline Sports Academy! We've received your ${data.enquiryType.toLowerCase()} enquiry submitted on ${enquiryDate}. Whether it’s for training, admission, or a football program, our team will review your details and contact you soon with the next steps.
+                Thank you for reaching out to Touchline Sport Academy! We've received your ${data.enquiryType.toLowerCase()} enquiry submitted on ${enquiryDate}. Whether it’s for training, admission, or a football program, our team will review your details and contact you soon with the next steps.
 
             </div>
             
@@ -340,7 +340,7 @@ function createAcknowledgmentEmailTemplate(data) {
 
 <div class="message">
     If your enquiry is urgent or you need quick information, feel free to contact us directly via WhatsApp or call.  
-    <br><br>Thank you for reaching out to Touchline Sports Academy — we’re excited to help you or your child get started with football training!
+    <br><br>Thank you for reaching out to Touchline Sport Academy — we’re excited to help you or your child get started with football training!
 </div>
 
         </div>

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Touchline Sports Academy - Poster Generator</title>
+    <title>Touchline Sport Academy - Poster Generator</title>
     <style>
         * {
             margin: 0;
@@ -204,15 +204,17 @@
 
 <body>
     <div class="container">
-       <header style="text-align:center; padding:20px 0; background:rgba(0, 0, 0, 0.3); border-radius:10px; box-shadow:0 4px 10px rgba(0,0,0,0.1);">
-    <h1 style="font-size:2rem; font-weight:700; display:flex; align-items:center; justify-content:center; gap:10px; margin:0;">
-        <img src="./logo.png" width="50" alt="Touchline Logo" style="border-radius:10px;">
-        Touchline Sports Academy
-    </h1>
-    <p class="subtitle" style="font-size:1.1rem; margin-top:5px; font-weight:400; opacity:0.9;">
-        Professional Poster Generator
-    </p>
-</header>
+        <header
+            style="text-align:center; padding:20px 0; background:rgba(0, 0, 0, 0.3); border-radius:10px; box-shadow:0 4px 10px rgba(0,0,0,0.1);">
+            <h1
+                style="font-size:2rem; font-weight:700; display:flex; align-items:center; justify-content:center; gap:10px; margin:0;">
+                <img src="./logo.png" width="50" alt="Touchline Logo" style="border-radius:10px;">
+                Touchline Sport Academy
+            </h1>
+            <p class="subtitle" style="font-size:1.1rem; margin-top:5px; font-weight:400; opacity:0.9;">
+                Professional Poster Generator
+            </p>
+        </header>
 
 
         <div class="main-grid">
@@ -503,24 +505,24 @@
             // Clean rectangular title bar
             ctx.fillRect(0, 60, w, 130);
             // Add thin top and bottom accent borders
-ctx.fillStyle = '#ffffff40';
-ctx.fillRect(0, 60, w, 4);       // Top border
-ctx.fillRect(0, 190, w, 4);      // Bottom border
+            ctx.fillStyle = '#ffffff40';
+            ctx.fillRect(0, 60, w, 4);       // Top border
+            ctx.fillRect(0, 190, w, 4);      // Bottom border
 
 
 
-           
+
 
             // Title text
             ctx.fillStyle = '#ffffff';
-ctx.font = 'bold 70px ' + config.fonts.title;
-ctx.textAlign = 'center';
-ctx.textBaseline = 'middle';
-ctx.shadowColor = 'rgba(0,0,0,0.4)';
-ctx.shadowBlur = 10;
-ctx.fillText(displayTitle.toUpperCase(), w / 2, 125);
-ctx.shadowBlur = 0;
-ctx.restore();
+            ctx.font = 'bold 70px ' + config.fonts.title;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.shadowColor = 'rgba(0,0,0,0.4)';
+            ctx.shadowBlur = 10;
+            ctx.fillText(displayTitle.toUpperCase(), w / 2, 125);
+            ctx.shadowBlur = 0;
+            ctx.restore();
 
             // Player photo in corner with curved frame
             var cornerSize = 420;
@@ -600,58 +602,58 @@ ctx.restore();
             ctx.fillText('PLAYER', badgeX, badgeY + 10);
             ctx.restore();
 
-           // Player name background (horizontal gradient)
-var nameY = h - 220;
-ctx.save();
+            // Player name background (horizontal gradient)
+            var nameY = h - 220;
+            ctx.save();
 
-// Gradient from accent → transparent (left to right)
-var nameGrad = ctx.createLinearGradient(w/2 - 500, nameY, w/2 + 500, nameY);
-nameGrad.addColorStop(0, config.accent + 'ee');
-nameGrad.addColorStop(1, config.accent + '00');
-ctx.fillStyle = nameGrad;
+            // Gradient from accent → transparent (left to right)
+            var nameGrad = ctx.createLinearGradient(w / 2 - 500, nameY, w / 2 + 500, nameY);
+            nameGrad.addColorStop(0, config.accent + 'ee');
+            nameGrad.addColorStop(1, config.accent + '00');
+            ctx.fillStyle = nameGrad;
 
-// Rounded rectangle (horizontal fade)
-ctx.beginPath();
-ctx.roundRect(20, nameY - 55, 1000, 110, 55);
-ctx.fill();
+            // Rounded rectangle (horizontal fade)
+            ctx.beginPath();
+            ctx.roundRect(20, nameY - 55, 1000, 110, 55);
+            ctx.fill();
 
-// Player name text
-ctx.fillStyle = '#ffffff';
-ctx.font = 'bold 75px ' + config.fonts.name;
-ctx.textAlign = 'center';
-ctx.textBaseline = 'middle';
-ctx.shadowColor = 'rgba(0,0,0,0.25)';
-ctx.shadowBlur = 12;
-ctx.fillText(studentName.toUpperCase(), 90,nameY);
-ctx.restore();
+            // Player name text
+            ctx.fillStyle = '#ffffff';
+            ctx.font = 'bold 75px ' + config.fonts.name;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.shadowColor = 'rgba(0,0,0,0.25)';
+            ctx.shadowBlur = 12;
+            ctx.fillText(studentName.toUpperCase(), 90, nameY);
+            ctx.restore();
             // Batch background (same horizontal gradient style)
-var batchY = h -120;
-ctx.save();
+            var batchY = h - 120;
+            ctx.save();
 
-var batchGrad = ctx.createLinearGradient(w/2 - 180, batchY, w/2 + 180, batchY);
-batchGrad.addColorStop(0, config.accent + 'ee');
-batchGrad.addColorStop(1, config.accent + '00');
-ctx.fillStyle = batchGrad;
+            var batchGrad = ctx.createLinearGradient(w / 2 - 180, batchY, w / 2 + 180, batchY);
+            batchGrad.addColorStop(0, config.accent + 'ee');
+            batchGrad.addColorStop(1, config.accent + '00');
+            ctx.fillStyle = batchGrad;
 
-// Rounded rectangle for batch bar
-ctx.beginPath();
-ctx.roundRect(20, batchY - 35, 420, 70, 35);
-ctx.fill();
+            // Rounded rectangle for batch bar
+            ctx.beginPath();
+            ctx.roundRect(20, batchY - 35, 420, 70, 35);
+            ctx.fill();
 
-// Thin white border
-ctx.strokeStyle = '#ffffffaa';
-ctx.lineWidth = 3;
-ctx.stroke();
+            // Thin white border
+            ctx.strokeStyle = '#ffffffaa';
+            ctx.lineWidth = 3;
+            ctx.stroke();
 
-// Batch text
-ctx.fillStyle = '#ffffff';
-ctx.font = 'bold 42px ' + config.fonts.batch;
-ctx.textAlign = 'center';
-ctx.textBaseline = 'middle';
-ctx.shadowColor = 'rgba(0,0,0,0.2)';
-ctx.shadowBlur = 8;
-ctx.fillText(batch, 140, batchY);
-ctx.restore();
+            // Batch text
+            ctx.fillStyle = '#ffffff';
+            ctx.font = 'bold 42px ' + config.fonts.batch;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.shadowColor = 'rgba(0,0,0,0.2)';
+            ctx.shadowBlur = 8;
+            ctx.fillText(batch, 140, batchY);
+            ctx.restore();
             // Fixed Touchline logo (top-left corner)
             const logo = new Image();
             logo.src = './logo.png'; // replace with your logo path

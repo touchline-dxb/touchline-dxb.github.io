@@ -1,4 +1,4 @@
-# ⚽ Touchline Sports Academy — SEO Task List
+# ⚽ Touchline Sport Academy — SEO Task List
 **Domain:** touchlinesport.ae  
 **Last Updated:** 09 March 2026  
 **Status Legend:** ✅ Done | ⚠️ Manual Required
@@ -12,14 +12,14 @@
 ### TASK 1 — Fix `<title>` Tag on Homepage ✅ DONE
 **File:** `index.html` (line 10–12)  
 **Problem:** 92-char title with "Near Me" wastes keyword space  
-**Fix Applied:** Changed to `Best Football Academy in Dubai for Kids & Adults | Touchline Sports Academy` (63 chars)
+**Fix Applied:** Changed to `Best Football Academy in Dubai for Kids & Adults | Touchline Sport Academy` (63 chars)
 
 ---
 
 ### TASK 2 — Fix Broken Meta Description on Homepage ✅ DONE
 **File:** `index.html` (lines 13–14)  
 **Problem:** 4 blank spaces before "certified coaches" — rendered as broken text in Google SERPs. Also 214 chars (too long)  
-**Fix Applied:** Rewrote to 157 chars — `Touchline Sports Academy — Dubai's best football academy for kids, youth & adults aged 3-18+. UEFA-certified coaches, free trial sessions, affordable programs at Al Nahda & Al Warqa. Join 200+ players today!`
+**Fix Applied:** Rewrote to 157 chars — `Touchline Sport Academy — Dubai's best football academy for kids, youth & adults aged 3-18+. UEFA-certified coaches, free trial sessions, affordable programs at Al Nahda & Al Warqa. Join 200+ players today!`
 
 ---
 
@@ -92,11 +92,11 @@ https://touchlinesport.ae/football-academy-dubai/      (priority: 0.95)
 
 ### TASK 8 — Fix GBP Name Inconsistency ⚠️ MANUAL REQUIRED
 **Platform:** Google Business Profile  
-**Problem:** GBP listing name is **"Touchline Football Academy"** but the website is **"Touchline Sports Academy"** — NAP mismatch suppresses local pack rankings  
+**Problem:** GBP listing name is **"Touchline Football Academy"** but the website is **"Touchline Sport Academy"** — NAP mismatch suppresses local pack rankings  
 **Action Required:**
 1. Go to [business.google.com](https://business.google.com)
 2. Sign in as account owner
-3. Edit Business Name → Change to **"Touchline Sports Academy"**
+3. Edit Business Name → Change to **"Touchline Sport Academy"**
 4. Save and await Google verification (may take 1–7 days)
 
 ---
@@ -132,7 +132,7 @@ https://touchlinesport.ae/football-academy-dubai/      (priority: 0.95)
 
 | # | Action | Where | Priority |
 |---|--------|--------|----------|
-| 1 | **Change GBP name** → "Touchline Sports Academy" | business.google.com | 🔴 HIGH |
+| 1 | **Change GBP name** → "Touchline Sport Academy" | business.google.com | 🔴 HIGH |
 | 2 | **Push code to GitHub** (git add → commit → push) | Terminal / GitHub Desktop | 🔴 HIGH |
 | 3 | **Request Indexing in Google Search Console** for 2 new URLs | search.google.com/search-console | 🟠 HIGH |
 | 4 | List on WhatOn.ae | whatson.ae/submit | 🟡 MEDIUM |
@@ -146,7 +146,7 @@ https://touchlinesport.ae/football-academy-dubai/      (priority: 0.95)
 ## 📋 NAP for All Directory Listings (Use Exactly)
 
 ```
-Business Name: Touchline Sports Academy
+Business Name: Touchline Sport Academy
 Address:       Inside Al Ahli Club, Al Nahda 1, behind Al Mulla Plaza, Dubai, UAE
 Phone:         +971 56 130 0850
 Email:         touchlinedxb@gmail.com
