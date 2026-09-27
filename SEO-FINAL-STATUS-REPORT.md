@@ -52,4 +52,4 @@ The following pages now have enhanced Meta Tags, Open Graph data, and multiple S
 
 ---
 
-*Touchline Sports Academy is now technically optimized to rank for age-specific and location-based searches!*
+*Touchline Sport Academy is now technically optimized to rank for age-specific and location-based searches!*
