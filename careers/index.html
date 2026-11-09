@@ -2215,7 +2215,7 @@
                     <h3>⭐ Senior Coach</h3>
                     <ul>
                         <li>Minimum <strong>2 years</strong> coaching experience in the UAE</li>
-                        <li>Minimum <strong>C Licence</strong> (AFC / CAF / UAEFA) or <strong>UEFA Level 2</strong></li>
+                        <li>Minimum <strong>C Licence</strong> (AFC / CAF / UEFA / UAEFA)</li>
                         <li>Lead structured sessions for youth squads aged 4–18+</li>
                     </ul>
                 </div>
@@ -2228,10 +2228,9 @@
                     </ul>
                 </div>
                 <div class="elig-note">
-                    <strong>🌍 Nationality Eligibility</strong>
-                    <p>Due to current UAE visa requirements, we are unable to accept applications from
-                        <b>Asian nationalities</b> or <b>Egypt</b> for these roles. Applicants from Africa, Europe,
-                        the Americas and Oceania are welcome to apply.</p>
+                    <strong>⚡ Immediate Start</strong>
+                    <p>We are looking for coaches who are <b>available to join immediately</b>. Immediately
+                        available applicants will be given priority.</p>
                 </div>
             </aside>
 
@@ -2304,8 +2303,6 @@
                             <select class="cinput" id="cNationality" name="nationality">
                                 <option value="" disabled selected>Select your nationality…</option>
                             </select>
-                            <p class="chint">Asian nationalities and Egypt are not listed due to UAE visa
-                                requirements.</p>
                             <div class="ferr"></div>
                         </div>
                     </div>
@@ -2321,7 +2318,7 @@
                                     <div class="choice-box">
                                         <span class="choice-icon">⭐</span>
                                         <strong>Senior Coach</strong>
-                                        <small>Min. 2 years UAE experience &amp; C Licence / UEFA Level 2</small>
+                                        <small>Min. 2 years UAE experience &amp; minimum C Licence</small>
                                     </div>
                                 </label>
                                 <label class="choice">
@@ -2383,7 +2380,7 @@
                             <div class="ferr"></div>
                         </div>
                         <div class="rule" id="cLicRule">ℹ️ <span>Senior Coach requires a minimum C Licence (AFC / CAF /
-                                UAEFA) or UEFA Level 2.</span></div>
+                                UEFA / UAEFA).</span></div>
                     </div>
 
                     <!-- 6. English -->
@@ -2398,9 +2395,37 @@
                         </div>
                     </div>
 
-                    <!-- 7. Salary -->
+                    <!-- 7. Availability -->
+                    <div class="cstep" data-step="availability">
+                        <div class="cstep-title"><span class="cstep-num">7</span>Availability to Join<span
+                                class="req">*</span></div>
+                        <div class="cfield" id="f-availability">
+                            <p class="chint" style="margin:0 0 14px">Are you available to join immediately?</p>
+                            <div class="choice-grid">
+                                <label class="choice">
+                                    <input type="radio" name="availability" value="Immediately">
+                                    <div class="choice-box">
+                                        <span class="choice-icon">⚡</span>
+                                        <strong>Yes — Immediately</strong>
+                                        <small>I can start right away</small>
+                                    </div>
+                                </label>
+                                <label class="choice">
+                                    <input type="radio" name="availability" value="Within 30 days">
+                                    <div class="choice-box">
+                                        <span class="choice-icon">📅</span>
+                                        <strong>Within 30 Days</strong>
+                                        <small>I need up to 30 days (notice period)</small>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="ferr"></div>
+                        </div>
+                    </div>
+
+                    <!-- 8. Salary -->
                     <div class="cstep" data-step="salary">
-                        <div class="cstep-title"><span class="cstep-num">7</span>Salary Expectation</div>
+                        <div class="cstep-title"><span class="cstep-num">8</span>Salary Expectation</div>
                         <div class="cfield" id="f-expectedSalary">
                             <label class="clabel" for="cSalary">Expected Monthly Salary<span
                                     class="req">*</span></label>
@@ -2414,9 +2439,9 @@
                         </div>
                     </div>
 
-                    <!-- 8. Resume -->
+                    <!-- 9. Resume -->
                     <div class="cstep" data-step="resume">
-                        <div class="cstep-title"><span class="cstep-num">8</span>Resume / CV<span
+                        <div class="cstep-title"><span class="cstep-num">9</span>Resume / CV<span
                                 class="req">*</span></div>
                         <div class="cfield" id="f-resume">
                             <div class="upload-box" id="cResumeBox" tabindex="0" role="button"
@@ -2431,9 +2456,9 @@
                         </div>
                     </div>
 
-                    <!-- 9. Declaration -->
+                    <!-- 10. Declaration -->
                     <div class="cstep" data-step="declaration">
-                        <div class="cstep-title"><span class="cstep-num">9</span>Declaration<span
+                        <div class="cstep-title"><span class="cstep-num">10</span>Declaration<span
                                 class="req">*</span></div>
                         <div class="cfield" id="f-declaration">
                             <label class="declare">
@@ -2710,7 +2735,7 @@
                 </div>
                 <div class="faq-item">
                     <h3>What coaching qualifications do I need?</h3>
-                    <p>A coaching licence (UEFA Level 1/2, AFC, or national equivalent) is preferred but not always
+                    <p>A coaching licence (UEFA, AFC, CAF, UAEFA or national equivalent) is preferred but not always
                         required — we value real experience with youth players. What matters most is your energy,
                         personality, and genuine passion for developing kids through football.</p>
                 </div>
@@ -3559,7 +3584,6 @@
     <script>
         /* ═══ SENIOR / ASSISTANT COACH APPLICATION ═══ */
         (function () {
-            // Asian nationalities and Egypt are intentionally excluded (UAE visa requirements).
             const NATIONALITIES = {
                 'Africa': ['Algeria', 'Angola', 'Benin', 'Botswana', 'Burkina Faso', 'Burundi', 'Cabo Verde', 'Cameroon',
                     'Central African Republic', 'Chad', 'Comoros', 'Congo (Republic)', 'Congo (DR)', "Côte d'Ivoire",
@@ -3587,7 +3611,7 @@
             const LICENCE_LEVELS = {
                 AFC: ['Pro', 'A', 'B', 'C', 'D', 'Other'],
                 CAF: ['Pro', 'A', 'B', 'C', 'D', 'Other'],
-                UEFA: ['Level 1', 'Level 2', 'Level 3', 'Level 4', 'Other'],
+                UEFA: ['Pro', 'A', 'B', 'C', 'Other'],
                 UAEFA: ['Pro', 'A', 'B', 'C', 'D', 'Other'],
                 Other: []
             };
@@ -3595,7 +3619,7 @@
             const SENIOR_LEVELS = {
                 AFC: ['Pro', 'A', 'B', 'C'],
                 CAF: ['Pro', 'A', 'B', 'C'],
-                UEFA: ['Level 2', 'Level 3', 'Level 4'],
+                UEFA: ['Pro', 'A', 'B', 'C'],
                 UAEFA: ['Pro', 'A', 'B', 'C']
             };
 
@@ -3816,10 +3840,10 @@
                         : 'No minimum UAE experience for Assistant Coach — enter 0 if you have none.';
 
                 el('cLicRule').querySelector('span').textContent = senior
-                    ? 'Senior Coach requires a minimum C Licence (AFC / CAF / UAEFA) or UEFA Level 2.'
+                    ? 'Senior Coach requires a minimum C Licence (AFC / CAF / UEFA / UAEFA).'
                     : role()
                         ? 'All licence levels are accepted for Assistant Coach.'
-                        : 'Senior Coach requires a minimum C Licence (AFC / CAF / UAEFA) or UEFA Level 2.';
+                        : 'Senior Coach requires a minimum C Licence (AFC / CAF / UEFA / UAEFA).';
 
                 renderLevels();
             }
@@ -3890,12 +3914,14 @@
                 else if (LICENCE_LEVELS[body].length && !level) errors.licenceLevel = 'Please select your licence level.';
 
                 if (!radioValue('englishFluency')) errors.englishFluency = 'Please select your English fluency level.';
+                if (!radioValue('availability')) errors.availability = 'Please tell us when you can join.';
                 if (!(salary > 0)) errors.expectedSalary = 'Please enter your expected monthly salary in AED.';
                 if (!resumeFile) errors.resume = 'Please upload your resume / CV.';
                 if (!el('cDeclare').checked) errors.declaration = 'Please confirm that the information you provided is true.';
 
                 ['photo', 'fullName', 'phone', 'email', 'nationality', 'jobRole', 'uaeExperience', 'totalExperience',
-                    'licenceBody', 'licenceLevel', 'englishFluency', 'expectedSalary', 'resume', 'declaration']
+                    'licenceBody', 'licenceLevel', 'englishFluency', 'availability', 'expectedSalary', 'resume',
+                    'declaration']
                     .forEach(k => setError(k, errors[k]));
 
                 return errors;
@@ -3913,6 +3939,7 @@
                         && Number(totalInput.value) >= Number(uaeInput.value),
                     licence: !!body && (!LICENCE_LEVELS[body].length || !!radioValue('licenceLevel')),
                     english: !!radioValue('englishFluency'),
+                    availability: !!radioValue('availability'),
                     salary: Number(form.expectedSalary.value) > 0,
                     resume: !!resumeFile,
                     declaration: el('cDeclare').checked
@@ -3973,6 +4000,7 @@
                             licenceBody: radioValue('licenceBody'),
                             licenceLevel: radioValue('licenceLevel'),
                             englishFluency: radioValue('englishFluency'),
+                            availability: radioValue('availability'),
                             expectedSalary: Number(form.expectedSalary.value),
                             declaration: el('cDeclare').checked ? 'Confirmed' : ''
                         },
