@@ -1171,6 +1171,971 @@
                 padding: 60px 20px;
             }
         }
+
+        /* ═══════════════ HERO CTA ═══════════════ */
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 40px;
+            padding: 16px 34px;
+            border-radius: var(--r3);
+            background: linear-gradient(135deg, var(--gold), var(--gold2));
+            color: var(--navy);
+            font-family: 'Oswald', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: 1.6px;
+            text-transform: uppercase;
+            text-decoration: none;
+            box-shadow: 0 10px 28px rgba(190, 176, 113, .35);
+            transition: transform .3s, box-shadow .3s;
+        }
+
+        .hero-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 16px 36px rgba(190, 176, 113, .45)
+        }
+
+        /* ═══════════════ COACH APPLICATION ═══════════════ */
+        .apply {
+            max-width: 1160px;
+            margin: 0 auto;
+            padding: 80px 24px 100px;
+            scroll-margin-top: 20px
+        }
+
+        .apply .req {
+            color: #e74c3c;
+            margin-left: 2px
+        }
+
+        .apply-wrap {
+            display: grid;
+            grid-template-columns: 330px 1fr;
+            gap: 28px;
+            align-items: start
+        }
+
+        /* aside */
+        .apply-aside {
+            position: sticky;
+            top: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px
+        }
+
+        .role-info {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(140deg, var(--navy), var(--navy2));
+            color: var(--white);
+            border-radius: var(--r2);
+            padding: 24px 24px 22px;
+            box-shadow: var(--sh)
+        }
+
+        .role-info::after {
+            content: '';
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            background: rgba(190, 176, 113, .14);
+            pointer-events: none
+        }
+
+        .role-info.alt {
+            background: var(--white);
+            color: var(--txt);
+            border: 1px solid rgba(190, 176, 113, .25)
+        }
+
+        .role-info h3 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--gold);
+            letter-spacing: .4px;
+            margin-bottom: 14px
+        }
+
+        .role-info.alt h3 {
+            color: var(--navy)
+        }
+
+        .role-info ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px
+        }
+
+        .role-info li {
+            position: relative;
+            padding-left: 26px;
+            font-size: .9rem;
+            line-height: 1.55;
+            color: rgba(255, 255, 255, .8)
+        }
+
+        .role-info.alt li {
+            color: var(--txt2)
+        }
+
+        .role-info li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            top: 1px;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--gold);
+            color: var(--navy);
+            font-size: .7rem;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center
+        }
+
+        .role-info strong {
+            color: var(--white)
+        }
+
+        .role-info.alt strong {
+            color: var(--navy)
+        }
+
+        .elig-note {
+            background: linear-gradient(135deg, #fff8e7, #fef3c7);
+            border: 1px solid rgba(190, 176, 113, .45);
+            border-left: 4px solid var(--gold);
+            border-radius: var(--r);
+            padding: 18px 20px
+        }
+
+        .elig-note strong {
+            display: block;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1rem;
+            color: var(--navy);
+            letter-spacing: .4px;
+            margin-bottom: 6px
+        }
+
+        .elig-note p {
+            font-size: .87rem;
+            line-height: 1.6;
+            color: #5a4a20
+        }
+
+        /* card */
+        .apply-card {
+            background: var(--white);
+            border-radius: 28px;
+            border: 1px solid rgba(190, 176, 113, .18);
+            box-shadow: var(--sh2);
+            overflow: hidden
+        }
+
+        .apply-head {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--navy), var(--navy2));
+            padding: 30px 34px 26px;
+            color: var(--white)
+        }
+
+        .apply-head::before {
+            content: '';
+            position: absolute;
+            top: -70px;
+            right: -40px;
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            background: rgba(190, 176, 113, .12);
+            pointer-events: none
+        }
+
+        .apply-head h3 {
+            position: relative;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.7rem;
+            font-weight: 700;
+            letter-spacing: .4px
+        }
+
+        .apply-head p {
+            position: relative;
+            color: rgba(255, 255, 255, .62);
+            font-size: .9rem;
+            margin-top: 4px
+        }
+
+        .apply-progress {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 18px
+        }
+
+        .apply-progress .bar {
+            flex: 1;
+            height: 6px;
+            border-radius: 6px;
+            background: rgba(255, 255, 255, .12);
+            overflow: hidden
+        }
+
+        .apply-progress .bar span {
+            display: block;
+            height: 100%;
+            width: 0;
+            border-radius: 6px;
+            background: linear-gradient(90deg, var(--gold), var(--gold2));
+            transition: width .45s cubic-bezier(.22, 1, .36, 1)
+        }
+
+        .apply-progress .pct {
+            font-family: 'Oswald', sans-serif;
+            font-size: .85rem;
+            color: var(--gold);
+            min-width: 38px;
+            text-align: right
+        }
+
+        .cform {
+            padding: 8px 34px 36px
+        }
+
+        .cstep {
+            padding: 26px 0;
+            border-bottom: 1px dashed #e3e8ee
+        }
+
+        .cstep-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 18px;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--navy);
+            letter-spacing: .8px;
+            text-transform: uppercase
+        }
+
+        .cstep-num {
+            width: 30px;
+            height: 30px;
+            flex-shrink: 0;
+            border-radius: 50%;
+            border: 1.5px solid var(--gold);
+            background: var(--gold-faint);
+            color: var(--navy);
+            font-size: .85rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background .3s, color .3s
+        }
+
+        .cstep.done .cstep-num {
+            background: var(--gold);
+            color: var(--navy)
+        }
+
+        /* fields */
+        .cfield {
+            margin-bottom: 18px
+        }
+
+        .cfield:last-child {
+            margin-bottom: 0
+        }
+
+        .clabel {
+            display: block;
+            font-size: .9rem;
+            font-weight: 600;
+            color: var(--navy);
+            margin-bottom: 8px
+        }
+
+        .cinput {
+            width: 100%;
+            padding: 13px 16px;
+            border-radius: 12px;
+            border: 1.5px solid #dde3ea;
+            background: #fafbfc;
+            font-family: 'DM Sans', sans-serif;
+            font-size: .95rem;
+            color: var(--txt);
+            outline: none;
+            transition: border-color .25s, box-shadow .25s, background .25s
+        }
+
+        .cinput:focus {
+            border-color: var(--gold);
+            box-shadow: 0 0 0 3px var(--gold-faint);
+            background: var(--white)
+        }
+
+        select.cinput {
+            appearance: none;
+            cursor: pointer;
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3e%3cpath fill='%235a6c7d' d='M6 8L1 3h10z'/%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 14px center;
+            padding-right: 38px
+        }
+
+        .cinput[type=number] {
+            -moz-appearance: textfield
+        }
+
+        .cinput[type=number]::-webkit-outer-spin-button,
+        .cinput[type=number]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0
+        }
+
+        .chint {
+            font-size: .8rem;
+            color: var(--txt3);
+            margin-top: 7px;
+            line-height: 1.5
+        }
+
+        .ferr {
+            display: none;
+            margin-top: 7px;
+            font-size: .8rem;
+            font-weight: 600;
+            color: #e74c3c
+        }
+
+        .cfield.invalid .ferr {
+            display: block
+        }
+
+        .cfield.invalid .cinput,
+        .cfield.invalid .ingroup,
+        .cfield.invalid .choice-box,
+        .cfield.invalid .chip span,
+        .cfield.invalid .upload-box {
+            border-color: #e74c3c
+        }
+
+        .cfield.invalid .photo-preview {
+            border-color: #e74c3c
+        }
+
+        /* input with prefix / suffix */
+        .ingroup {
+            display: flex;
+            align-items: stretch;
+            border: 1.5px solid #dde3ea;
+            border-radius: 12px;
+            background: #fafbfc;
+            overflow: hidden;
+            transition: border-color .25s, box-shadow .25s, background .25s
+        }
+
+        .ingroup:focus-within {
+            border-color: var(--gold);
+            box-shadow: 0 0 0 3px var(--gold-faint);
+            background: var(--white)
+        }
+
+        .ingroup .cinput {
+            border: none;
+            border-radius: 0;
+            background: transparent;
+            box-shadow: none;
+            min-width: 0
+        }
+
+        .ingroup-add {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            padding: 0 14px;
+            background: var(--gold-faint);
+            color: var(--navy);
+            font-weight: 700;
+            font-size: .92rem;
+            white-space: nowrap;
+            border-right: 1.5px solid #e6e1c8
+        }
+
+        .ingroup-add.end {
+            background: transparent;
+            border-right: none;
+            color: var(--txt3);
+            font-weight: 600;
+            font-size: .85rem
+        }
+
+        /* photo */
+        .photo-up {
+            display: flex;
+            align-items: center;
+            gap: 24px
+        }
+
+        .photo-preview {
+            position: relative;
+            width: 116px;
+            height: 116px;
+            flex-shrink: 0;
+            border-radius: 50%;
+            border: 2px dashed #cfd7e0;
+            background: var(--off);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            cursor: pointer;
+            transition: border-color .25s, box-shadow .25s, transform .25s
+        }
+
+        .photo-preview:hover {
+            border-color: var(--gold);
+            transform: scale(1.03)
+        }
+
+        .photo-preview svg {
+            width: 46px;
+            height: 46px;
+            color: #b5c0cc
+        }
+
+        .photo-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover
+        }
+
+        .photo-preview.has {
+            border: 3px solid var(--gold);
+            box-shadow: 0 0 0 6px var(--gold-faint)
+        }
+
+        .photo-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px
+        }
+
+        .pbtn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            border-radius: var(--r3);
+            border: none;
+            background: linear-gradient(135deg, var(--navy), var(--navy2));
+            color: var(--white);
+            font-family: 'DM Sans', sans-serif;
+            font-size: .88rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform .25s, box-shadow .25s
+        }
+
+        .pbtn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(6, 32, 61, .25)
+        }
+
+        .apply [hidden] {
+            display: none !important
+        }
+
+        .pbtn.ghost {
+            background: transparent;
+            color: #e74c3c;
+            border: 1.5px solid rgba(231, 76, 60, .35)
+        }
+
+        .pbtn.ghost:hover {
+            box-shadow: none;
+            background: rgba(231, 76, 60, .06)
+        }
+
+        /* choice cards (role / english) */
+        .choice-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px
+        }
+
+        .choice-grid.four {
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px
+        }
+
+        .choice {
+            position: relative;
+            display: block;
+            cursor: pointer
+        }
+
+        .choice input {
+            position: absolute;
+            opacity: 0;
+            pointer-events: none
+        }
+
+        .choice-box {
+            position: relative;
+            height: 100%;
+            padding: 18px 46px 18px 18px;
+            border-radius: 16px;
+            border: 1.5px solid #dde3ea;
+            background: #fafbfc;
+            transition: border-color .25s, background .25s, box-shadow .25s, transform .25s
+        }
+
+        .choice-box::after {
+            content: '';
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 2px solid #cfd7e0;
+            background: var(--white);
+            transition: all .25s
+        }
+
+        .choice:hover .choice-box {
+            border-color: var(--gold);
+            transform: translateY(-2px)
+        }
+
+        .choice input:checked+.choice-box {
+            border-color: var(--gold);
+            background: linear-gradient(135deg, rgba(190, 176, 113, .16), rgba(190, 176, 113, .04));
+            box-shadow: 0 0 0 3px var(--gold-faint)
+        }
+
+        .choice input:checked+.choice-box::after {
+            border-color: var(--gold);
+            background: var(--gold) url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2306203D' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3e%3cpath d='M20 6L9 17l-5-5'/%3e%3c/svg%3e") center/12px no-repeat
+        }
+
+        .choice input:focus-visible+.choice-box {
+            outline: 2px solid var(--navy);
+            outline-offset: 2px
+        }
+
+        .choice-icon {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+            display: block
+        }
+
+        .choice-box strong {
+            display: block;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.12rem;
+            font-weight: 700;
+            color: var(--navy);
+            letter-spacing: .3px;
+            margin-bottom: 4px
+        }
+
+        .choice-box small {
+            display: block;
+            font-size: .8rem;
+            color: var(--txt2);
+            line-height: 1.5
+        }
+
+        .four .choice-box {
+            padding: 16px 14px
+        }
+
+        .four .choice-box::after {
+            top: 14px;
+            right: 12px;
+            width: 18px;
+            height: 18px
+        }
+
+        .four .choice-box strong {
+            font-size: 1rem
+        }
+
+        .four .lvl-bars {
+            margin-right: 28px
+        }
+
+        .lvl-bars {
+            display: flex;
+            gap: 4px;
+            margin-bottom: 10px
+        }
+
+        .lvl-bars i {
+            flex: 1;
+            height: 5px;
+            border-radius: 3px;
+            background: #dde3ea
+        }
+
+        .lvl-bars i.on {
+            background: linear-gradient(90deg, var(--gold), var(--gold2))
+        }
+
+        /* chips (licence) */
+        .chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px
+        }
+
+        .chip {
+            position: relative
+        }
+
+        .chip input {
+            position: absolute;
+            opacity: 0;
+            pointer-events: none
+        }
+
+        .chip span {
+            display: inline-flex;
+            align-items: center;
+            min-width: 64px;
+            justify-content: center;
+            padding: 11px 20px;
+            border-radius: var(--r3);
+            border: 1.5px solid #dde3ea;
+            background: #fafbfc;
+            color: var(--navy);
+            font-weight: 700;
+            font-size: .9rem;
+            letter-spacing: .3px;
+            cursor: pointer;
+            user-select: none;
+            transition: all .25s
+        }
+
+        .chip span:hover {
+            border-color: var(--gold)
+        }
+
+        .chip input:checked+span {
+            background: linear-gradient(135deg, var(--navy), var(--navy2));
+            border-color: var(--navy);
+            color: var(--white);
+            box-shadow: 0 6px 16px rgba(6, 32, 61, .22)
+        }
+
+        .chip input:focus-visible+span {
+            outline: 2px solid var(--gold);
+            outline-offset: 2px
+        }
+
+        .chip input:disabled+span {
+            opacity: .38;
+            cursor: not-allowed;
+            text-decoration: line-through;
+            border-color: #dde3ea
+        }
+
+        .level-wrap {
+            display: none;
+            margin-top: 16px;
+            padding: 18px;
+            border-radius: 14px;
+            background: var(--off);
+            border: 1px solid #e6ebf0
+        }
+
+        .level-wrap.show {
+            display: block;
+            animation: lvlIn .35s cubic-bezier(.22, 1, .36, 1)
+        }
+
+        @keyframes lvlIn {
+            from {
+                opacity: 0;
+                transform: translateY(-6px)
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0)
+            }
+        }
+
+        .level-wrap .clabel {
+            margin-bottom: 12px
+        }
+
+        /* requirement hint */
+        .rule {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            margin-top: 12px;
+            padding: 10px 14px;
+            border-radius: 10px;
+            background: rgba(190, 176, 113, .12);
+            color: #6f6028;
+            font-size: .82rem;
+            line-height: 1.5
+        }
+
+        /* resume */
+        .apply .upload-box {
+            background: #fafbfc
+        }
+
+        .apply .upload-box.has-file {
+            border-style: solid;
+            border-color: #10b981;
+            background: rgba(16, 185, 129, .05)
+        }
+
+        .apply .upload-box .uicon {
+            font-size: 1.9rem
+        }
+
+        /* declaration */
+        .declare {
+            position: relative;
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            padding: 18px 20px;
+            border-radius: 14px;
+            border: 1.5px solid #dde3ea;
+            background: #fafbfc;
+            cursor: pointer;
+            transition: border-color .25s, background .25s, box-shadow .25s
+        }
+
+        .declare:hover {
+            border-color: var(--gold)
+        }
+
+        .declare input {
+            position: absolute;
+            opacity: 0;
+            pointer-events: none
+        }
+
+        .declare-box {
+            width: 22px;
+            height: 22px;
+            flex-shrink: 0;
+            margin-top: 1px;
+            border-radius: 6px;
+            border: 2px solid #cfd7e0;
+            background: var(--white);
+            transition: all .25s
+        }
+
+        .declare input:checked~.declare-box {
+            border-color: var(--gold);
+            background: var(--gold) url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2306203D' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3e%3cpath d='M20 6L9 17l-5-5'/%3e%3c/svg%3e") center/14px no-repeat
+        }
+
+        .declare input:focus-visible~.declare-box {
+            outline: 2px solid var(--navy);
+            outline-offset: 2px
+        }
+
+        .declare:has(input:checked) {
+            border-color: var(--gold);
+            background: linear-gradient(135deg, rgba(190, 176, 113, .14), rgba(190, 176, 113, .04))
+        }
+
+        .declare-text {
+            font-size: .88rem;
+            line-height: 1.65;
+            color: var(--txt2)
+        }
+
+        .declare-text strong {
+            color: var(--navy)
+        }
+
+        .cfield.invalid .declare {
+            border-color: #e74c3c
+        }
+
+        /* alert + submit */
+        .form-alert {
+            display: none;
+            margin-top: 22px;
+            padding: 14px 18px;
+            border-radius: 12px;
+            background: rgba(231, 76, 60, .08);
+            border: 1px solid rgba(231, 76, 60, .3);
+            color: #b03a2e;
+            font-size: .9rem;
+            font-weight: 600;
+            line-height: 1.5
+        }
+
+        .form-alert.show {
+            display: block
+        }
+
+        .apply .sbtn:disabled {
+            opacity: .75;
+            cursor: wait;
+            transform: none
+        }
+
+        .apply .sbtn.blocked {
+            background: #9aa5b1;
+            cursor: not-allowed;
+            box-shadow: none
+        }
+
+        .apply .sbtn.blocked::before {
+            display: none
+        }
+
+        .submit-note {
+            text-align: center;
+            font-size: .8rem;
+            color: var(--txt3);
+            margin-top: 12px
+        }
+
+        /* success */
+        .apply-success {
+            display: none;
+            text-align: center;
+            padding: 60px 34px 64px
+        }
+
+        .apply-success.show {
+            display: block;
+            animation: lvlIn .5s cubic-bezier(.22, 1, .36, 1)
+        }
+
+        .success-ring {
+            width: 92px;
+            height: 92px;
+            margin: 0 auto 24px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #10b981, #047857);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 0 10px rgba(16, 185, 129, .12), 0 16px 40px rgba(16, 185, 129, .35);
+            animation: pop .55s .1s cubic-bezier(.34, 1.56, .64, 1) both
+        }
+
+        .success-ring svg {
+            width: 44px;
+            height: 44px;
+            color: var(--white)
+        }
+
+        .apply-success h3 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.9rem;
+            color: var(--navy);
+            margin-bottom: 10px
+        }
+
+        .apply-success p {
+            color: var(--txt2);
+            max-width: 440px;
+            margin: 0 auto;
+            line-height: 1.7
+        }
+
+        .app-id {
+            display: inline-block;
+            margin-top: 22px;
+            padding: 10px 22px;
+            border-radius: var(--r3);
+            background: var(--gold-faint);
+            border: 1px dashed var(--gold);
+            font-family: 'Oswald', sans-serif;
+            color: var(--navy);
+            letter-spacing: 1px
+        }
+
+        @media(max-width:960px) {
+            .apply-wrap {
+                grid-template-columns: 1fr
+            }
+
+            .apply-aside {
+                position: static;
+                display: grid;
+                grid-template-columns: 1fr 1fr
+            }
+
+            .apply-aside .elig-note {
+                grid-column: 1 / -1
+            }
+        }
+
+        @media(max-width:640px) {
+            .apply {
+                padding: 60px 16px 80px
+            }
+
+            .apply-aside {
+                grid-template-columns: 1fr
+            }
+
+            .apply-head {
+                padding: 26px 22px 22px
+            }
+
+            .cform {
+                padding: 4px 22px 30px
+            }
+
+            .choice-grid {
+                grid-template-columns: 1fr
+            }
+
+            .choice-grid.four {
+                grid-template-columns: 1fr 1fr
+            }
+
+            .photo-up {
+                gap: 18px
+            }
+
+            .photo-preview {
+                width: 96px;
+                height: 96px
+            }
+
+            .chip span {
+                padding: 10px 16px
+            }
+
+            .apply-success {
+                padding: 48px 22px 52px
+            }
+        }
     </style>
     <!-- Additional SEO Meta Tags -->
     <meta name="theme-color" content="#06203D">
@@ -1230,11 +2195,288 @@
                 </div>
             </div>
 
+            <a href="#apply" class="hero-cta">Apply Now <span aria-hidden="true">→</span></a>
+
         </div>
     </section>
 
-    <!-- ───── JOBS GRID ───── -->
-    <section class="jobs" id="job-openings" itemscope itemtype="https://schema.org/ItemList">
+    <!-- ───── COACH APPLICATION (Senior / Assistant Coach) ───── -->
+    <section class="apply" id="apply">
+        <div class="sec-head">
+            <h2>Now Hiring: Senior Coach &amp; Assistant Coach</h2>
+            <p>Apply in a few minutes — add your photo, fill in your details and upload your CV. Our team reviews
+                every application personally.</p>
+            <div class="line"></div>
+        </div>
+
+        <div class="apply-wrap">
+            <aside class="apply-aside">
+                <div class="role-info">
+                    <h3>⭐ Senior Coach</h3>
+                    <ul>
+                        <li>Minimum <strong>2 years</strong> coaching experience in the UAE</li>
+                        <li>Minimum <strong>C Licence</strong> (AFC / CAF / UAEFA) or <strong>UEFA Level 2</strong></li>
+                        <li>Lead structured sessions for youth squads aged 4–18+</li>
+                    </ul>
+                </div>
+                <div class="role-info alt">
+                    <h3>🎯 Assistant Coach</h3>
+                    <ul>
+                        <li>No minimum UAE experience required</li>
+                        <li>Any coaching licence level accepted</li>
+                        <li>Support senior coaches across all age groups</li>
+                    </ul>
+                </div>
+                <div class="elig-note">
+                    <strong>🌍 Nationality Eligibility</strong>
+                    <p>Due to current UAE visa requirements, we are unable to accept applications from
+                        <b>Asian nationalities</b> or <b>Egypt</b> for these roles. Applicants from Africa, Europe,
+                        the Americas and Oceania are welcome to apply.</p>
+                </div>
+            </aside>
+
+            <div class="apply-card">
+                <div class="apply-head">
+                    <h3>Coach Application Form</h3>
+                    <p>Fields marked <span class="req">*</span> are required</p>
+                    <div class="apply-progress">
+                        <div class="bar"><span id="cProgress"></span></div>
+                        <span class="pct" id="cProgressPct">0%</span>
+                    </div>
+                </div>
+
+                <form class="cform" id="coachForm" novalidate>
+                    <!-- 1. Photo -->
+                    <div class="cstep" data-step="photo">
+                        <div class="cstep-title"><span class="cstep-num">1</span>Your Photo<span class="req">*</span>
+                        </div>
+                        <div class="cfield" id="f-photo">
+                            <div class="photo-up">
+                                <label class="photo-preview" for="cPhoto" id="cPhotoPreview" title="Upload photo">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+                                        stroke-linecap="round" stroke-linejoin="round">
+                                        <circle cx="12" cy="8" r="4" />
+                                        <path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8" />
+                                    </svg>
+                                </label>
+                                <div>
+                                    <div class="photo-actions">
+                                        <button type="button" class="pbtn" id="cPhotoBtn">📷 Upload Photo</button>
+                                        <button type="button" class="pbtn ghost" id="cPhotoRemove"
+                                            hidden>Remove</button>
+                                    </div>
+                                    <p class="chint">A clear, recent headshot. JPG, PNG or WEBP — max 5MB.</p>
+                                </div>
+                            </div>
+                            <input type="file" id="cPhoto" accept="image/jpeg,image/png,image/webp" hidden>
+                            <div class="ferr"></div>
+                        </div>
+                    </div>
+
+                    <!-- 2. Personal details -->
+                    <div class="cstep" data-step="personal">
+                        <div class="cstep-title"><span class="cstep-num">2</span>Personal Details</div>
+                        <div class="cfield" id="f-fullName">
+                            <label class="clabel" for="cName">Full Name<span class="req">*</span></label>
+                            <input class="cinput" type="text" id="cName" name="fullName" autocomplete="name"
+                                maxlength="80" placeholder="e.g. John Smith">
+                            <div class="ferr"></div>
+                        </div>
+                        <div class="row2">
+                            <div class="cfield" id="f-phone">
+                                <label class="clabel" for="cPhone">UAE Mobile Number<span class="req">*</span></label>
+                                <div class="ingroup">
+                                    <span class="ingroup-add">🇦🇪 +971</span>
+                                    <input class="cinput" type="tel" id="cPhone" name="phone" inputmode="numeric"
+                                        autocomplete="tel-national" placeholder="50 123 4567">
+                                </div>
+                                <div class="ferr"></div>
+                            </div>
+                            <div class="cfield" id="f-email">
+                                <label class="clabel" for="cEmail">Email Address<span class="req">*</span></label>
+                                <input class="cinput" type="email" id="cEmail" name="email" autocomplete="email"
+                                    maxlength="120" placeholder="you@example.com">
+                                <div class="ferr"></div>
+                            </div>
+                        </div>
+                        <div class="cfield" id="f-nationality">
+                            <label class="clabel" for="cNationality">Nationality<span class="req">*</span></label>
+                            <select class="cinput" id="cNationality" name="nationality">
+                                <option value="" disabled selected>Select your nationality…</option>
+                            </select>
+                            <p class="chint">Asian nationalities and Egypt are not listed due to UAE visa
+                                requirements.</p>
+                            <div class="ferr"></div>
+                        </div>
+                    </div>
+
+                    <!-- 3. Job role -->
+                    <div class="cstep" data-step="role">
+                        <div class="cstep-title"><span class="cstep-num">3</span>Job Role<span class="req">*</span>
+                        </div>
+                        <div class="cfield" id="f-jobRole">
+                            <div class="choice-grid">
+                                <label class="choice">
+                                    <input type="radio" name="jobRole" value="senior-coach">
+                                    <div class="choice-box">
+                                        <span class="choice-icon">⭐</span>
+                                        <strong>Senior Coach</strong>
+                                        <small>Min. 2 years UAE experience &amp; C Licence / UEFA Level 2</small>
+                                    </div>
+                                </label>
+                                <label class="choice">
+                                    <input type="radio" name="jobRole" value="assistant-coach">
+                                    <div class="choice-box">
+                                        <span class="choice-icon">🎯</span>
+                                        <strong>Assistant Coach</strong>
+                                        <small>No minimum UAE experience — any licence level</small>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="ferr"></div>
+                        </div>
+                    </div>
+
+                    <!-- 4. Experience -->
+                    <div class="cstep" data-step="experience">
+                        <div class="cstep-title"><span class="cstep-num">4</span>Coaching Experience</div>
+                        <div class="row2">
+                            <div class="cfield" id="f-uaeExperience">
+                                <label class="clabel" for="cUaeExp">UAE Coaching Experience<span
+                                        class="req">*</span></label>
+                                <div class="ingroup">
+                                    <input class="cinput" type="text" id="cUaeExp" name="uaeExperience"
+                                        inputmode="numeric" pattern="[0-9]*" maxlength="2" autocomplete="off"
+                                        placeholder="e.g. 2">
+                                    <span class="ingroup-add end">years</span>
+                                </div>
+                                <div class="ferr"></div>
+                            </div>
+                            <div class="cfield" id="f-totalExperience">
+                                <label class="clabel" for="cTotalExp">Total Coaching Experience<span
+                                        class="req">*</span></label>
+                                <div class="ingroup">
+                                    <input class="cinput" type="text" id="cTotalExp" name="totalExperience"
+                                        inputmode="numeric" pattern="[0-9]*" maxlength="2" autocomplete="off"
+                                        placeholder="e.g. 5">
+                                    <span class="ingroup-add end">years</span>
+                                </div>
+                                <div class="ferr"></div>
+                            </div>
+                        </div>
+                        <div class="rule" id="cExpRule">ℹ️ <span>Select a job role to see the experience
+                                requirement.</span></div>
+                    </div>
+
+                    <!-- 5. Coaching licence -->
+                    <div class="cstep" data-step="licence">
+                        <div class="cstep-title"><span class="cstep-num">5</span>Coaching Licence<span
+                                class="req">*</span></div>
+                        <div class="cfield" id="f-licenceBody">
+                            <label class="clabel">Licence Issued By</label>
+                            <div class="chips" id="cLicenceBodies"></div>
+                            <div class="ferr"></div>
+                        </div>
+                        <div class="cfield level-wrap" id="f-licenceLevel">
+                            <label class="clabel" id="cLevelLabel">Licence Level<span class="req">*</span></label>
+                            <div class="chips" id="cLicenceLevels"></div>
+                            <div class="ferr"></div>
+                        </div>
+                        <div class="rule" id="cLicRule">ℹ️ <span>Senior Coach requires a minimum C Licence (AFC / CAF /
+                                UAEFA) or UEFA Level 2.</span></div>
+                    </div>
+
+                    <!-- 6. English -->
+                    <div class="cstep" data-step="english">
+                        <div class="cstep-title"><span class="cstep-num">6</span>English Fluency<span
+                                class="req">*</span></div>
+                        <div class="cfield" id="f-englishFluency">
+                            <p class="chint" style="margin:0 0 14px">How well can you read, write and speak
+                                English?</p>
+                            <div class="choice-grid four" id="cEnglish"></div>
+                            <div class="ferr"></div>
+                        </div>
+                    </div>
+
+                    <!-- 7. Salary -->
+                    <div class="cstep" data-step="salary">
+                        <div class="cstep-title"><span class="cstep-num">7</span>Salary Expectation</div>
+                        <div class="cfield" id="f-expectedSalary">
+                            <label class="clabel" for="cSalary">Expected Monthly Salary<span
+                                    class="req">*</span></label>
+                            <div class="ingroup">
+                                <span class="ingroup-add">AED</span>
+                                <input class="cinput" type="number" id="cSalary" name="expectedSalary"
+                                    inputmode="numeric" min="1" max="200000" step="1" placeholder="e.g. 5000">
+                                <span class="ingroup-add end">/ month</span>
+                            </div>
+                            <div class="ferr"></div>
+                        </div>
+                    </div>
+
+                    <!-- 8. Resume -->
+                    <div class="cstep" data-step="resume">
+                        <div class="cstep-title"><span class="cstep-num">8</span>Resume / CV<span
+                                class="req">*</span></div>
+                        <div class="cfield" id="f-resume">
+                            <div class="upload-box" id="cResumeBox" tabindex="0" role="button"
+                                aria-label="Upload resume">
+                                <input type="file" id="cResume" accept=".pdf,.doc,.docx">
+                                <div class="uicon">📄</div>
+                                <p id="cResumeText">Drag &amp; drop or <span>click to browse</span></p>
+                                <p style="font-size:.75rem;color:#8a9bb0;margin-top:4px">PDF, DOC or DOCX — max 5MB
+                                </p>
+                            </div>
+                            <div class="ferr"></div>
+                        </div>
+                    </div>
+
+                    <!-- 9. Declaration -->
+                    <div class="cstep" data-step="declaration">
+                        <div class="cstep-title"><span class="cstep-num">9</span>Declaration<span
+                                class="req">*</span></div>
+                        <div class="cfield" id="f-declaration">
+                            <label class="declare">
+                                <input type="checkbox" id="cDeclare" name="declaration">
+                                <span class="declare-box" aria-hidden="true"></span>
+                                <span class="declare-text">I confirm that all the information I have provided in
+                                    this application — including my experience, coaching licence and documents — is
+                                    <strong>true, accurate and complete</strong>. I understand that any false or
+                                    misleading information may result in my application being rejected or my
+                                    employment being terminated.</span>
+                            </label>
+                            <div class="ferr"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-alert" id="cAlert" role="alert"></div>
+
+                    <button type="submit" class="sbtn" id="cSubmit">
+                        <span id="cSubmitText">Submit Application</span>
+                    </button>
+                    <p class="submit-note">🔒 Your details are only used for recruitment at Touchline Sport Academy.
+                    </p>
+                </form>
+
+                <div class="apply-success" id="cSuccess">
+                    <div class="success-ring">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20 6L9 17l-5-5" />
+                        </svg>
+                    </div>
+                    <h3>Application Submitted!</h3>
+                    <p id="cSuccessMsg">Thank you for applying. A confirmation has been sent to your email and our team
+                        will be in touch soon.</p>
+                    <div class="app-id" id="cAppId" hidden></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ───── JOBS GRID (hidden while the Senior / Assistant Coach drive is running) ───── -->
+    <section class="jobs" id="job-openings" style="display:none" aria-hidden="true" itemscope
+        itemtype="https://schema.org/ItemList">
         <meta itemprop="name" content="Football Academy Job Openings in Dubai">
         <div class="sec-head">
             <h2 itemprop="headline">Current Job Opportunities at Touchline Sport Academy</h2>
@@ -1431,7 +2673,7 @@
     </section>
 
     <!-- ═══ PART-TIME NOTE SECTION ═══ -->
-    <section class="note-section">
+    <section class="note-section" style="display:none" aria-hidden="true">
         <div class="note-inner">
             <div class="note-icon">📌</div>
             <div class="note-text">
@@ -1474,15 +2716,14 @@
                 </div>
                 <div class="faq-item">
                     <h3>How do I apply?</h3>
-                    <p>Click on the role you're interested in above, fill out the application form, and upload your CV.
-                        We review all applications and aim to respond within 3–5 business days. Urgent roles may get a
-                        call within 24–48 hours.</p>
+                    <p>Use the application form above — choose Senior Coach or Assistant Coach, add your photo, fill in
+                        your details and upload your CV. We review all applications and aim to respond within 3–5
+                        business days.</p>
                 </div>
                 <div class="faq-item">
                     <h3>Are there non-coaching roles available?</h3>
-                    <p>Yes! We have an Academy Manager opening and periodically hire for sales and admin roles. See all
-                        current openings in the cards above — including expression-of-interest options for Head Coach
-                        and Sales Admin.</p>
+                    <p>We periodically hire for academy management, sales and admin roles. Our current drive is for
+                        Senior and Assistant Coaches — check back on this page for future openings.</p>
                 </div>
             </div>
         </div>
@@ -2313,6 +3554,474 @@
   }
 `;
         document.head.appendChild(style);
+    </script>
+
+    <script>
+        /* ═══ SENIOR / ASSISTANT COACH APPLICATION ═══ */
+        (function () {
+            // Asian nationalities and Egypt are intentionally excluded (UAE visa requirements).
+            const NATIONALITIES = {
+                'Africa': ['Algeria', 'Angola', 'Benin', 'Botswana', 'Burkina Faso', 'Burundi', 'Cabo Verde', 'Cameroon',
+                    'Central African Republic', 'Chad', 'Comoros', 'Congo (Republic)', 'Congo (DR)', "Côte d'Ivoire",
+                    'Djibouti', 'Equatorial Guinea', 'Eritrea', 'Eswatini', 'Ethiopia', 'Gabon', 'Gambia', 'Ghana',
+                    'Guinea', 'Guinea-Bissau', 'Kenya', 'Lesotho', 'Liberia', 'Libya', 'Madagascar', 'Malawi', 'Mali',
+                    'Mauritania', 'Mauritius', 'Morocco', 'Mozambique', 'Namibia', 'Niger', 'Nigeria', 'Rwanda',
+                    'São Tomé and Príncipe', 'Senegal', 'Seychelles', 'Sierra Leone', 'Somalia', 'South Africa',
+                    'South Sudan', 'Sudan', 'Tanzania', 'Togo', 'Tunisia', 'Uganda', 'Zambia', 'Zimbabwe'],
+                'Europe': ['Albania', 'Andorra', 'Austria', 'Belarus', 'Belgium', 'Bosnia and Herzegovina', 'Bulgaria',
+                    'Croatia', 'Cyprus', 'Czech Republic', 'Denmark', 'Estonia', 'Finland', 'France', 'Germany', 'Greece',
+                    'Hungary', 'Iceland', 'Ireland', 'Italy', 'Kosovo', 'Latvia', 'Liechtenstein', 'Lithuania',
+                    'Luxembourg', 'Malta', 'Moldova', 'Monaco', 'Montenegro', 'Netherlands', 'North Macedonia', 'Norway',
+                    'Poland', 'Portugal', 'Romania', 'Russia', 'San Marino', 'Serbia', 'Slovakia', 'Slovenia', 'Spain',
+                    'Sweden', 'Switzerland', 'Ukraine', 'United Kingdom'],
+                'Americas': ['Antigua and Barbuda', 'Argentina', 'Bahamas', 'Barbados', 'Belize', 'Bolivia', 'Brazil',
+                    'Canada', 'Chile', 'Colombia', 'Costa Rica', 'Cuba', 'Dominica', 'Dominican Republic', 'Ecuador',
+                    'El Salvador', 'Grenada', 'Guatemala', 'Guyana', 'Haiti', 'Honduras', 'Jamaica', 'Mexico',
+                    'Nicaragua', 'Panama', 'Paraguay', 'Peru', 'Saint Kitts and Nevis', 'Saint Lucia',
+                    'Saint Vincent and the Grenadines', 'Suriname', 'Trinidad and Tobago', 'United States', 'Uruguay',
+                    'Venezuela'],
+                'Oceania': ['Australia', 'Fiji', 'Kiribati', 'Marshall Islands', 'Micronesia', 'Nauru', 'New Zealand',
+                    'Palau', 'Papua New Guinea', 'Samoa', 'Solomon Islands', 'Tonga', 'Tuvalu', 'Vanuatu']
+            };
+
+            const LICENCE_LEVELS = {
+                AFC: ['Pro', 'A', 'B', 'C', 'D', 'Other'],
+                CAF: ['Pro', 'A', 'B', 'C', 'D', 'Other'],
+                UEFA: ['Level 1', 'Level 2', 'Level 3', 'Level 4', 'Other'],
+                UAEFA: ['Pro', 'A', 'B', 'C', 'D', 'Other'],
+                Other: []
+            };
+
+            const SENIOR_LEVELS = {
+                AFC: ['Pro', 'A', 'B', 'C'],
+                CAF: ['Pro', 'A', 'B', 'C'],
+                UEFA: ['Level 2', 'Level 3', 'Level 4'],
+                UAEFA: ['Pro', 'A', 'B', 'C']
+            };
+
+            const SENIOR_MIN_UAE_YEARS = 2;
+
+            const ENGLISH_LEVELS = [
+                { value: 'Can Adjust', bars: 1, desc: 'Understand & give simple instructions; basic reading and writing' },
+                { value: 'Manageable', bars: 2, desc: 'Everyday conversation; read & write simple messages' },
+                { value: 'Good', bars: 3, desc: 'Speak, read & write confidently with players and parents' },
+                { value: 'Fluent', bars: 4, desc: 'Speak, read & write with ease in any situation' }
+            ];
+
+            const PHOTO_TYPES = ['image/jpeg', 'image/png', 'image/webp'];
+            const RESUME_TYPES = ['application/pdf', 'application/msword',
+                'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+            const MAX_PHOTO = 5 * 1024 * 1024;
+            const MAX_RESUME = 5 * 1024 * 1024;
+
+            const form = document.getElementById('coachForm');
+            if (!form) return;
+
+            const el = id => document.getElementById(id);
+            const photoInput = el('cPhoto');
+            const photoPreview = el('cPhotoPreview');
+            const photoPlaceholder = photoPreview.innerHTML;
+            const phoneInput = el('cPhone');
+            const uaeInput = el('cUaeExp');
+            const totalInput = el('cTotalExp');
+            const resumeInput = el('cResume');
+            const resumeBox = el('cResumeBox');
+
+            let photo = null;   // { base64, mimeType, name }
+            let resumeFile = null;
+
+            /* ── Build options ── */
+            const natSelect = el('cNationality');
+            Object.keys(NATIONALITIES).forEach(region => {
+                const group = document.createElement('optgroup');
+                group.label = region;
+                NATIONALITIES[region].forEach(c => group.appendChild(new Option(c, c)));
+                natSelect.appendChild(group);
+            });
+
+            el('cLicenceBodies').innerHTML = Object.keys(LICENCE_LEVELS).map(b =>
+                `<label class="chip"><input type="radio" name="licenceBody" value="${b}"><span>${b}</span></label>`
+            ).join('');
+
+            el('cEnglish').innerHTML = ENGLISH_LEVELS.map(l => `
+                <label class="choice">
+                    <input type="radio" name="englishFluency" value="${l.value}">
+                    <div class="choice-box">
+                        <div class="lvl-bars">${[1, 2, 3, 4].map(i => `<i class="${i <= l.bars ? 'on' : ''}"></i>`).join('')}</div>
+                        <strong>${l.value}</strong>
+                        <small>${l.desc}</small>
+                    </div>
+                </label>`).join('');
+
+            /* ── Helpers ── */
+            const radioValue = name => (form.querySelector(`input[name="${name}"]:checked`) || {}).value || '';
+            const role = () => radioValue('jobRole');
+            const isSenior = () => role() === 'senior-coach';
+            const phoneDigits = () => phoneInput.value.replace(/\D/g, '');
+
+            function setError(key, msg) {
+                const f = el('f-' + key);
+                if (!f) return;
+                f.classList.toggle('invalid', !!msg);
+                f.querySelector('.ferr').textContent = msg || '';
+            }
+
+            function formatSize(bytes) {
+                return bytes < 1024 * 1024 ? Math.round(bytes / 1024) + ' KB' : (bytes / 1024 / 1024).toFixed(1) + ' MB';
+            }
+
+            function readAsDataURL(file) {
+                return new Promise((resolve, reject) => {
+                    const r = new FileReader();
+                    r.onload = () => resolve(r.result);
+                    r.onerror = reject;
+                    r.readAsDataURL(file);
+                });
+            }
+
+            function compressImage(dataUrl, maxSize) {
+                return new Promise((resolve, reject) => {
+                    const img = new Image();
+                    img.onload = () => {
+                        const scale = Math.min(1, maxSize / Math.max(img.width, img.height));
+                        const canvas = document.createElement('canvas');
+                        canvas.width = Math.round(img.width * scale);
+                        canvas.height = Math.round(img.height * scale);
+                        const ctx = canvas.getContext('2d');
+                        ctx.fillStyle = '#fff';
+                        ctx.fillRect(0, 0, canvas.width, canvas.height);
+                        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                        resolve(canvas.toDataURL('image/jpeg', 0.85));
+                    };
+                    img.onerror = reject;
+                    img.src = dataUrl;
+                });
+            }
+
+            /* ── Photo ── */
+            el('cPhotoBtn').addEventListener('click', () => photoInput.click());
+
+            photoInput.addEventListener('change', async () => {
+                const file = photoInput.files[0];
+                if (!file) return;
+                if (!PHOTO_TYPES.includes(file.type)) {
+                    photoInput.value = '';
+                    return setError('photo', 'Please upload a JPG, PNG or WEBP image.');
+                }
+                if (file.size > MAX_PHOTO) {
+                    photoInput.value = '';
+                    return setError('photo', 'Photo must be 5MB or smaller.');
+                }
+                try {
+                    const original = await readAsDataURL(file);
+                    let dataUrl = original;
+                    try { dataUrl = await compressImage(original, 800); } catch (_) { /* keep original */ }
+                    photo = {
+                        base64: dataUrl.split(',')[1],
+                        mimeType: dataUrl.slice(5, dataUrl.indexOf(';')),
+                        name: 'photo.' + (dataUrl.startsWith('data:image/jpeg') ? 'jpg' : file.name.split('.').pop())
+                    };
+                    photoPreview.innerHTML = `<img src="${dataUrl}" alt="Your photo preview">`;
+                    photoPreview.classList.add('has');
+                    el('cPhotoBtn').textContent = '🔄 Change Photo';
+                    el('cPhotoRemove').hidden = false;
+                    setError('photo', '');
+                } catch (err) {
+                    setError('photo', 'Could not read this image. Please try another photo.');
+                }
+                photoInput.value = '';
+                updateProgress();
+            });
+
+            el('cPhotoRemove').addEventListener('click', () => {
+                photo = null;
+                photoPreview.innerHTML = photoPlaceholder;
+                photoPreview.classList.remove('has');
+                el('cPhotoBtn').textContent = '📷 Upload Photo';
+                el('cPhotoRemove').hidden = true;
+                updateProgress();
+            });
+
+            /* ── Phone: +971 5X XXX XXXX ── */
+            phoneInput.addEventListener('input', () => {
+                let d = phoneDigits();
+                if (d.startsWith('00971')) d = d.slice(5);
+                else if (d.startsWith('971')) d = d.slice(3);
+                if (d.startsWith('0')) d = d.slice(1);
+                d = d.slice(0, 9);
+                phoneInput.value = [d.slice(0, 2), d.slice(2, 5), d.slice(5)].filter(Boolean).join(' ');
+            });
+
+            /* ── Experience: whole years, 0–99 ── */
+            [uaeInput, totalInput].forEach(input => input.addEventListener('input', () => {
+                input.value = input.value.replace(/\D/g, '').slice(0, 2);
+            }));
+
+            function seniorUaeBlocked() {
+                return isSenior() && uaeInput.value !== '' && Number(uaeInput.value) < SENIOR_MIN_UAE_YEARS;
+            }
+
+            function liveExperienceCheck() {
+                const blocked = seniorUaeBlocked();
+                setError('uaeExperience', blocked
+                    ? `Senior Coach requires at least ${SENIOR_MIN_UAE_YEARS} years UAE experience — you cannot apply for this role. You can apply as Assistant Coach instead.`
+                    : '');
+
+                const uae = uaeInput.value, total = totalInput.value;
+                setError('totalExperience', uae !== '' && total !== '' && Number(total) < Number(uae)
+                    ? 'Total experience cannot be less than UAE experience.' : '');
+
+                const btn = el('cSubmit');
+                btn.classList.toggle('blocked', blocked);
+                btn.disabled = blocked;
+                el('cSubmitText').textContent = blocked ? 'Not Eligible for Senior Coach' : 'Submit Application';
+            }
+
+            /* ── Role-dependent rules ── */
+            function renderLevels() {
+                const body = radioValue('licenceBody');
+                const wrap = el('f-licenceLevel');
+                const levels = LICENCE_LEVELS[body] || [];
+                const current = radioValue('licenceLevel');
+
+                if (!levels.length) {
+                    wrap.classList.remove('show');
+                    el('cLicenceLevels').innerHTML = '';
+                    setError('licenceLevel', '');
+                    return;
+                }
+
+                const allowed = isSenior() ? SENIOR_LEVELS[body] : levels;
+                el('cLevelLabel').innerHTML = `${body} Licence Level<span class="req">*</span>`;
+                el('cLicenceLevels').innerHTML = levels.map(lv => {
+                    const ok = allowed.includes(lv);
+                    const checked = ok && lv === current ? 'checked' : '';
+                    return `<label class="chip"${ok ? '' : ' title="Not eligible for Senior Coach"'}>
+                        <input type="radio" name="licenceLevel" value="${lv}" ${checked} ${ok ? '' : 'disabled'}><span>${lv}</span></label>`;
+                }).join('');
+                wrap.classList.add('show');
+            }
+
+            function applyRoleRules() {
+                const senior = isSenior();
+                const otherBody = form.querySelector('input[name="licenceBody"][value="Other"]');
+                otherBody.disabled = senior;
+                otherBody.parentElement.title = senior ? 'Not eligible for Senior Coach' : '';
+                if (senior && otherBody.checked) otherBody.checked = false;
+
+                el('cExpRule').querySelector('span').textContent = !role()
+                    ? 'Select a job role to see the experience requirement.'
+                    : senior
+                        ? `Senior Coach requires a minimum of ${SENIOR_MIN_UAE_YEARS} years coaching experience in the UAE.`
+                        : 'No minimum UAE experience for Assistant Coach — enter 0 if you have none.';
+
+                el('cLicRule').querySelector('span').textContent = senior
+                    ? 'Senior Coach requires a minimum C Licence (AFC / CAF / UAEFA) or UEFA Level 2.'
+                    : role()
+                        ? 'All licence levels are accepted for Assistant Coach.'
+                        : 'Senior Coach requires a minimum C Licence (AFC / CAF / UAEFA) or UEFA Level 2.';
+
+                renderLevels();
+            }
+
+            /* ── Resume ── */
+            resumeBox.addEventListener('click', e => { if (e.target !== resumeInput) resumeInput.click(); });
+            resumeBox.addEventListener('keydown', e => {
+                if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); resumeInput.click(); }
+            });
+            ['dragenter', 'dragover'].forEach(ev => resumeBox.addEventListener(ev, e => {
+                e.preventDefault();
+                resumeBox.style.borderColor = '#BEB071';
+            }));
+            ['dragleave', 'drop'].forEach(ev => resumeBox.addEventListener(ev, e => {
+                e.preventDefault();
+                resumeBox.style.borderColor = '';
+            }));
+            resumeBox.addEventListener('drop', e => {
+                if (e.dataTransfer.files.length) handleResume(e.dataTransfer.files[0]);
+            });
+            resumeInput.addEventListener('change', () => {
+                if (resumeInput.files[0]) handleResume(resumeInput.files[0]);
+                resumeInput.value = '';
+            });
+
+            function handleResume(file) {
+                const ext = file.name.split('.').pop().toLowerCase();
+                if (!RESUME_TYPES.includes(file.type) && !['pdf', 'doc', 'docx'].includes(ext)) {
+                    return setError('resume', 'Please upload a PDF, DOC or DOCX file.');
+                }
+                if (file.size > MAX_RESUME) return setError('resume', 'Resume must be 5MB or smaller.');
+                resumeFile = file;
+                resumeBox.classList.add('has-file');
+                el('cResumeText').innerHTML = '';
+                const name = document.createElement('span');
+                name.style.color = '#10b981';
+                name.textContent = '✓ ' + file.name;
+                el('cResumeText').append(name, ` (${formatSize(file.size)}) — click to change`);
+                setError('resume', '');
+                updateProgress();
+            }
+
+            /* ── Validation ── */
+            function validate() {
+                const errors = {};
+                const name = form.fullName.value.trim();
+                const email = form.email.value.trim();
+                const uae = uaeInput.value === '' ? NaN : Number(uaeInput.value);
+                const total = totalInput.value === '' ? NaN : Number(totalInput.value);
+                const salary = Number(form.expectedSalary.value);
+                const body = radioValue('licenceBody');
+                const level = radioValue('licenceLevel');
+
+                if (!photo) errors.photo = 'Please upload your photo.';
+                if (name.length < 3) errors.fullName = 'Please enter your full name.';
+                if (!/^5[024568]\d{7}$/.test(phoneDigits())) errors.phone = 'Enter a valid UAE mobile number, e.g. 50 123 4567.';
+                if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) errors.email = 'Please enter a valid email address.';
+                if (!form.nationality.value) errors.nationality = 'Please select your nationality.';
+                if (!role()) errors.jobRole = 'Please select the role you are applying for.';
+
+                if (!/^\d{1,2}$/.test(uaeInput.value)) errors.uaeExperience = 'Please enter your UAE coaching experience in years (0–99).';
+                else if (isSenior() && uae < SENIOR_MIN_UAE_YEARS) errors.uaeExperience = `Senior Coach requires at least ${SENIOR_MIN_UAE_YEARS} years UAE experience — you cannot apply for this role. You can apply as Assistant Coach instead.`;
+
+                if (!/^\d{1,2}$/.test(totalInput.value)) errors.totalExperience = 'Please enter your total coaching experience in years (0–99).';
+                else if (!isNaN(uae) && total < uae) errors.totalExperience = 'Total experience cannot be less than UAE experience.';
+
+                if (!body) errors.licenceBody = 'Please select your coaching licence.';
+                else if (LICENCE_LEVELS[body].length && !level) errors.licenceLevel = 'Please select your licence level.';
+
+                if (!radioValue('englishFluency')) errors.englishFluency = 'Please select your English fluency level.';
+                if (!(salary > 0)) errors.expectedSalary = 'Please enter your expected monthly salary in AED.';
+                if (!resumeFile) errors.resume = 'Please upload your resume / CV.';
+                if (!el('cDeclare').checked) errors.declaration = 'Please confirm that the information you provided is true.';
+
+                ['photo', 'fullName', 'phone', 'email', 'nationality', 'jobRole', 'uaeExperience', 'totalExperience',
+                    'licenceBody', 'licenceLevel', 'englishFluency', 'expectedSalary', 'resume', 'declaration']
+                    .forEach(k => setError(k, errors[k]));
+
+                return errors;
+            }
+
+            /* ── Progress ── */
+            function updateProgress() {
+                const body = radioValue('licenceBody');
+                const steps = {
+                    photo: !!photo,
+                    personal: form.fullName.value.trim().length >= 3 && /^5[024568]\d{7}$/.test(phoneDigits())
+                        && /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(form.email.value.trim()) && !!form.nationality.value,
+                    role: !!role(),
+                    experience: uaeInput.value !== '' && totalInput.value !== '' && !seniorUaeBlocked()
+                        && Number(totalInput.value) >= Number(uaeInput.value),
+                    licence: !!body && (!LICENCE_LEVELS[body].length || !!radioValue('licenceLevel')),
+                    english: !!radioValue('englishFluency'),
+                    salary: Number(form.expectedSalary.value) > 0,
+                    resume: !!resumeFile,
+                    declaration: el('cDeclare').checked
+                };
+                const keys = Object.keys(steps);
+                const done = keys.filter(k => steps[k]).length;
+                const pct = Math.round(done / keys.length * 100);
+                el('cProgress').style.width = pct + '%';
+                el('cProgressPct').textContent = pct + '%';
+                keys.forEach(k => form.querySelector(`[data-step="${k}"]`).classList.toggle('done', steps[k]));
+            }
+
+            form.addEventListener('change', e => {
+                if (e.target.name === 'jobRole') applyRoleRules();
+                if (e.target.name === 'licenceBody') renderLevels();
+                if (e.target.name) setError(e.target.name, '');
+                liveExperienceCheck();
+                updateProgress();
+            });
+            form.addEventListener('input', e => {
+                if (e.target.name) setError(e.target.name, '');
+                if (e.target === uaeInput || e.target === totalInput) liveExperienceCheck();
+                updateProgress();
+            });
+
+            /* ── Submit ── */
+            form.addEventListener('submit', async e => {
+                e.preventDefault();
+                const alertBox = el('cAlert');
+                alertBox.classList.remove('show');
+
+                const errors = validate();
+                const firstKey = Object.keys(errors)[0];
+                if (firstKey) {
+                    el('f-' + firstKey).scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    return;
+                }
+
+                const btn = el('cSubmit');
+                btn.disabled = true;
+                el('cSubmitText').textContent = 'Submitting… please wait';
+
+                try {
+                    const jobId = role();
+                    const d = phoneDigits();
+                    const resumeData = await readAsDataURL(resumeFile);
+
+                    const payload = {
+                        jobId,
+                        formData: {
+                            fullName: form.fullName.value.trim(),
+                            phone: `+971 ${d.slice(0, 2)} ${d.slice(2, 5)} ${d.slice(5)}`,
+                            email: form.email.value.trim(),
+                            nationality: form.nationality.value,
+                            jobRole: jobId === 'senior-coach' ? 'Senior Coach' : 'Assistant Coach',
+                            uaeExperience: Number(uaeInput.value),
+                            totalExperience: Number(totalInput.value),
+                            licenceBody: radioValue('licenceBody'),
+                            licenceLevel: radioValue('licenceLevel'),
+                            englishFluency: radioValue('englishFluency'),
+                            expectedSalary: Number(form.expectedSalary.value),
+                            declaration: el('cDeclare').checked ? 'Confirmed' : ''
+                        },
+                        files: [
+                            { fieldName: 'photo', name: photo.name, mimeType: photo.mimeType, content: photo.base64 },
+                            {
+                                fieldName: 'resume', name: resumeFile.name,
+                                mimeType: resumeFile.type || 'application/octet-stream',
+                                content: resumeData.split(',')[1]
+                            }
+                        ]
+                    };
+
+                    const res = await fetch(APPS_SCRIPT_URL, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                        body: JSON.stringify(payload)
+                    });
+                    const result = await res.json();
+                    if (!result.success) {
+                        const err = new Error(result.message || 'Submission failed');
+                        err.fromServer = true;
+                        throw err;
+                    }
+
+                    form.style.display = 'none';
+                    el('cSuccessMsg').textContent = `Thank you, ${payload.formData.fullName.split(' ')[0]}! Your application for ${payload.formData.jobRole} has been received. A confirmation has been sent to ${payload.formData.email} and our team will be in touch soon.`;
+                    if (result.applicationId) {
+                        el('cAppId').textContent = 'Application ID: ' + result.applicationId;
+                        el('cAppId').hidden = false;
+                    }
+                    el('cSuccess').classList.add('show');
+                    el('cProgress').style.width = '100%';
+                    el('cProgressPct').textContent = '100%';
+                    el('apply').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                } catch (err) {
+                    console.error('Application error:', err);
+                    alertBox.textContent = err.fromServer
+                        ? err.message.replace(/^Error processing application:\s*/, '')
+                        : 'Something went wrong while submitting. Please check your connection and try again, or email careers.touchline@gmail.com.';
+                    alertBox.classList.add('show');
+                    btn.disabled = false;
+                    el('cSubmitText').textContent = 'Submit Application';
+                }
+            });
+
+            applyRoleRules();
+            updateProgress();
+        })();
     </script>
     <!-- Structured Data: Organization -->
     <script type="application/ld+json">
