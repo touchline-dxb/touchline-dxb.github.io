@@ -2431,8 +2431,9 @@
                                     class="req">*</span></label>
                             <div class="ingroup">
                                 <span class="ingroup-add">AED</span>
-                                <input class="cinput" type="number" id="cSalary" name="expectedSalary"
-                                    inputmode="numeric" min="1" max="200000" step="1" placeholder="e.g. 5000">
+                                <input class="cinput" type="text" id="cSalary" name="expectedSalary"
+                                    inputmode="numeric" pattern="[0-9]*" maxlength="6" autocomplete="off"
+                                    placeholder="e.g. 5000">
                                 <span class="ingroup-add end">/ month</span>
                             </div>
                             <div class="ferr"></div>
@@ -3584,29 +3585,31 @@
     <script>
         /* ═══ SENIOR / ASSISTANT COACH APPLICATION ═══ */
         (function () {
-            const NATIONALITIES = {
-                'Africa': ['Algeria', 'Angola', 'Benin', 'Botswana', 'Burkina Faso', 'Burundi', 'Cabo Verde', 'Cameroon',
-                    'Central African Republic', 'Chad', 'Comoros', 'Congo (Republic)', 'Congo (DR)', "Côte d'Ivoire",
-                    'Djibouti', 'Equatorial Guinea', 'Eritrea', 'Eswatini', 'Ethiopia', 'Gabon', 'Gambia', 'Ghana',
-                    'Guinea', 'Guinea-Bissau', 'Kenya', 'Lesotho', 'Liberia', 'Libya', 'Madagascar', 'Malawi', 'Mali',
-                    'Mauritania', 'Mauritius', 'Morocco', 'Mozambique', 'Namibia', 'Niger', 'Nigeria', 'Rwanda',
-                    'São Tomé and Príncipe', 'Senegal', 'Seychelles', 'Sierra Leone', 'Somalia', 'South Africa',
-                    'South Sudan', 'Sudan', 'Tanzania', 'Togo', 'Tunisia', 'Uganda', 'Zambia', 'Zimbabwe'],
-                'Europe': ['Albania', 'Andorra', 'Austria', 'Belarus', 'Belgium', 'Bosnia and Herzegovina', 'Bulgaria',
-                    'Croatia', 'Cyprus', 'Czech Republic', 'Denmark', 'Estonia', 'Finland', 'France', 'Germany', 'Greece',
-                    'Hungary', 'Iceland', 'Ireland', 'Italy', 'Kosovo', 'Latvia', 'Liechtenstein', 'Lithuania',
-                    'Luxembourg', 'Malta', 'Moldova', 'Monaco', 'Montenegro', 'Netherlands', 'North Macedonia', 'Norway',
-                    'Poland', 'Portugal', 'Romania', 'Russia', 'San Marino', 'Serbia', 'Slovakia', 'Slovenia', 'Spain',
-                    'Sweden', 'Switzerland', 'Ukraine', 'United Kingdom'],
-                'Americas': ['Antigua and Barbuda', 'Argentina', 'Bahamas', 'Barbados', 'Belize', 'Bolivia', 'Brazil',
-                    'Canada', 'Chile', 'Colombia', 'Costa Rica', 'Cuba', 'Dominica', 'Dominican Republic', 'Ecuador',
-                    'El Salvador', 'Grenada', 'Guatemala', 'Guyana', 'Haiti', 'Honduras', 'Jamaica', 'Mexico',
-                    'Nicaragua', 'Panama', 'Paraguay', 'Peru', 'Saint Kitts and Nevis', 'Saint Lucia',
-                    'Saint Vincent and the Grenadines', 'Suriname', 'Trinidad and Tobago', 'United States', 'Uruguay',
-                    'Venezuela'],
-                'Oceania': ['Australia', 'Fiji', 'Kiribati', 'Marshall Islands', 'Micronesia', 'Nauru', 'New Zealand',
-                    'Palau', 'Papua New Guinea', 'Samoa', 'Solomon Islands', 'Tonga', 'Tuvalu', 'Vanuatu']
-            };
+            const NATIONALITIES = ['Afghanistan', 'Albania', 'Algeria', 'Andorra', 'Angola', 'Antigua and Barbuda',
+                'Argentina', 'Armenia', 'Australia', 'Austria', 'Azerbaijan', 'Bahamas', 'Bahrain', 'Bangladesh',
+                'Barbados', 'Belarus', 'Belgium', 'Belize', 'Benin', 'Bhutan', 'Bolivia', 'Bosnia and Herzegovina',
+                'Botswana', 'Brazil', 'Brunei', 'Bulgaria', 'Burkina Faso', 'Burundi', 'Cabo Verde', 'Cambodia',
+                'Cameroon', 'Canada', 'Central African Republic', 'Chad', 'Chile', 'China', 'Colombia', 'Comoros',
+                'Congo (DR)', 'Congo (Republic)', 'Costa Rica', "Côte d'Ivoire", 'Croatia', 'Cuba', 'Cyprus',
+                'Czech Republic', 'Denmark', 'Djibouti', 'Dominica', 'Dominican Republic', 'Ecuador', 'Egypt',
+                'El Salvador', 'Equatorial Guinea', 'Eritrea', 'Estonia', 'Eswatini', 'Ethiopia', 'Fiji', 'Finland',
+                'France', 'Gabon', 'Gambia', 'Georgia', 'Germany', 'Ghana', 'Greece', 'Grenada', 'Guatemala', 'Guinea',
+                'Guinea-Bissau', 'Guyana', 'Haiti', 'Honduras', 'Hong Kong', 'Hungary', 'Iceland', 'India', 'Indonesia',
+                'Iran', 'Iraq', 'Ireland', 'Italy', 'Jamaica', 'Japan', 'Jordan', 'Kazakhstan', 'Kenya',
+                'Kiribati', 'Kosovo', 'Kuwait', 'Kyrgyzstan', 'Laos', 'Latvia', 'Lebanon', 'Lesotho', 'Liberia',
+                'Libya', 'Liechtenstein', 'Lithuania', 'Luxembourg', 'Madagascar', 'Malawi', 'Malaysia', 'Maldives',
+                'Mali', 'Malta', 'Marshall Islands', 'Mauritania', 'Mauritius', 'Mexico', 'Micronesia', 'Moldova',
+                'Monaco', 'Mongolia', 'Montenegro', 'Morocco', 'Mozambique', 'Myanmar', 'Namibia', 'Nauru', 'Nepal',
+                'Netherlands', 'New Zealand', 'Nicaragua', 'Niger', 'Nigeria', 'North Korea', 'North Macedonia',
+                'Norway', 'Oman', 'Pakistan', 'Palau', 'Palestine', 'Panama', 'Papua New Guinea', 'Paraguay', 'Peru',
+                'Philippines', 'Poland', 'Portugal', 'Qatar', 'Romania', 'Russia', 'Rwanda', 'Saint Kitts and Nevis',
+                'Saint Lucia', 'Saint Vincent and the Grenadines', 'Samoa', 'San Marino', 'São Tomé and Príncipe',
+                'Saudi Arabia', 'Senegal', 'Serbia', 'Seychelles', 'Sierra Leone', 'Singapore', 'Slovakia', 'Slovenia',
+                'Solomon Islands', 'Somalia', 'South Africa', 'South Korea', 'South Sudan', 'Spain', 'Sri Lanka',
+                'Sudan', 'Suriname', 'Sweden', 'Switzerland', 'Syria', 'Taiwan', 'Tajikistan', 'Tanzania', 'Thailand',
+                'Timor-Leste', 'Togo', 'Tonga', 'Trinidad and Tobago', 'Tunisia', 'Turkey', 'Turkmenistan', 'Tuvalu',
+                'Uganda', 'Ukraine', 'United Arab Emirates', 'United Kingdom', 'United States', 'Uruguay',
+                'Uzbekistan', 'Vanuatu', 'Venezuela', 'Vietnam', 'Yemen', 'Zambia', 'Zimbabwe'];
 
             const LICENCE_LEVELS = {
                 AFC: ['Pro', 'A', 'B', 'C', 'D', 'Other'],
@@ -3656,12 +3659,7 @@
 
             /* ── Build options ── */
             const natSelect = el('cNationality');
-            Object.keys(NATIONALITIES).forEach(region => {
-                const group = document.createElement('optgroup');
-                group.label = region;
-                NATIONALITIES[region].forEach(c => group.appendChild(new Option(c, c)));
-                natSelect.appendChild(group);
-            });
+            NATIONALITIES.forEach(c => natSelect.appendChild(new Option(c, c)));
 
             el('cLicenceBodies').innerHTML = Object.keys(LICENCE_LEVELS).map(b =>
                 `<label class="chip"><input type="radio" name="licenceBody" value="${b}"><span>${b}</span></label>`
@@ -3780,6 +3778,12 @@
             [uaeInput, totalInput].forEach(input => input.addEventListener('input', () => {
                 input.value = input.value.replace(/\D/g, '').slice(0, 2);
             }));
+
+            /* ── Salary: digits only, no leading zeros ── */
+            const salaryInput = el('cSalary');
+            salaryInput.addEventListener('input', () => {
+                salaryInput.value = salaryInput.value.replace(/\D/g, '').replace(/^0+/, '').slice(0, 6);
+            });
 
             function seniorUaeBlocked() {
                 return isSenior() && uaeInput.value !== '' && Number(uaeInput.value) < SENIOR_MIN_UAE_YEARS;
@@ -3915,7 +3919,9 @@
 
                 if (!radioValue('englishFluency')) errors.englishFluency = 'Please select your English fluency level.';
                 if (!radioValue('availability')) errors.availability = 'Please tell us when you can join.';
-                if (!(salary > 0)) errors.expectedSalary = 'Please enter your expected monthly salary in AED.';
+                if (!/^[1-9]\d*$/.test(form.expectedSalary.value) || !(salary > 0)) {
+                    errors.expectedSalary = 'Please enter your expected monthly salary in AED (numbers only).';
+                }
                 if (!resumeFile) errors.resume = 'Please upload your resume / CV.';
                 if (!el('cDeclare').checked) errors.declaration = 'Please confirm that the information you provided is true.';
 
